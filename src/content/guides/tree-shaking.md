@@ -55,6 +55,22 @@ export function cube(x) {
   return x * x * x;
 }
 ```
+你需要设置开发模式(development mode)，来确保 bundle 是没有压缩过的(minified)：
+
+__webpack.config.js__
+```
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+- }
++ },
++ mode: "development"
+};
+```
 
 接着，更新入口脚本，使用其中一个新方法，并且为了简单，将 `lodash` 删除：
 
