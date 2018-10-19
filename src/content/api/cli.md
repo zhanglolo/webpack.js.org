@@ -64,7 +64,7 @@ webpack <entry> [<entry>] -o <output>
 ```
 
 ```bash
-webpack src/index.js dist/bundle.js
+webpack src/index.js -o dist/bundle.js
 ```
 
 打包源码，入口为 `index.js`，并且输出文件的路径为 `dist`，文件名为 `bundle.js`
