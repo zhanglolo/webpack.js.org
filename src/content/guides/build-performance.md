@@ -53,7 +53,7 @@ contributors:
 
 ### 解析
 
-以下几步可以提供解析速度:
+以下几步可以提高解析速度:
 
 - 尽量减少 `resolve.modules`, `resolve.extensions`, `resolve.mainFiles`, `resolve.descriptionFiles` 中类目的数量，因为他们会增加文件系统调用的次数。
 - 如果你不使用 symlinks ，可以设置 `resolve.symlinks: false` (例如 `npm link` 或者 `yarn link`).
