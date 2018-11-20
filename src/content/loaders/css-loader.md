@@ -84,10 +84,10 @@ console.log(css); // {String}
 |**[`url`](#url)**|`{Boolean}`|`true`| 启用/禁用 `url()` 处理|
 |**[`import`](#import)** |`{Boolean}`|`true`| 启用/禁用 @import 处理|
 |**[`modules`](#modules)**|`{Boolean}`|`false`|启用/禁用 CSS 模块|
+|**[`localIdentName`](#localidentname)**|`{String}`|`[hash:base64]`|配置生成的标识符(ident)|
 |**[`sourceMap`](#sourcemap)**|`{Boolean}`|`false`|启用/禁用 Sourcemap|
 |**[`camelCase`](#camelcase)**|`{Boolean\|String}`|`false`|以驼峰化式命名导出类名|
 |**[`importLoaders`](#importloaders)**|`{Number}`|`0`|在 css-loader 前应用的 loader 的数量|
-|**`localIdentName`**|`{String}`|`[hash:base64]`|配置生成的标识符(ident)|
 
 ### `url`
 
@@ -140,7 +140,7 @@ loader 会用唯一的标识符(identifier)来替换局部选择器。所选择�
 ._23_aKvs-b8bW2Vg3fwHozO ._13LGdX8RMStbBE9w-t0gZ1 .global-class-name { color: blue; }
 ```
 
-> :主要信息: 标识符被导出
+> ℹ️ 标识符被导出
 
 ```js
 exports.locals = {
@@ -159,41 +159,6 @@ file.png => ./file.png
 ```
 
 你可以使用 `:local(#someId)`，但不推荐这种用法。推荐使用 class 代替 id。
-你可以使用 `localIdentName` 查询参数（默认 `[hash:base64]`）来配置生成的 ident。
-
- **webpack.config.js**
- ```js
-{
-  test: /\.css$/,
-  use: [
-    {
-      loader: 'css-loader',
-      options: {
-        modules: true,
-        localIdentName: '[path][name]__[local]--[hash:base64:5]'
-      }
-    }
-  ]
-}
-```
-
-你还可以通过自定义 `getLocalIdent` 函数来指定绝对路径，以根据不同的模式(schema)生成类名。这需要 `webpack >= 2.2.1`（`options` 对象支持传入函数）。
-
-**webpack.config.js**
-```js
-{
-  loader: 'css-loader',
-  options: {
-    modules: true,
-    localIdentName: '[path][name]__[local]--[hash:base64:5]',
-    getLocalIdent: (context, localIdentName, localName, options) => {
-      return 'whatever_random_class_name'
-    }
-  }
-}
-```
-
-> :重要信息: 对于使用 extract-text-webpack-plugin 预渲染，你应该**在预渲染 bundle 中** 使用 `css-loader/locals` 而不是 `style-loader!css-loader` 。它不会嵌入 CSS，但只导出标识符映射(identifier map)。
 
 #### `Composing`
 
@@ -259,6 +224,44 @@ exports.locals = {
   background: red;
 }
 ```
+
+### `localIdentName`
+
+ 你可以使用 localIdentName 查询参数来配置生成的 ident。 可以在 [loader-utils 文档](https://github.com/webpack/loader-utils#interpolatename) 查看更多信息。
+
+ **webpack.config.js**
+```js
+{
+  test: /\.css$/,
+  use: [
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        localIdentName: '[path][name]__[local]--[hash:base64:5]'
+      }
+    }
+  ]
+}
+```
+
+你还可以通过自定义 getLocalIdent 函数来指定绝对路径，以根据不同的模式(schema)生成类名。这需要 webpack >= 2.2.1（options 对象支持传入函数）。
+
+**webpack.config.js**
+```js
+{
+  loader: 'css-loader',
+  options: {
+    modules: true,
+    localIdentName: '[path][name]__[local]--[hash:base64:5]',
+    getLocalIdent: (context, localIdentName, localName, options) => {
+      return 'whatever_random_class_name'
+    }
+  }
+}
+```
+
+> ℹ️ 对于使用 extract-text-webpack-plugin 预渲染，你应该在预渲染 bundle 中 使用 css-loader/locals 而不是 style-loader!css-loader 。它不会嵌入 CSS，但只导出标识符映射(identifier map)。
 
 ### `sourceMap`
 
