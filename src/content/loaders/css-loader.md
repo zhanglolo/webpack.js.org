@@ -81,36 +81,13 @@ console.log(css); // {String}
 
 |名称|类型|默认值|描述|
 |:--:|:--:|:-----:|:----------|
-|**[`root`](#root)**|`{String}`|`/`|解析 URL 的路径，以 `/` 开头的 URL 不会被转译|
 |**[`url`](#url)**|`{Boolean}`|`true`| 启用/禁用 `url()` 处理|
-|**[`alias`](#alias)**|`{Object}`|`{}`|创建别名更容易导入一些模块|
 |**[`import`](#import)** |`{Boolean}`|`true`| 启用/禁用 @import 处理|
 |**[`modules`](#modules)**|`{Boolean}`|`false`|启用/禁用 CSS 模块|
-|**[`minimize`](#minimize)**|`{Boolean\|Object}`|`false`|启用/禁用 压缩|
 |**[`sourceMap`](#sourcemap)**|`{Boolean}`|`false`|启用/禁用 Sourcemap|
 |**[`camelCase`](#camelcase)**|`{Boolean\|String}`|`false`|以驼峰化式命名导出类名|
 |**[`importLoaders`](#importloaders)**|`{Number}`|`0`|在 css-loader 前应用的 loader 的数量|
 |**`localIdentName`**|`{String}`|`[hash:base64]`|配置生成的标识符(ident)|
-
-### `root`
-
-对于以 `/` 开头的 URL，默认行为是不转译它们。
-
-`url(/image.png) => url(/image.png)`
-
-如果设置了 `root` 查询参数，那么此查询参数将被添加到 URL 前面，然后再进行转译。
-
-**webpack.config.js**
-```js
-{
-  loader: 'css-loader',
-  options: { root: '.' }
-}
-```
-
-`url(/image.png)` => `require('./image.png')`
-
-不建议使用'相对根路径'的 url。你应该只将其用于旧版 CSS 文件。
 
 ### `url`
 
@@ -122,48 +99,6 @@ console.log(css); // {String}
 url(image.png) => require('./image.png')
 url(~module/image.png) => require('module/image.png')
 ```
-
-### `alias`
-
-用别名重写你的 URL，在难以改变输入文件的url 路径时，这会很有帮助，例如，当你使用另一个包(package)（如 bootstrap, ratchet, font-awesome 等）中一些 css/sass 文件。
-
-`css-loader` 的别名，遵循与webpack 的 `resolve.alias` 相同的语法，你可以在[resolve 文档](https://webpack.js.org/configuration/resolve/#resolve-alias) 查看细节
-
-**file.scss**
-```css
-@charset "UTF-8";
-@import "bootstrap";
-```
-
-**webpack.config.js**
-```js
-{
-  test: /\.scss$/,
-  use: [
-    {
-      loader: "style-loader"
-    },
-    {
-      loader: "css-loader",
-      options: {
-        alias: {
-          "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
-        }
-      }
-    },
-    {
-      loader: "sass-loader",
-      options: {
-        includePaths: [
-          path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
-        ]
-      }
-    }
-  ]
-}
-```
-
-查看此示例 [working bootstrap example](https://github.com/bbtfr/webpack2-bootstrap-sass-sample)。
 
 ### `import`
 
@@ -325,24 +260,6 @@ exports.locals = {
 }
 ```
 
-### `minimize`
-
-默认情况下，如果模块系统指定，css-loader 将压缩 css。
-
-在某些情况下，压缩对于 css 来说是破坏性的，所以如果需要设置，可以向基于 cssnano 的 minifier(cssnano-based minifier) 提供自己的选项。更多可用信息请查看 [cssnano 文档](http://cssnano.co/guides/)。
-
-还可以使用 `minimize` 查询参数，来禁用或强制压缩。
-
-**webpack.config.js**
-```js
-{
-  loader: 'css-loader',
-  options: {
-    minimize: true || {/* CSSNano Options */}
-  }
-}
-```
-
 ### `sourceMap`
 
 设置 `sourceMap` 选项查询参数来引入 source map。
@@ -445,37 +362,8 @@ module.exports = {
 
 ### 提取
 
-对于生产环境构建，建议从 bundle 中提取 CSS，以便之后可以并行加载 CSS/JS 资源。可以通过使用 [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) 来实现，在生产环境模式运行中提取 CSS。
-
-**webpack.config.js**
-```js
-const env = process.env.NODE_ENV
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: env === 'production'
-          ? ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: [ 'css-loader' ]
-          })
-          : [ 'style-loader', 'css-loader' ]
-      },
-    ]
-  },
-  plugins: env === 'production'
-    ? [
-        new ExtractTextPlugin({
-          filename: '[name].css'
-        })
-      ]
-    : []
-}
-```
+对于生产环境构建，建议从 bundle 中提取 CSS，以便之后可以并行加载 CSS/JS 资源。
+可以通过使用 [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) 来实现，在生产环境模式运行中提取 CSS。
 
 ## 维护人员
 
