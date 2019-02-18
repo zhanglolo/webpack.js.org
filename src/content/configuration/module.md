@@ -46,9 +46,9 @@ noParse: function(content) {
 
 条件有两种输入值：
 
-1. resource：请求文件的绝对路径。它已经根据 [`resolve` 规则](/configuration/resolve)解析。
+1. resource：资源文件的绝对路径。它已经根据 [`resolve` 规则](/configuration/resolve)解析。
 
-2. issuer: 被请求资源(requested the resource)的模块文件的绝对路径。是导入时的位置。
+2. issuer: 请求者的文件绝对路径。是导入时的位置。
 
 **例如:** 从 `app.js` `导入 './style.css'`，resource 是 `/path/to/style.css`. issuer 是 `/path/to/app.js`。
 
