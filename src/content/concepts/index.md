@@ -69,7 +69,7 @@ module.exports = {
 
 T> 你可能会发现术语**生成(emitted 或 emit)**贯穿了我们整个文档和[插件 API](/api/plugins)。它是“生产(produced)”或“释放(discharged)”的特殊术语。
 
-T> `output` 属性还有[更多可配置的特性](/configuration/output)，如果你想要了解更多关于 `output` 属性的概念，你可以通过[阅读概念章节](/concepts/output)来了解更多。
+T> `output` 属性还有[更多可配置的特性](/configuration/output)，如果你想要了解更多关于 `output` 属性的概念，你可以通过[阅读输出章节](/concepts/output)来了解更多。
 
 
 ## loader
