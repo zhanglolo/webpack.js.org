@@ -5,8 +5,9 @@ edit: https://github.com/webpack-contrib/istanbul-instrumenter-loader/edit/maste
 repo: https://github.com/webpack-contrib/istanbul-instrumenter-loader
 ---
 
-
 Instrument JS files with [istanbul-lib-instrument](https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-lib-instrument) for subsequent code coverage reporting
+
+使用 [istanbul-lib-instrument](https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-lib-instrument) 可以检测 JS 文件随后的代码覆盖率报告
 
 ## 安装
 
@@ -18,8 +19,8 @@ npm i -D istanbul-instrumenter-loader
 
 ##
 
-* [karma-webpack](https://github.com/webpack/karma-webpack)
-* [karma-coverage-istanbul-reporter](https://github.com/mattlewis92/karma-coverage-istanbul-reporter)
+- [karma-webpack](https://github.com/webpack/karma-webpack)
+- [karma-coverage-istanbul-reporter](https://github.com/mattlewis92/karma-coverage-istanbul-reporter)
 
 ### `结构`
 
@@ -40,21 +41,23 @@ npm i -D istanbul-instrumenter-loader
 为生成所有组件（包括你没写测试的那些）的代码覆盖率报告，你需要 require 所有**业务**和**测试**的代码。相关内容在 [karma-webpack 其他用法](https://github.com/webpack/karma-webpack#alternative-usage)中有涉及
 
 **test/index.js**
+
 ```js
 // requires 所有在 `project/test/src/components/**/index.js` 中的测试
-const tests = require.context('./src/components/', true, /index\.js$/);
+const tests = require.context("./src/components/", true, /index\.js$/);
 
 tests.keys().forEach(tests);
 
 // requires 所有在 `project/src/components/**/index.js` 中的组件
-const components = require.context('../src/components/', true, /index\.js$/);
+const components = require.context("../src/components/", true, /index\.js$/);
 
 components.keys().forEach(components);
 ```
 
-> ℹ️  以下为 `karma` 的唯一`入口`起点文件
+> ℹ️ 以下为 `karma` 的唯一`入口`起点文件
 
 **karma.conf.js**
+
 ```js
 config.set({
   ...
@@ -89,9 +92,10 @@ config.set({
 
 ### 使用 `Babel`
 
-You must run the instrumentation as a post step
+须将该检测作为后续步骤运行
 
 **webpack.config.js**
+
 ```js
 {
   test: /\.js$|\.jsx$/,
@@ -108,18 +112,19 @@ You must run the instrumentation as a post step
 
 此 loader 支持 `istanbul-lib-instrument` 的所有配置选项
 
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|**`debug`**|`{Boolean}`|`false`|Turn on debugging mode|
-|**`compact`**|`{Boolean}`|`true`|Generate compact code|
-|**`autoWrap`**|`{Boolean}`|`false`|Set to `true` to allow return statements outside of functions|
-|**`esModules`**|`{Boolean}`|`false`|Set to `true` to instrument ES2015 Modules|
-|**`coverageVariable`**|`{String}`|`__coverage__`|Name of global coverage variable|
-|**`preserveComments`**|`{Boolean}`|`false`|Preserve comments in `output`|
-|**`produceSourceMap`**|`{Boolean}`|`false`|Set to `true` to produce a source map for the instrumented code|
-|**`sourceMapUrlCallback`**|`{Function}`|`null`|A callback function that is called when a source map URL is found in the original code. This function is called with the source filename and the source map URL|
+|            Name            |     Type     |    Default     | Description                                                                      |
+| :------------------------: | :----------: | :------------: | :------------------------------------------------------------------------------- |
+|        **`debug`**         | `{Boolean}`  |    `false`     | 打开调试模式                                                                     |
+|       **`compact`**        | `{Boolean}`  |     `true`     |                                                                                  |
+|       **`autoWrap`**       | `{Boolean}`  |    `false`     | 生成紧凑的代码                                                                   |
+|      **`esModules`**       | `{Boolean}`  |    `false`     | 设置为 `true` 以检测 ES2015 模块                                                 |
+|   **`coverageVariable`**   |  `{String}`  | `__coverage__` | 全局覆盖变量的名称                                                               |
+|   **`preserveComments`**   | `{Boolean}`  |    `false`     | 保留 `输出` 中的注释                                                             |
+|   **`produceSourceMap`**   | `{Boolean}`  |    `false`     | 设置为 `true` 以生成已检测代码的 source map                                      |
+| **`sourceMapUrlCallback`** | `{Function}` |     `null`     | 在原始代码中找到源映射 URL 时调用的回调函数，使用源文件名和源映射 URL 调用此函数 |
 
 **webpack.config.js**
+
 ```js
 {
   test: /\.js$/,
@@ -130,7 +135,7 @@ You must run the instrumentation as a post step
 }
 ```
 
-## Maintainers
+## 维护人员
 
 <table>
   <tbody>
@@ -173,21 +178,15 @@ You must run the instrumentation as a post step
   <tbody>
 </table>
 
-
 [npm]: https://img.shields.io/npm/v/istanbul-instrumenter-loader.svg
 [npm-url]: https://npmjs.com/package/istanbul-instrumenter-loader
-
 [node]: https://img.shields.io/node/v/istanbul-instrumenter-loader.svg
 [node-url]: https://nodejs.org
-
 [deps]: https://david-dm.org/webpack-contrib/istanbul-instrumenter-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/istanbul-instrumenter-loader
-
 [tests]: http://img.shields.io/travis/webpack-contrib/istanbul-instrumenter-loader.svg
 [tests-url]: https://travis-ci.org/webpack-contrib/istanbul-instrumenter-loader
-
 [cover]: https://codecov.io/gh/webpack-contrib/istanbul-instrumenter-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/istanbul-instrumenter-loader
-
 [chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack

@@ -4,7 +4,8 @@ source: https://raw.githubusercontent.com/webpack-contrib/html-loader/master/REA
 edit: https://github.com/webpack-contrib/html-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/html-loader
 ---
-Exports HTML as string. HTML is minimized when the compiler demands.
+
+将 HTML 导出为字符串。当编译器要求时，HTML 被最小化。
 
 ## 安装
 
@@ -18,7 +19,7 @@ npm i -D html-loader
 
 你可以通过查询参数 `attrs`，来指定哪个标签属性组合(tag-attribute combination)应该被此 loader 处理。传递数组或以空格分隔的 `<tag>:<attribute>` 组合的列表。（默认值：`attrs=img:src`）
 
-If you use `<custom-elements>`, and lots of them make use of a `custom-src` attribute, you don't have to specify each combination `<tag>:<attribute>`: just specify an empty tag like `attrs=:custom-src` and it will match every element.
+当使用 `<custom-elements>` 时，它们中的很多都使用了一个 `custom-src` 属性，无需指定每个组合 `<tag>:<attribute>`，只需指定一个空标签就可以匹配每个元素，比如：`attrs=:custom-src`
 
 ```js
 {
@@ -52,9 +53,9 @@ If you use `<custom-elements>`, and lots of them make use of a `custom-src` attr
 }
 ```
 
-``` html
+```html
 <!-- file.html -->
-<img src="image.png" data-src="image2x.png" >
+<img src="image.png" data-src="image2x.png" />
 ```
 
 ```js
@@ -88,54 +89,63 @@ require("html-loader?-attrs!./file.html");
 
 ```html
 '<img src=http://cdn.example.com/49eba9f/a9f92ca.jpg
-      data-src=data:image/png;base64,...>'
+data-src=data:image/png;base64,...>'
 ```
 
 或者在 `webpack.conf.js` 的 rule 选项中指定 `minimize` 属性
 
 ```js
 module: {
-  rules: [{
-    test: /\.html$/,
-    use: [ {
-      loader: 'html-loader',
-      options: {
-        minimize: true
-      }
-    }],
-  }]
+  rules: [
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: "html-loader",
+          options: {
+            minimize: true
+          }
+        }
+      ]
+    }
+  ];
 }
 ```
 
-The enabled rules for minimizing by default are the following ones:
- - removeComments
- - removeCommentsFromCDATA
- - removeCDATASectionsFromCDATA
- - collapseWhitespace
- - conservativeCollapse
- - removeAttributeQuotes
- - useShortDoctype
- - keepClosingSlash
- - minifyJS
- - minifyCSS
- - removeScriptTypeAttributes
- - removeStyleTypeAttributes
+默认启用的最小化规则有以下几种:
 
- The rules can be disabled using the following options in your `webpack.conf.js`
+- removeComments
+- removeCommentsFromCDATA
+- removeCDATASectionsFromCDATA
+- collapseWhitespace
+- conservativeCollapse
+- removeAttributeQuotes
+- useShortDoctype
+- keepClosingSlash
+- minifyJS
+- minifyCSS
+- removeScriptTypeAttributes
+- removeStyleTypeAttributes
+
+可以禁用规则的项如下，配置文件：`webpack.conf.js`
 
 ```js
 module: {
-  rules: [{
-    test: /\.html$/,
-    use: [ {
-      loader: 'html-loader',
-      options: {
-        minimize: true,
-        removeComments: false,
-        collapseWhitespace: false
-      }
-    }],
-  }]
+  rules: [
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: "html-loader",
+          options: {
+            minimize: true,
+            removeComments: false,
+            collapseWhitespace: false
+          }
+        }
+      ]
+    }
+  ];
 }
 ```
 
@@ -146,9 +156,8 @@ module: {
 
 和上面配置相同：
 
-``` html
-
-<img src="/image.jpg">
+```html
+<img src="/image.jpg" />
 ```
 
 ```js
@@ -172,10 +181,11 @@ require("html-loader?interpolate!./file.html");
 ```
 
 ```html
-<img src="${require(`./images/gallery.png`)}">
+<img src="${require(`./images/gallery.png`)}" />
 
 <div>${require('./components/gallery.html')}</div>
 ```
+
 如果你只想在模板中使用 `require`，任何其它的 `${}` 不被转换，你可以设置 `interpolate` 标记为 `require`，就像这样：
 
 ```js
@@ -197,9 +207,9 @@ require("html-loader?interpolate=require!./file.ftl");
 
 这里有几种不同的可用导出格式：
 
-+ ```module.exports```（默认配置，cjs 格式）。"Hello world" 转为 ```module.exports = "Hello world";```
-+ ```exports.default``` (当设置了 ```exportAsDefault``` 参数，es6to5 格式）。"Hello world" 转为 ```exports.default = "Hello world";```
-+ ```export default``` (当设置了 ```exportAsEs6Default``` 参数，es6 格式)。"Hello world" 转为 ```export default "Hello world";```
+- `module.exports`（默认配置，cjs 格式）。"Hello world" 转为 `module.exports = "Hello world";`
+- `exports.default` (当设置了 `exportAsDefault` 参数，es6to5 格式）。"Hello world" 转为 `exports.default = "Hello world";`
+- `export default` (当设置了 `exportAsEs6Default` 参数，es6 格式)。"Hello world" 转为 `export default "Hello world";`
 
 ### 高级选项
 
@@ -247,7 +257,7 @@ module.exports = {
 
 ### 导出到 HTML 文件
 
-一个很常见的场景，将 HTML 导出到 _.html_ 文件中，直接访问它们，而不是使用 javascript 注入。这可以通过3个 loader 的组合来实现：
+一个很常见的场景，将 HTML 导出到 _.html_ 文件中，直接访问它们，而不是使用 javascript 注入。这可以通过 3 个 loader 的组合来实现：
 
 - [file-loader](https://github.com/webpack/file-loader)
 - [extract-loader](https://github.com/peerigon/extract-loader)
@@ -319,18 +329,13 @@ html-loader 将解析 URL，并请求图片和你所期望的一切资源。extr
   </tbody>
 </table>
 
-
 [npm]: https://img.shields.io/npm/v/html-loader.svg
 [npm-url]: https://npmjs.com/package/html-loader
-
 [deps]: https://david-dm.org/webpack/html-loader.svg
 [deps-url]: https://david-dm.org/webpack/html-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
-
 [test]: http://img.shields.io/travis/webpack/html-loader.svg
 [test-url]: https://travis-ci.org/webpack/html-loader
-
 [cover]: https://codecov.io/gh/webpack/html-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack/html-loader

@@ -4,7 +4,8 @@ source: https://raw.githubusercontent.com/webpack-contrib/json5-loader/master/RE
 edit: https://github.com/webpack-contrib/json5-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/json5-loader
 ---
-A webpack loader for parsing <a href="http://json5.org/"><code>json5</code></a> files into JavaScript objects.
+
+用于将 <a href="http://json5.org/"><code>json5</code></a> 文件解析为 JavaScript 对象
 
 ## 安装
 
@@ -15,10 +16,12 @@ $ npm install --save-dev json5-loader
 ## 用法
 
 你可以通过以下用法使用这个 loader
- * 在 webpack 配置里的 `module.loaders` 对象中配置 `json5-loader`；
- * 直接在 require 语句中使用 `json5-loader!` 前缀。
+
+- 在 webpack 配置里的 `module.loaders` 对象中配置 `json5-loader`；
+- 直接在 require 语句中使用 `json5-loader!` 前缀。
 
 假设我们有下面这个 `json5` 文件
+
 ```js
 // appData.json5
 {
@@ -32,34 +35,38 @@ $ npm install --save-dev json5-loader
 ```js
 // webpack.config.js
 module.exports = {
-  entry: './index.js',
-  output: { /* ... */ },
+  entry: "./index.js",
+  output: {
+    /* ... */
+  },
   module: {
     loaders: [
       {
         // 使所有以 .json5 结尾的文件使用 `json5-loader`
         test: /\.json5$/,
-        loader: 'json5-loader'
+        loader: "json5-loader"
       }
     ]
   }
-}
+};
 ```
 
 ```js
 // index.js
-var appConfig = require('./appData.json5')
+var appConfig = require("./appData.json5");
 // 或者 ES6 语法
 // import appConfig from './appData.json5'
 
-console.log(appConfig.env) // 'production'
+console.log(appConfig.env); // 'production'
 ```
+
 #### require 语句使用 loader 前缀的用法
+
 ```js
-var appConfig = require("json5-loader!./appData.json5")
+var appConfig = require("json5-loader!./appData.json5");
 // 返回的是 json 解析过的对象
 
-console.log(appConfig.env) // 'production'
+console.log(appConfig.env); // 'production'
 ```
 
 如果需要在 Node.js 中使用，不要忘记兼容(polyfill) require。更多参考 webpack 文档。
@@ -122,15 +129,11 @@ MIT
 
 [npm]: https://img.shields.io/npm/v/json5-loader.svg
 [npm-url]: https://npmjs.com/package/json5-loader
-
 [deps]: https://david-dm.org/webpack-contrib/json5-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/json5-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
-
 [test]: http://img.shields.io/travis/webpack-contrib/json5-loader.svg
 [test-url]: https://travis-ci.org/webpack-contrib/json5-loader
-
 [cover]: https://codecov.io/gh/webpack-contrib/json5-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/json5-loader
