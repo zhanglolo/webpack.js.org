@@ -81,7 +81,7 @@ module.exports = {
 ]
 ```
 
-报告函数会将 loader 的上下文信息保存在 `this` 后执行。你可以使用 `this.emitWarning(...)` 或者 `this.emitError(...)` 方法，手动触发信息的报告。请参考[关于 loader 上下文的 webpack 文档](https://webpack.js.org/api/loaders/#the-loader-context).
+报告函数会将 loader 的上下文信息保存在 `this` 后执行。你可以使用 `this.emitWarning(...)` 或者 `this.emitError(...)` 方法，手动触发信息的报告。请参考[关于 loader 上下文的 webpack 文档](https://webpack.docschina.org/api/loaders/#the-loader-context).
 
 **注意：**`jshint reporters` 是与 `jshint-loader` **不兼容**的！
 这是因为 reporter 的输入来源，只能从一个文件，而不能同时从多个文件读取。在这种方式下的错误报告，是与 jshint 的[传统 reporters](http://www.jshint.com/docs/reporters/)  不一样的，

@@ -78,7 +78,7 @@ node: {
 
 选项：
 
-- `true`: **输入**文件的文件名，是相对于 [`context` 选项](https://webpack.js.org/configuration/entry-context/#context)。
+- `true`: **输入**文件的文件名，是相对于 [`context` 选项](https://webpack.docschina.org/configuration/entry-context/#context)。
 - `false`: 常规的 Node.js `__filename` 行为。在 Node.js 环境中运行时，**输出**文件的文件名。
 - `"mock"`: value 填充为 `"index.js"`.
 
@@ -91,7 +91,7 @@ node: {
 
 选项：
 
-- `true`: **输入**文件的目录名，是相对于 [`context` 选项](https://webpack.js.org/configuration/entry-context/#context)。
+- `true`: **输入**文件的目录名，是相对于 [`context` 选项](https://webpack.docschina.org/configuration/entry-context/#context)。
 - `false`: 常规的 Node.js `__dirname` 行为。在 Node.js 环境中运行时，**输出**文件的目录名。
 - `"mock"`: value 填充为 `"/"`。
 

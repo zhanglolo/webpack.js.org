@@ -32,7 +32,7 @@ export default function () {...};
 
 ### `Function Interface`
 
-The function will be called with the loader [`options`](https://webpack.js.org/configuration/module/#useentry) and must either return
+The function will be called with the loader [`options`](https://webpack.docschina.org/configuration/module/#useentry) and must either return
 
 #### `{Object}`
 

@@ -57,7 +57,7 @@ const bar = require('bar');
 Aggressive Bundle Mode utilizes a custom runtime in which modules within a chunk file are all included in the same scope.
 This avoids [the cost of small modules](https://nolanlawson.com/2016/08/15/the-cost-of-small-modules/).
 
-In Aggressive Bundle Mode, a file can only appear in a single output chunk. Use the [Commons Chunk Plugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to split duplicated files into a single output chunk.
+In Aggressive Bundle Mode, a file can only appear in a single output chunk. Use the [Commons Chunk Plugin](https://webpack.docschina.org/plugins/commons-chunk-plugin/) to split duplicated files into a single output chunk.
 
 ## Tips for Use
  * Don't use babel - closure-compiler is also a transpiler.

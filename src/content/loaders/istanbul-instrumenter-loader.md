@@ -15,7 +15,7 @@ Instrument JS files with [istanbul-lib-instrument](https://github.com/istanbuljs
 npm i -D istanbul-instrumenter-loader
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 ##
 
@@ -141,10 +141,11 @@ config.set({
   <tbody>
     <tr>
       <td align="center">
+      <a href="https://github.com/deepsweet">
         <img width="150" height="150"
         src="https://avatars.githubusercontent.com/u/266822?v=3&s=150">
         </br>
-        <a href="https://github.com/deepsweet">Kir Belevich</a>
+        Kir Belevich</a>
       </td>
       <td align="center">
         <a href="https://github.com/bebraw">

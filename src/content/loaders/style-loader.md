@@ -12,7 +12,7 @@ Adds CSS to the DOM by injecting a <code>&lt;style&gt;</code> tag
 npm install style-loader --save-dev
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 建议将 `style-loader` 与 [`css-loader`](https://github.com/webpack/css-loader) 结合使用
 

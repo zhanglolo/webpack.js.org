@@ -15,7 +15,7 @@ imports loader 允许使用依赖于特定全局变量的模块。
 npm install imports-loader
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 假设你有 `example.js` 这个文件
 

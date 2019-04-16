@@ -69,4 +69,4 @@ npm install webpack/webpack#<tagname/branchname>
 
 ***
 
-> 原文：https://webpack.js.org/guides/installation/
+> 原文：https://webpack.docschina.org/guides/installation/

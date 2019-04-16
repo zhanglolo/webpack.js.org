@@ -40,7 +40,7 @@ module.exports = {
 };
 ```
 
-可以通过 [loader options](https://webpack.js.org/configuration/module/#rule-options-rule-query) 将任何 Less 特定选项传递给 less-loader。请参阅 [Less documentation](http://lesscss.org/usage/#command-line-usage-options) 文档以查看 dash-case(连接符命名) 的所有可用选项。由于我们将这些选项以编程方式传递给 Less，所以您需要在这里使用 camelCase(驼峰命名) 传递这些选项:
+可以通过 [loader options](https://webpack.docschina.org/configuration/module/#rule-options-rule-query) 将任何 Less 特定选项传递给 less-loader。请参阅 [Less documentation](http://lesscss.org/usage/#command-line-usage-options) 文档以查看 dash-case(连接符命名) 的所有可用选项。由于我们将这些选项以编程方式传递给 Less，所以您需要在这里使用 camelCase(驼峰命名) 传递这些选项:
 
 ```js
 // webpack.config.js
@@ -108,7 +108,7 @@ module.exports = {
 
 #### webpack resolver
 
-webpack 提供了一种[解析文件的高级机制](https://webpack.js.org/configuration/resolve/)。less-loader 应用一个 Less 插件，并且将所有查询参数传递给 webpack resolver。所以，你可以从 `node_modules` 导入你的 less 模块。只要加一个 `~` 前缀，告诉 webpack 去查询[`模块`](https://webpack.js.org/configuration/resolve/#resolve-modules)。
+webpack 提供了一种[解析文件的高级机制](https://webpack.docschina.org/configuration/resolve/)。less-loader 应用一个 Less 插件，并且将所有查询参数传递给 webpack resolver。所以，你可以从 `node_modules` 导入你的 less 模块。只要加一个 `~` 前缀，告诉 webpack 去查询[`模块`](https://webpack.docschina.org/configuration/resolve/#resolve-modules)。
 
 ```css
 @import "~bootstrap/less/bootstrap";

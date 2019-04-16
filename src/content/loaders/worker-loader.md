@@ -13,7 +13,7 @@ This loader registers the script as <a href="https://developer.mozilla.org/en-US
 npm i -D worker-loader
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 ##
 

@@ -74,4 +74,4 @@ webpack 是打包代码的全特性工具。它可以在由社区驱动的 plugi
 
 ***
 
-> 原文：https://webpack.js.org/contribute/
+> 原文：https://webpack.docschina.org/contribute/

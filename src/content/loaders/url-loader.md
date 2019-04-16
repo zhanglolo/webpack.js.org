@@ -12,7 +12,7 @@ Loads files as `base64` encoded URL
 npm install --save-dev url-loader
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 `url-loader` 功能类似于 [`file-loader`](https://github.com/webpack-contrib/file-loader)，但是在文件大小（单位 byte）低于指定的限制时，可以返回一个 DataURL。
 

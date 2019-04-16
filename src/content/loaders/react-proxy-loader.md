@@ -12,7 +12,7 @@ Wraps a react component in a proxy component to enable Code Splitting (loads a r
 npm install react-proxy-loader
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 ``` js
 var Component = require("react-proxy-loader!./Component");

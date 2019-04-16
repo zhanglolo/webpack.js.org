@@ -12,7 +12,7 @@ Exports variables from inside the file by appending `exports[...] = ...` stateme
 npm i exports-loader --save
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 ``` javascript
 require("exports-loader?file,parse=helpers.parse!./file.js");

@@ -4,7 +4,7 @@ source: https://raw.githubusercontent.com/webpack-contrib/expose-loader/master/R
 edit: https://github.com/webpack-contrib/expose-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/expose-loader
 ---
-The expose loader adds modules to the global object. This is useful for debugging, or <a href="https://webpack.js.org/guides/shimming/">supporting libraries that depend on libraries in globals</a>.
+The expose loader adds modules to the global object. This is useful for debugging, or <a href="https://webpack.docschina.org/guides/shimming/">supporting libraries that depend on libraries in globals</a>.
 
 ## 安装
 
@@ -12,7 +12,7 @@ The expose loader adds modules to the global object. This is useful for debuggin
 npm i expose-loader --save
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 **注意**: 模块必须在你的 bundle 中被 `require()` 过，否则他们将不会被暴露。
 

@@ -4,7 +4,8 @@ source: https://raw.githubusercontent.com/webpack-contrib/multi-loader/master/RE
 edit: https://github.com/webpack-contrib/multi-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/multi-loader
 ---
-This loader requires a module multiple times, each time loaded with a different loader. Like in a multi entry point the exports of the last item are exported.
+
+multi-loader 需要多次加载模块，每次加载不同的 loader。就像在多入口点一样，导出最后一项的出口。
 
 ## 安装
 
@@ -14,7 +15,7 @@ npm i multi-loader --save
 
 ## 用法
 
-``` javascript
+```javascript
 var multi = require("multi-loader");
 {
   module: {
@@ -29,7 +30,7 @@ var multi = require("multi-loader");
           "raw-loader"
         )
       }
-    ]
+    ];
   }
 }
 ```
@@ -67,12 +68,9 @@ var multi = require("multi-loader");
   <tbody>
 </table>
 
-
 [npm]: https://img.shields.io/npm/v/multi-loader.svg
 [npm-url]: https://npmjs.com/package/multi-loader
-
 [deps]: https://david-dm.org/webpack-contrib/multi-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/multi-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack

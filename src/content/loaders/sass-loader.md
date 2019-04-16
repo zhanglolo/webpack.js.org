@@ -104,7 +104,7 @@ module.exports = {
 
 ### 导入(Import)
 
-webpack 提供一种[解析文件的高级的机制](https://webpack.js.org/concepts/module-resolution/)。sass-loader 使用 node-sass 的 custom importer 特性，将所有的 query 传递给 webpack 的解析引擎(resolving engine)。只要它们前面加上 `~`，告诉 webpack 它不是一个相对路径，这样就可以 import 导入 `node_modules` 目录里面的 sass 模块：
+webpack 提供一种[解析文件的高级的机制](https://webpack.docschina.org/concepts/module-resolution/)。sass-loader 使用 node-sass 的 custom importer 特性，将所有的 query 传递给 webpack 的解析引擎(resolving engine)。只要它们前面加上 `~`，告诉 webpack 它不是一个相对路径，这样就可以 import 导入 `node_modules` 目录里面的 sass 模块：
 
 ```css
 @import "~bootstrap/dist/css/bootstrap";
@@ -126,7 +126,7 @@ webpack 提供一种[解析文件的高级的机制](https://webpack.js.org/conc
 
 ### 提取样式表
 
-使用 webpack 打包 CSS 有许多优点，在开发环境，可以通过 hashed urls 或 [模块热替换(HMR)](https://webpack.js.org/concepts/hot-module-replacement/) 引用图片和字体资源。而在线上环境，使样式依赖 JS 执行环境并不是一个好的实践。渲染会被推迟，甚至会出现 [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)，因此在最终线上环境构建时，最好还是能够将 CSS 放在单独的文件中。
+使用 webpack 打包 CSS 有许多优点，在开发环境，可以通过 hashed urls 或 [模块热替换(HMR)](https://webpack.docschina.org/concepts/hot-module-replacement/) 引用图片和字体资源。而在线上环境，使样式依赖 JS 执行环境并不是一个好的实践。渲染会被推迟，甚至会出现 [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)，因此在最终线上环境构建时，最好还是能够将 CSS 放在单独的文件中。
 
 从 bundle 中提取样式表，有2种可用的方法：
 

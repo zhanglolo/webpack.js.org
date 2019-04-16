@@ -6,13 +6,13 @@ repo: https://github.com/webpack-contrib/yaml-frontmatter-loader
 ---
 
 
-YAML Frontmatter loader for [webpack](https://webpack.js.org/). Converts YAML in files to JSON. You should chain it with [json-loader](/loaders/json-loader/).
+YAML Frontmatter loader for [webpack](https://webpack.docschina.org/). Converts YAML in files to JSON. You should chain it with [json-loader](/loaders/json-loader/).
 
 ## 安装
 
 `npm install yaml-frontmatter-loader`
 
-## <a href="https://webpack.js.org/concepts/loaders/">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders/">用法</a>
 
 ```js
 var json = require("json-loader!yaml-frontmatter-loader!./file.md");

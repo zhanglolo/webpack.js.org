@@ -188,4 +188,4 @@ W> 这可能会降低构建性能。
 
 ***
 
-> 原文：https://webpack.js.org/guides/typescript/
+> 原文：https://webpack.docschina.org/guides/typescript/
