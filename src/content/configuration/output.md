@@ -65,7 +65,7 @@ auxiliaryComment: {
 
 ## `output.chunkFilename`
 
-`string` `function`
+`string`
 
 此选项决定了非入口(non-entry) chunk 文件的名称。有关可取的值的详细信息，请查看 [`output.filename`](#output-filename) 选项。
 
