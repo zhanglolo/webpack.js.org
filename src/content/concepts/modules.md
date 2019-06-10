@@ -34,7 +34,7 @@ T> webpack 1 需要特定的 loader 来转换 ES 2015 `import`，然而通过 we
 webpack 通过 _loader_ 可以支持各种语言和预处理器编写模块。_loader_ 描述了 webpack **如何**处理 非 JavaScript(non-JavaScript) _模块_，并且在 _bundle_ 中引入这些*依赖*。
 webpack 社区已经为各种流行语言和语言处理器构建了 _loader_，包括：
 
-* [CoffeeScript](http://coffeescript.org)
+* [CoffeeScript](https://coffeescript.org)
 * [TypeScript](https://www.typescriptlang.org)
 * [ESNext (Babel)](https://babeljs.io)
 * [Sass](http://sass-lang.com)
