@@ -174,7 +174,7 @@ W> 由于需要支持 `Rule.options` 和 `UseEntry.options`，`Rule.use`，`Rule
 * 将选项设置为 `false`，将禁用解析器。
 * 将选项设置为 `true`，或不修改将其保留为 `undefined`，可以启用解析器。
 
-然而，一些解析器(parser)插件可能不光只接收一个布尔值。例如，内部的 `NodeStuffPlugin` 差距，可以接收一个对象，而不是 `true`，来为特定的规则添加额外的选项。
+然而，一些解析器(parser)插件可能不光只接收一个布尔值。例如，内部的 `NodeStuffPlugin` 插件，可以接收一个对象，而不是 `true`，来为特定的规则添加额外的选项。
 
 **示例**（默认的插件解析器选项）：
 
