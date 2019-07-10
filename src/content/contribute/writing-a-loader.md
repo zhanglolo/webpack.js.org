@@ -217,7 +217,7 @@ __.babelrc__
 ``` json
 {
   "presets": [[
-    "env",
+    "@babel/preset-env",
     {
       "targets": {
         "node": "4"
