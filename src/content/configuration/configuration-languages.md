@@ -11,7 +11,7 @@ contributors:
   - byzyk
 ---
 
-webpack 接受以多种编程和数据语言编写的配置文件。支持的文件扩展名列表，可以在 [node-interpret](https://github.com/js-cli/js-interpret) 包中找到。使用 [node-interpret](https://github.com/js-cli/js-interpret)，webpack 可以处理许多不同类型的配置文件。
+webpack 接受以多种编程和数据语言编写的配置文件。支持的文件扩展名列表，可以在 [node-interpret](https://github.com/gulpjs/interpret) 包中找到。使用 [node-interpret](https://github.com/gulpjs/interpret)，webpack 可以处理许多不同类型的配置文件。
 
 
 ## TypeScript
@@ -75,9 +75,9 @@ __tsconfig-for-webpack-config.json__
 }
 ```
 
-T> `ts-node` 可以使用 `tsconfig-path` 提供的环境变量来解析 `tsconfig.json` 文件。
+T> `ts-node` 可以使用 `tsconfig-paths` 提供的环境变量来解析 `tsconfig.json` 文件。
 
-然后，设置 `tsconfig-path` 提供的环境变量 `process.env.TS_NODE_PROJECT`，如下所示：
+然后，设置 `tsconfig-paths` 提供的环境变量 `process.env.TS_NODE_PROJECT`，如下所示：
 
 __package.json__
 
@@ -94,7 +94,7 @@ W> We had been getting reports that `TS_NODE_PROJECT` might not work with `"TS_N
 
 ## CoffeeScript
 
-类似的，为了使用 [CoffeeScript](http://coffeescript.org/) 来书写配置文件, 同样需要安装相关的依赖：
+类似的，为了使用 [CoffeeScript](https://coffeescript.org/) 来书写配置文件, 同样需要安装相关的依赖：
 
 ``` bash
 npm install --save-dev coffee-script

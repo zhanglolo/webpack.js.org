@@ -1,6 +1,6 @@
 ---
 title: 模块解析(module resolution)
-sort: 8
+sort: 7
 contributors:
   - pksjce
   - pastelsky

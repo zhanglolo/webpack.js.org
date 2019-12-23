@@ -1,6 +1,6 @@
 ---
 title: 依赖图(dependency graph)
-sort: 9
+sort: 8
 contributors:
   - TheLarkInn
   - EugeneHlushko

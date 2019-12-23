@@ -19,7 +19,7 @@ related:
 2. 你的源码会依赖的任何第三方的 library 或 "vendor" 代码。
 3. webpack 的 runtime 和 __manifest__，管理所有模块的交互。
 
-本文将重点介绍这三个部分中的最后部分，runtime 和 manifest，特别是 manifest。
+本文将重点介绍这三个部分中的最后部分：runtime 和 manifest，特别是 manifest。
 
 
 ## runtime

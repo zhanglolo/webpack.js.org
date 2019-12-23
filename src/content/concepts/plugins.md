@@ -1,6 +1,6 @@
 ---
 title: 插件(plugin)
-sort: 5
+sort: 4
 contributors:
   - TheLarkInn
   - jhnns
