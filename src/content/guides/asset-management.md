@@ -1,6 +1,6 @@
 ---
 title: 管理资源
-sort: 3
+sort: 2
 contributors:
   - skipjack
   - michael-ciniawsky
@@ -8,6 +8,8 @@ contributors:
   - sudarsangp
   - chenxsan
   - EugeneHlushko
+  - AnayaDesign
+  - wizardofhogwarts
 ---
 
 如果你是从开始一直遵循着指南的示例，现在会有一个小项目，显示 "Hello webpack"。现在我们尝试混合一些其他资源，比如 images，看看 webpack 如何处理。
@@ -30,8 +32,8 @@ __dist/index.html__
 +    <title>管理资源</title>
     </head>
     <body>
--     <script src="./main.js"></script>
-+     <script src="./bundle.js"></script>
+-     <script src="main.js"></script>
++     <script src="bundle.js"></script>
     </body>
   </html>
 ```
@@ -121,7 +123,7 @@ __src/index.js__
 + import './style.css';
 
   function component() {
-    var element = document.createElement('div');
+    const element = document.createElement('div');
 
     // lodash 是由当前 script 脚本 import 导入进来的
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -145,7 +147,7 @@ Entrypoint main = bundle.js
 ...
 ```
 
-再次在浏览器中打开 `index.html`，你应该看到 `Hello webpack` 现在的样式是红色。要查看 webpack 做了什么，请检查页面（不要查看页面源代码，因为它不会显示结果），并查看页面的 head 标签。它应该包含 style 块元素，也就是我们在 `index.js` 中 import 的 css 文件中的样式。
+再次在浏览器中打开 `index.html`，你应该看到 `Hello webpack` 现在的样式是红色。要查看 webpack 做了什么，请检查页面（不要查看页面源代码，它不会显示结果，因为 `<style>` 标签是由 JavaScript 动态创建的），并查看页面的 head 标签。它应该包含 style 块元素，也就是我们在 `index.js` 中 import 的 css 文件中的样式。
 
 注意，在多数情况下，你也可以进行 [CSS 提取](/plugins/mini-css-extract-plugin/#minimizing-for-production)，以便在生产环境中节省加载时间。最重要的是，现有的 loader 可以支持任何你可以想到的 CSS 风格 - [postcss](/loaders/postcss-loader), [sass](/loaders/sass-loader) 和 [less](/loaders/less-loader) 等。
 
@@ -217,14 +219,14 @@ __src/index.js__
 + import Icon from './icon.png';
 
   function component() {
-    var element = document.createElement('div');
+    const element = document.createElement('div');
 
     // lodash，现在由此脚本导入
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
     element.classList.add('hello');
 
 +   // 将图像添加到我们已经存在的 div 中。
-+   var myIcon = new Image();
++   const myIcon = new Image();
 +   myIcon.src = Icon;
 +
 +   element.appendChild(myIcon);
@@ -463,14 +465,14 @@ __src/index.js__
 + import Data from './data.xml';
 
   function component() {
-    var element = document.createElement('div');
+    const element = document.createElement('div');
 
     // lodash，现在通过 script 标签导入
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
     element.classList.add('hello');
 
     // 将图像添加到我们已经存在的 div 中。
-    var myIcon = new Image();
+    const myIcon = new Image();
     myIcon.src = Icon;
 
     element.appendChild(myIcon);
@@ -588,14 +590,14 @@ __src/index.js__
 - import Data from './data.xml';
 -
   function component() {
-    var element = document.createElement('div');
+    const element = document.createElement('div');
 -
 -   // lodash，现在通过 script 标签导入
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 -   element.classList.add('hello');
 -
 -   // 将图像添加到我们已经存在的 div 中。
--   var myIcon = new Image();
+-   const myIcon = new Image();
 -   myIcon.src = Icon;
 -
 -   element.appendChild(myIcon);

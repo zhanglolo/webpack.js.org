@@ -1,6 +1,6 @@
 ---
 title: 起步
-sort: 2
+sort: 1
 contributors:
   - bebraw
   - varunjayaraman
@@ -9,7 +9,6 @@ contributors:
   - johnstew
   - simon04
   - aaronang
-  - jecoopr
   - TheDutchCoder
   - sudarsangp
   - Vanguard90
@@ -21,6 +20,7 @@ contributors:
   - ztomaszes
   - Spiral90210
   - byzyk
+  - wizardofhogwarts
 ---
 
 webpack 用于编译 JavaScript 模块。一旦完成 [安装](/guides/installation)，你就可以通过 webpack [CLI](/api/cli) 或 [API](/api/node) 与其配合交互。如果你还不熟悉 webpack，请阅读 [核心概念](/concepts) 和 [对比](/comparison)，了解为什么要使用 webpack，而不是社区中的其他工具。
@@ -30,9 +30,11 @@ webpack 用于编译 JavaScript 模块。一旦完成 [安装](/guides/installat
 首先我们创建一个目录，初始化 npm，然后 [在本地安装 webpack](/guides/installation#local-installation)，接着安装 webpack-cli（此工具用于在命令行中运行 webpack）：
 
 ``` bash
-mkdir webpack-demo && cd webpack-demo
+mkdir webpack-demo
+cd webpack-demo
 npm init -y
-npm install webpack webpack-cli --save-dev
+npm install webpack --save-dev
+npm install webpack-cli --save-dev
 ```
 
 T> 贯穿整个指南的是，我们将使用 `diff` 块，来展示对目录、文件和代码所做的修改。
@@ -53,7 +55,7 @@ __src/index.js__
 
 ``` javascript
 function component() {
-  let element = document.createElement('div');
+  const element = document.createElement('div');
 
   // lodash（目前通过一个 script 引入）对于执行这一行是必需的
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -99,8 +101,8 @@ __package.json__
     "author": "",
     "license": "ISC",
     "devDependencies": {
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+      "webpack": "^4.20.2",
+      "webpack-cli": "^3.1.2"
     },
     "dependencies": {}
   }
@@ -118,7 +120,7 @@ __package.json__
 
 ## 创建一个 bundle
 
-首先，我们稍微调整下目录结构，将“源”代码(`/src`)从我们的“分发”代码(`/dist`)中分离出来。源代码是用于书写和编辑的代码。分发代码是构建过程产生的代码最小化和优化后的 `输出(output)` 目录，最终将在浏览器中加载：
+首先，我们稍微调整下目录结构，将“源”代码(`/src`)从我们的“分发”代码(`/dist`)中分离出来。源代码是用于书写和编辑的代码。分发代码是构建过程产生的代码最小化和优化后的 `输出(output)` 目录，最终将在浏览器中加载。调整目录结构如下：
 
 __project__
 
@@ -148,7 +150,7 @@ __src/index.js__
 + import _ from 'lodash';
 +
   function component() {
-    let element = document.createElement('div');
+    const element = document.createElement('div');
 
 -   // lodash（目前通过一个 script 引入）对于执行这一行是必需的
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -192,17 +194,19 @@ main.js  70.4 KiB       0  [emitted]  main
 
 WARNING in configuration(配置警告)
 The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
-You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/('mode' 选项还未设置，webpack 会将其值回退至 'production'。将 'mode' 选项设置为 'development' 或 'production'，来启用对应环境的默认优化设置。)
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/('mode' 选项还未设置，webpack 会将其值回退至 'production'。将 'mode' 选项设置为 'development' 或 'production'，来启用对应环境的默认优化设置。)
 ```
 
 T> 输出可能会稍有不同，但是只要构建成功，那么你就可以放心继续。并且不要担心警告，稍后我们就会解决。
 
 在浏览器中打开 `index.html`，如果一切正常，你应该能看到以下文本：'Hello webpack'。
 
+W> 在浏览器中打开 `index.html`，如果在压缩过后的 JavaScript 中出现语法错误，请设置 [`development 模式`](/configuration/mode/#mode-development)，并再次运行 `npx webpack`。这与最新版本 Node.js (v12.5+) 上运行 `npx webpack` 有关，和 [LTS 版本](https://nodejs.org/en/) 无关。
+
 
 ## 模块
 
-[ES2015](https://babel.docschina.org/docs/en/learn/) 中的 [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) 和 [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) 语句已经被标准化，并且 [多数浏览器已经能够支持](https://caniuse.com/#search=modules)。一些旧版本浏览器虽然无法支持它们，但是通过 webpack 开箱即用的模块支持，我们也可以使用这些ES2015 模块标准。
+[ES2015](https://babel.docschina.org/docs/en/learn/) 中的 [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) 和 [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) 语句已经被标准化。目前大多数浏览器都支持它们，然而有些浏览器无法识别新语法。不过不用担心，webpack 提供开箱即用的模块支持。
 
 在幕后，webpack 实际上会将代码进行 transpile(转译)，因此旧版本浏览器也可以执行。如果检查 `dist/main.js`，你就可以看到 webpack 是如何实现，这是独创精巧的设计！除了 `import` 和 `export`，webpack 还能够很好地支持各种其他模块语法，更多信息请查看 [模块 API](/api/module-methods)。
 
@@ -251,7 +255,7 @@ main.js  70.4 KiB       0  [emitted]  main
 
 WARNING in configuration(配置警告)
 The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.('mode' 选项还未设置，webpack 会将其值回退至 'production'。将 'mode' 选项设置为 'development' 或 'production'，来启用对应环境的默认优化设置。)
-You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/(你也可以将其设置为 'none'，以禁用所有默认行为。了解更多 https://webpack.js.org/concepts/mode/)
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/(你也可以将其设置为 'none'，以禁用所有默认行为。了解更多 https://webpack.js.org/configuration/mode/)
 ```
 
 T> 如果 `webpack.config.js` 存在，则 `webpack` 命令将默认选择使用它。我们在这里使用 `--config` 选项只是向你表明，可以传递任何名称的配置文件。这对于需要拆分成多个文件的复杂配置是非常有用。
@@ -271,8 +275,9 @@ __package.json__
     "version": "1.0.0",
     "description": "",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-+     "build": "webpack"
+-      "test": "echo \"Error: no test specified\" && exit 1"
++      "test": "echo \"Error: no test specified\" && exit 1",
++      "build": "webpack"
     },
     "keywords": [],
     "author": "",
@@ -301,7 +306,7 @@ main.js  70.4 KiB       0  [emitted]  main
 
 WARNING in configuration(配置警告)
 The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.('mode' 选项还未设置，webpack 会将其值回退至 'production'。将 'mode' 选项设置为 'development' 或 'production'，来启用对应环境的默认优化设置。)
-You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/(你也可以将其设置为 'none'，以禁用所有默认行为。了解更多 https://webpack.js.org/concepts/mode/)
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/。(你也可以将其设置为 'none'，以禁用所有默认行为。了解更多 https://webpack.js.org/configuration/mode/)
 ```
 
 T> 通过在 `npm run build` 命令和你的参数之间添加两个中横线，可以将自定义参数传递给 webpack，例如：`npm run build -- --colors`。

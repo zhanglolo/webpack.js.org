@@ -1,12 +1,13 @@
 ---
 title: 管理输出
-sort: 4
+sort: 3
 contributors:
   - skipjack
   - TheDutchCoder
   - sudarsangp
   - JGJP
   - EugeneHlushko
+  - AnayaDesign
 ---
 
 T> 本指南继续沿用 [`管理资源`](/guides/asset-management) 指南中的代码示例。
@@ -49,8 +50,8 @@ __src/index.js__
 + import printMe from './print.js';
 
   function component() {
-    var element = document.createElement('div');
-+   var btn = document.createElement('button');
+    const element = document.createElement('div');
++   const btn = document.createElement('button');
 
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
@@ -186,7 +187,7 @@ __webpack.config.js__
 ``` diff
   const path = require('path');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
-+ const CleanWebpackPlugin = require('clean-webpack-plugin');
++ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
   module.exports = {
     entry: {
