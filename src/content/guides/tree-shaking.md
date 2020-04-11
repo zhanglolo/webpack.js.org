@@ -352,20 +352,20 @@ module.exports = {
 
 T> 注意，也可以在命令行接口中使用 `--optimize-minimize` 标记，来启用 `TerserPlugin`。
 
-准备就绪后，然后运行另一个 npm script `npm run build`，看看输出结果是否发生改变。
+准备就绪后，然后运行另一个命令 `npm run build`，看看输出结果有没有发生改变。
 
 你发现 `dist/bundle.js` 中的差异了吗？显然，现在整个 bundle 都已经被 minify(压缩) 和 mangle(混淆破坏)，但是如果仔细观察，则不会看到引入 `square` 函数，但能看到 `cube` 函数的混淆破坏版本（`function r(e){return e*e*e}n.a=r`）。现在，随着 minification(代码压缩) 和 tree shaking，我们的 bundle 减小几个字节！虽然，在这个特定示例中，可能看起来没有减少很多，但是，在有着复杂依赖树的大型应用程序上运行 tree shaking 时，会对 bundle 产生显著的体积优化。
 
-T> 运行 tree shaking 需要 [ModuleConcatenationPlugin](/plugins/module-concatenation-plugin)。通过 `mode: "production"` 可以添加此插件。如果你没有使用 mode 设置，记得手动添加 [ModuleConcatenationPlugin](/plugins/module-concatenation-plugin)。
+T> 在使用 tree shaking 时必须有 [ModuleConcatenationPlugin](/plugins/module-concatenation-plugin) 的支持，您可以通过设置配置项 `mode: "production"` 以启用它。如果您没有如此做，请记得手动引入 [ModuleConcatenationPlugin](/plugins/module-concatenation-plugin)。
 
 ## 结论
 
-我们已经知道，想要使用 _tree shaking_ 必须注意以下……
+为了学会使用 _tree shaking_，您必须……
 
 - 使用 ES2015 模块语法（即 `import` 和 `export`）。
-- 确保没有 compiler 将 ES2015 模块语法转换为 CommonJS 模块（这也是流行的 Babel preset 中 @babel/preset-env 的默认行为 - 更多详细信息请查看 [文档](https://babel.docschina.org/docs/en/babel-preset-env#modules)）。
-- 在项目 `package.json` 文件中，添加一个 "sideEffects" 属性。
-- 通过将 `mode` 选项设置为 [`production`](/configuration/mode/#mode-production)，启用 [多种优化](/configuration/mode/#usage)，包括 minification(代码压缩) 和 tree shaking。
+- 确保没有编译器将您的 ES2015 模块语法转换为 CommonJS 的（顺带一提，这是现在常用的 @babel/preset-env 的默认行为，详细信息请参阅[文档](https://babeljs.io/docs/en/babel-preset-env#modules)）。
+- 在项目的 `package.json` 文件中，添加 "sideEffects" 属性。
+- 使用 `mode` 为 `"production"` 的配置项以启用[更多优化项](/concepts/mode/#usage)，包括压缩代码与 tree shaking。
 
 你可以将应用程序想象成一棵树。绿色表示实际用到的 source code(源码) 和 library(库)，是树上活的树叶。灰色表示未引用代码，是秋天树上枯萎的树叶。为了除去死去的树叶，你必须摇动这棵树，使它们落下。
 
