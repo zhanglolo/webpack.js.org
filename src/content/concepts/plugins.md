@@ -10,7 +10,7 @@ contributors:
   - byzyk
 ---
 
-插件是 webpack 的[骨干](https://github.com/webpack/tapable)功能。webpack 自身就是构建在，你在webpack 配置中使用的**相同的插件系统**上！
+__插件__是 webpack 的 [支柱](https://github.com/webpack/tapable) 功能。webpack 自身也是构建于你在 webpack 配置中用到的__相同的插件系统__之上！
 
 插件目的在于解决 [loader](/concepts/loaders) 无法实现的__其他事__。
 
