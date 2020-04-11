@@ -24,7 +24,6 @@ webpack 开箱即用，可以无需使用任何配置文件。然而，webpack �
 
 T> 刚开始学习 webpack？请查看我们提供的指南，从 webpack 一些 [核心概念](/concepts) 开始学习吧！
 
-
 ## Use different config file
 
 If for some reason you want to use different config file depending on certain situations you can change this via command line by using the `--config` flag.
@@ -37,14 +36,13 @@ If for some reason you want to use different config file depending on certain si
 }
 ```
 
-
 ## 选项
 
 点击下面配置代码中每个选项的名称，跳转到详细的文档。还要注意，带有箭头的项目可以展开，以显示更多示例，在某些情况下可以看到高级配置。
 
-T> 注意整个配置中我们使用 Node 内置的 [path 模块](https://nodejs.org/api/path.html)，并在它前面加上 [__dirname](https://nodejs.org/docs/latest/api/globals.html#globals_dirname)这个全局变量。可以防止不同操作系统之间的文件路径问题，并且可以使相对路径按照预期工作。更多「POSIX 和 Windows」的相关信息请查看[此章节](https://nodejs.org/api/path.html#path_windows_vs_posix)。
+T> 注意整个配置中我们使用 Node 内置的 [path 模块](https://nodejs.org/api/path.html)，并在它前面加上 [\_\_dirname](https://nodejs.org/docs/latest/api/globals.html#globals_dirname)这个全局变量。可以防止不同操作系统之间的文件路径问题，并且可以使相对路径按照预期工作。更多「POSIX 和 Windows」的相关信息请查看[此章节](https://nodejs.org/api/path.html#path_windows_vs_posix)。
 
-__webpack.config.js__
+**webpack.config.js**
 
 ```js-with-links-details
 const path = require('path');
@@ -81,21 +79,17 @@ module.exports = {
     path: path.resolve(__dirname, "dist"), // string
     // 所有输出文件的目标路径
     // 必须是绝对路径（使用 Node.js 的 path 模块）
-    <filename "/configuration/output#output-filename">
-      <default>
-        filename: "bundle.js", // string
-      </default>
-      filename: "[name].js", // 用于多个入口起点(entry point)
-      filename: "[chunkhash].js", // 用于长效缓存
-    </filename>
-    // 入口分块(entry chunk)的文件名模板
-    <publicPath "/configuration/output#output-publicpath">
-      <default>
-        publicPath: "/assets/", // string
-      </default>
-      publicPath: "",
-      publicPath: "https://cdn.example.com/",
-    </publicPath>
+
+    <details><summary>[filename](/configuration/output#output-filename): "bundle.js", // string</summary>
+    [filename](/configuration/output#output-filename): "[name].js", // 用于多个入口点(entry point)（出口点？）
+    [filename](/configuration/output#output-filename): "[chunkhash].js", // 用于[长效缓存](/guides/caching)
+    </details>
+    // 「入口分块(entry chunk)」的文件名模板（出口分块？）
+
+    <details><summary>[publicPath](/configuration/output#output-publicpath): "/assets/", // string</summary>
+    [publicPath](/configuration/output#output-publicpath): "",
+    [publicPath](/configuration/output#output-publicpath): "https://cdn.example.com/",
+    </details>
     // 输出解析文件的目录，url 相对于 HTML 页面
     library: "MyLibrary", // string,
     // 导出库(exported library)的名称
@@ -448,7 +442,7 @@ module.exports = {
 
 If for some reason you want to use custom configuration file depending on certain situations you can change this via command line by using the `--config` flag.
 
-__package.json__
+**package.json**
 
 ```json
 "scripts": {

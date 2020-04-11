@@ -14,18 +14,25 @@ contributors:
   - arjunsajeev
   - byzyk
   - yairhaimo
+  - EugeneHlushko
   - farskid
   - LukeMwila
-  - Jalitha
 ---
 
 本质上，__webpack__ 是一个用于现代 JavaScript 应用程序的_静态模块打包工具_。当 webpack 处理应用程序时，它会在内部构建一个 [依赖图(dependency graph)](/concepts/dependency-graph/)，此依赖图会映射项目所需的每个模块，并生成一个或多个 _bundle_。
 
 T> 可以在 [这里](/concepts/modules) 了解更多关于 JavaScript 模块和 webpack 模块的信息。
 
-从 v4.0.0 开始，__webpack 可以不用再引入一个配置文件__来打包项目。然而，但它仍然有着 [高度可配置性](/configuration)，可以很好满足你的需求。
+从 v4.0.0 开始，__webpack 可以不用再引入一个配置文件__来打包项目，然而，但它仍然有着 [高度可配置性](/configuration)，可以很好满足你的需求。
 
 在开始前你需要先理解一些__核心概念__：
+
+- [入口(entry)](#entry)
+- [输出(output)](#output)
+- [loader](#loaders)
+- [插件(plugin)](#plugins)
+- [模式(mode)](#mode)
+- [浏览器兼容性(browser compatibility)](#browser-compatibility)
 
 - [入口(entry)](#entry)
 - [输出(output)](#output)
@@ -82,7 +89,9 @@ module.exports = {
 
 在上面的示例中，我们通过 `output.filename` 和 `output.path` 属性，来告诉 webpack bundle 的名称，以及我们想要 bundle 生成(emit)到哪里。可能你想要了解在代码最上面导入的 path 模块是什么，它是一个 [Node.js 核心模块](https://nodejs.org/api/modules.html)，用于操作文件路径。
 
-T> `output` 属性还有 [许多可配置的特性](/configuration/output)，如果你想要了解其背后的概念，你可以通过 [阅读输出章节](/concepts/output) 来了解。
+T> 你可能会发现术语**生成(emitted 或 emit)**贯穿了我们整个文档和[插件 API](/api/plugins)。它是“生产(produced)”或“释放(discharged)”的特殊术语。
+
+T> `output` 属性还有[更多可配置的特性](/configuration/output)，如果你想要了解更多关于 `output` 属性的概念，你可以通过[阅读输出章节](/concepts/output)来了解更多。
 
 
 ## loader
@@ -167,8 +176,7 @@ module.exports = {
 };
 ```
 
-查看 [模式配置](/configuration/mode) 章节了解其详细内容和每个值所作的优化。
-
+[了解更多！](/concepts/mode)
 
 ## 浏览器兼容性(browser compatibility)
 
