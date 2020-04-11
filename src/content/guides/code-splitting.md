@@ -23,17 +23,13 @@ contributors:
   - sudarsangp
   - kcolton
   - efreitasn
-  - EugeneHlushko
-  - Tiendo1011
-  - byzyk
-  - AnayaDesign
-  - wizardofhogwarts
+  - rushan
 related:
-  - title: <link rel=”prefetch/preload”> in webpack
+  - title: webpack 中的 <link rel=”prefetch/preload”> 
     url: https://medium.com/webpack/link-rel-prefetch-preload-in-webpack-51a52358f84c
-  - title: Preload, Prefetch And Priorities in Chrome
+  - title: Chrome 中的预加载、预获取和优先级(Preload, Prefetch And Priorities)
     url: https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf
-  - title: Preloading content with rel="preload"
+  - title: 用 rel="preload" 预加载内容
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
 ---
 
@@ -44,8 +40,8 @@ T> 本指南继续沿用 [起步](/guides/getting-started) 和 [管理输出](/g
 常用的代码分离方法有三种：
 
 - 入口起点：使用 [`entry`](/configuration/entry-context) 配置手动地分离代码。
-- 防止重复：使用 [`SplitChunksPlugin`](/plugins/split-chunks-plugin/) 去重和分离 chunk。
-- 动态导入：通过模块中的内联函数调用来分离代码。
+- 防止重复：使用 [`SplitChunksPlugin`](/plugins/split-chunks-plugin) 去重和分离 chunk。
+- 动态导入：通过模块的内联函数调用来分离代码。
 
 
 ## 入口起点(entry points)
@@ -110,14 +106,14 @@ Entrypoint another = another.bundle.js
 - 如果入口 chunk 之间包含一些重复的模块，那些重复模块都会被引入到各个 bundle 中。
 - 这种方法不够灵活，并且不能动态地将核心应用程序逻辑中的代码拆分出来。
 
-这两点中的第一点，对我们的示例来说毫无疑问是个严重问题，因为我们在 `./src/index.js` 中也引入过 `lodash`，这样就造成在两个 bundle 中重复引用。我们可以通过使用 [`SplitChunksPlugin`](/plugins/split-chunks-plugin/) 插件来移除重复模块。
+以上两点中，第一点对我们的示例来说无疑是个问题，因为之前我们在 `./src/index.js` 中也引入过 `lodash`，这样就在两个 bundle 中造成重复引用。接着，我们通过使用 [`SplitChunksPlugin`](/plugins/split-chunks-plugin) 来移除重复的模块。
 
 
 ## 防止重复(prevent duplication)
 
-[`SplitChunksPlugin`](/plugins/split-chunks-plugin/) 插件可以将公共的依赖模块提取到已有的 entry chunk 中，或者提取到一个新生成的 chunk。让我们使用这个插件，将前面示例中重复的 `lodash` 模块去除：
+[`SplitChunksPlugin`](/plugins/split-chunks-plugin) 插件可以将公共的依赖模块提取到已有的入口 chunk 中，或者提取到一个新生成的 chunk。让我们使用这个插件，将之前的示例中重复的 `lodash` 模块去除：
 
-W> `CommonsChunkPlugin` 已经从 webpack v4（代号 legato）中移除。想要了解最新版本是如何处理 chunk，请查看 [`SplitChunksPlugin`](/plugins/split-chunks-plugin/)。
+W> CommonsChunkPlugin 已经从 webpack v4 legato 中移除。想要了解在最新版本中如何处理 chunks，请查看 [`SplitChunksPlugin`](/plugins/split-chunks-plugin) 。
 
 __webpack.config.js__
 
@@ -142,7 +138,7 @@ __webpack.config.js__
   };
 ```
 
-使用 [`optimization.splitChunks`](/plugins/split-chunks-plugin/#optimization-splitchunks) 配置选项，现在可以看到已经从 `index.bundle.js` 和 `another.bundle.js` 中删除了重复的依赖项。需要注意的是，此插件将 `lodash` 这个沉重负担从主 bundle 中移除，然后分离到一个单独的 chunk 中。执行 `npm run build` 查看效果：
+使用 [`optimization.splitChunks`](/plugins/split-chunks-plugin/#optimization-splitchunks) 配置选项之后，现在应该可以看出，`index.bundle.js` 和 `another.bundle.js` 中已经移除了重复的依赖模块。需要注意的是，插件将 `lodash` 分离到单独的 chunk，并且将其从 main bundle 中移除，减轻了大小。执行 `npm run build` 查看效果：
 
 ``` bash
 ...
@@ -157,9 +153,9 @@ Entrypoint another = vendors~another~index.bundle.js another.bundle.js
 
 以下是由社区提供，一些对于代码分离很有帮助的 plugin 和 loader：
 
-- [`mini-css-extract-plugin`](/plugins/mini-css-extract-plugin)：用于将 CSS 从主应用程序中分离。
-- [`bundle-loader`](/loaders/bundle-loader)：用于分离代码和延迟加载生成的 bundle。
-- [`promise-loader`](https://github.com/gaearon/promise-loader)：类似于 `bundle-loader` ，但是使用了 promise API。
+- [`mini-css-extract-plugin`](plugins/mini-css-extract-plugin): 用于将 CSS 从主应用程序中分离。
+- [`bundle-loader`](/loaders/bundle-loader): 用于分离代码和延迟加载生成的 bundle。
+- [`promise-loader`](https://github.com/gaearon/promise-loader): 类似于 `bundle-loader` ，但是使用的是 promises。
 
 
 ## 动态导入(dynamic imports)
@@ -168,7 +164,7 @@ Entrypoint another = vendors~another~index.bundle.js another.bundle.js
 
 W> `import()` 调用会在内部用到 [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)。如果在旧版本浏览器中使用 `import()`，记得使用一个 polyfill 库（例如 [es6-promise](https://github.com/stefanpenner/es6-promise) 或 [promise-polyfill](https://github.com/taylorhakes/promise-polyfill)），来 shim `Promise`。
 
-在开始之前，我们先从配置中移除掉多余的 [`entry`](/concepts/entry-points/) 和 [`optimization.splitChunks`](/plugins/split-chunks-plugin)，因为接下来的演示中并不需要它们：
+在我们开始本节之前，先从配置中移除掉多余的 [`entry`](/concepts/entry-points/) 和 [`optimization.splitChunks`](/plugins/split-chunks-plugin/#optimization-splitchunks)，因为接下来的演示中并不需要它们：
 
 __webpack.config.js__
 
@@ -224,7 +220,7 @@ __src/index.js__
 -   // Lodash, now imported by this script
 -   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 +   return import(/* webpackChunkName: "lodash" */ 'lodash').then(({ default: _ }) => {
-+     const element = document.createElement('div');
++     var element = document.createElement('div');
 +
 +     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 +
@@ -239,9 +235,9 @@ __src/index.js__
 + })
 ```
 
-这里我们需要使用 `default` 的原因是，从 webpack v4 开始，在 import CommonJS 模块时，不会再将导入模块解析为 `module.exports` 的值，而是为 CommonJS 模块创建一个 artificial namespace object(人工命名空间对象)。关于其背后原因的更多信息，请阅读 [webpack 4: import() 和 CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655)。
+我们之所以需要 `default`，是因为 webpack 4 在导入 CommonJS 模块时，将不再解析为 `module.exports` 的值，而是为 CommonJS 模块创建一个 artificial namespace 对象，更多有关背后原因的信息，请阅读 [webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655)
 
-注意，在注释中我们提供了 `webpackChunkName`。这样会将拆分出来的 bundle 命名为 `lodash.bundle.js`，而不是 `[id].bundle.js`。想了解更多关于 `webpackChunkName` 和其他可用选项，请查看 [`import()`](/api/module-methods/#import-) 文档。让我们执行 webpack，看到 `lodash` 分离出一个单独的 bundle：
+注意，在注释中使用了 `webpackChunkName`。这样做会导致我们的 bundle 被命名为 `lodash.bundle.js` ，而不是 `[id].bundle.js` 。想了解更多关于 `webpackChunkName` 和其他可用选项，请查看 [`import()` 相关文档](/api/module-methods#import-)。让我们执行 webpack，查看 `lodash` 是否会分离到一个单独的 bundle：
 
 ``` bash
 ...
@@ -260,14 +256,14 @@ __src/index.js__
 - function getComponent() {
 + async function getComponent() {
 -   return import(/* webpackChunkName: "lodash" */ 'lodash').then({ default: _ } => {
--     const element = document.createElement('div');
+-     var element = document.createElement('div');
 -
 -     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 -
 -     return element;
 -
 -   }).catch(error => 'An error occurred while loading the component');
-+   const element = document.createElement('div');
++   var element = document.createElement('div');
 +   const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
 +
 +   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -283,6 +279,52 @@ __src/index.js__
 T> It is possible to provide a [dynamic expression](/api/module-methods/#dynamic-expressions-in-import) to `import()` when you might need to import specific module based on a computed variable later.
 T> 在稍后示例中，可能会根据计算后的变量(computed variable)导入特定模块时，可以通过向 `import()` 传入一个 [动态表达式](/api/module-methods/#dynamic-expressions-in-import)。
 
+## 预获取/预加载模块(prefetching/preloading modules)
+
+webpack 4.6.0+ 增加了对预获取和预加载的支持。
+
+Using these inline directives while declaring your imports allows webpack to output “Resource Hint” which tells the browser that for:
+
+- prefetch: resource is probably needed for some navigation in the future
+- preload: resource might be needed during the current navigation
+
+Simple prefetch example can be having a HomePage component, which renders a LoginButton component which then on demand loads a LoginModal component after being clicked.
+
+__LoginButton.js__
+
+```js
+//...
+import(/* webpackPrefetch: true */ 'LoginModal');
+```
+
+This will result in `<link rel="prefetch" href="login-modal-chunk.js">` being appended in the head of the page, which will instruct the browser to prefetch in idle time the `login-modal-chunk.js` file.
+
+T> webpack will add the prefetch hint once the parent chunk has been loaded.
+
+Preload directive has a bunch of differences compared to prefetch:
+
+- A preloaded chunk starts loading in parallel to the parent chunk. A prefetched chunk starts after the parent chunk finishes loading.
+- A preloaded chunk has medium priority and is instantly downloaded. A prefetched chunk is downloaded while browser is idle.
+- A preloaded chunk should be instantly requested by the parent chunk. A prefetched chunk can be used anytime in the future.
+- Browser support is different.
+
+Simple preload example can be having a `Component` which always depends on a big library that should be in a separate chunk.
+
+Let's imagine a component `ChartComponent` which needs huge `ChartingLibrary`. It displays a `LoadingIndicator` when rendered and instantly does an on demand import of `ChartingLibrary`:
+
+__ChartComponent.js__
+
+```js
+//...
+import(/* webpackPreload: true */ 'ChartingLibrary');
+```
+
+When a page which uses the `ChartComponent` is requested, the charting-library-chunk is also requested via `<link rel="preload">`. Assuming the page-chunk is smaller and finishes faster, the page will be displayed with a `LoadingIndicator`, until the already requested `charting-library-chunk` finishes. This will give a little load time boost since it only needs one round-trip instead of two. Especially in high-latency environments.
+
+T> Using webpackPreload incorrectly can actually hurt performance, so be careful when using it.
+
+
+## bundle 分析(bundle analysis)
 
 ## 预取/预加载模块(prefetch/preload module)
 
@@ -331,7 +373,10 @@ T> 不正确地使用 webpackPreload 会有损性能，请谨慎使用。
 
 ## bundle 分析(bundle analysis)
 
-如果我们以分离代码作为开始，那么就应该以检查模块的输出结果作为结束，对其进行分析是很有用处的。[官方提供分析工具](https://github.com/webpack/analyse) 是一个好的初始选择。下面是一些可选择的社区支持(community-supported)工具：
+- [webpack-chart](https://alexkuz.github.io/webpack-chart/): webpack 数据交互饼图。
+- [webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/): 可视化并分析你的 bundle，检查哪些模块占用空间，哪些可能是重复使用的。
+- [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer): 一款分析 bundle 内容的插件及 CLI 工具，以便捷的、交互式、可缩放的树状图形式展现给用户。
+- [webpack bundle optimize helper](https://webpack.jakoblind.no/optimize/)：这个工具会分析你的 bundle，并提供可操作的改进措施，以缩小 bundle 的大小。
 
 - [webpack-chart](https://alexkuz.github.io/webpack-chart/)：webpack stats 可交互饼图。
 - [webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/)：可视化并分析你的 bundle，检查哪些模块占用空间，哪些可能是重复使用的。
