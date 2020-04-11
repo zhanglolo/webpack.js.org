@@ -12,7 +12,7 @@ webpack 的 bundle loader
 npm i bundle-loader --save
 ```
 
-## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
+## 用法
 
 **webpack.config.js**
 ```js
@@ -101,7 +101,7 @@ bundle((file) => {...})
 ```
 
 > :warning: 一旦 loader 创建了 chunk，它们将遵循以下命名规则
-[`output.chunkFilename`](https://webpack.js.org/configuration/output/#output-chunkfilename) 规则，默认是 `[id].[name]`。这里 `[name]` 对应着配置中 `name` 选项参数设置的 chunk 名称。
+[`output.chunkFilename`](https://webpack.docschina.org/configuration/output/#output-chunkfilename) 规则，默认是 `[id].[name]`。这里 `[name]` 对应着配置中 `name` 选项参数设置的 chunk 名称。
 
 ## 示例
 
