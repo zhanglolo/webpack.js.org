@@ -160,7 +160,17 @@ Examples resolutions:
 @import url('http://dontwritehorriblecode.com/style.css') => @import url('http://dontwritehorriblecode.com/style.css') in runtime
 ```
 
-### `import`
+### `alias`
+
+用别名重写你的 URL，在难以改变输入文件的url 路径时，这会很有帮助，例如，当你使用另一个包(package)（如 bootstrap, ratchet, font-awesome 等）中一些 css/sass 文件。
+
+`css-loader` 的别名，遵循与webpack 的 `resolve.alias` 相同的语法，你可以在[resolve 文档](https://webpack.docschina.org/configuration/resolve/#resolve-alias) 查看细节
+
+**file.scss**
+```css
+@charset "UTF-8";
+@import "bootstrap";
+```
 
 **webpack.config.js**
 

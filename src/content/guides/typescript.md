@@ -185,4 +185,8 @@ declare module "*.svg" {
 
 W> 这可能会降低构建性能。
 
-关于构建工具，请查看 [构建性能](/guides/build-performance/) 指南。
+关于构建工具，请查看[构建性能](/guides/build-performance/)指南。
+
+***
+
+> 原文：https://webpack.docschina.org/guides/typescript/

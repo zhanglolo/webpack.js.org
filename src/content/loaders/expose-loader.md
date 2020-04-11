@@ -4,6 +4,7 @@ source: https://raw.githubusercontent.com/webpack-contrib/expose-loader/master/R
 edit: https://github.com/webpack-contrib/expose-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/expose-loader
 ---
+The expose loader adds modules to the global object. This is useful for debugging, or <a href="https://webpack.docschina.org/guides/shimming/">supporting libraries that depend on libraries in globals</a>.
 
 
 [![npm][npm]][npm-url]

@@ -26,7 +26,7 @@ npm install -D babel-loader @babel/core @babel/preset-env webpack
 
 ## 用法
 
-webpack 文档：[loaders](https://webpack.js.org/loaders/)
+webpack 文档：[loaders](https://webpack.docschina.org/loaders/)
 
 在 webpack 配置对象中，需要将 babel-loader 添加到 module 列表中，就像下面这样：
 
@@ -51,7 +51,7 @@ module: {
 
 查看 `babel` [选项](https://babel.docschina.org/docs/en/options)。
 
-你可以使用 [`options`](https://webpack.js.org/configuration/module/#rule-options-rule-query) 属性，来向 loader 传递 options 选项：
+你可以使用 [`options`](https://webpack.docschina.org/configuration/module/#rule-options-rule-query) 属性，来向 loader 传递 options 选项：
 
 ```javascript
 module: {

@@ -23,7 +23,7 @@ own custom loader logic, without having to write a custom loader.
 
 ## Requirements
 
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
+The function will be called with the loader [`options`](https://webpack.docschina.org/configuration/module/#useentry) and must either return
 
 ## Getting Started
 

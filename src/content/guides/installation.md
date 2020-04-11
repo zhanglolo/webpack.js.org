@@ -67,4 +67,8 @@ npm install webpack@beta
 npm install webpack/webpack#<tagname/branchname>
 ```
 
-W> 在安装这些最新体验版本时要小心！它们可能仍然包含 bug，因此不应该用于生产环境。
+安装这些最新体验版本时要小心！它们可能仍然包含 bug，因此不应该用于生产环境。
+
+***
+
+> 原文：https://webpack.docschina.org/guides/installation/

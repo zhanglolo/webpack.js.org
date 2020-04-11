@@ -5,6 +5,8 @@ edit: https://github.com/webpack-contrib/json5-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/json5-loader
 ---
 
+用于将 <a href="http://json5.org/"><code>json5</code></a> 文件解析为 JavaScript 对象
+
 
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
@@ -26,17 +28,15 @@ To begin, you'll need to install `json5-loader`:
 $ npm install json5-loader --save-dev
 ```
 
-你可以通过以下两种用法使用此 loader：
+你可以通过以下用法使用这个 loader
 
 - 在 webpack 配置里的 `module.loaders` 对象中配置 `json5-loader`；
-- 或者，直接在 require 语句中使用 `json5-loader!` 前缀。
+- 直接在 require 语句中使用 `json5-loader!` 前缀。
 
-假设我们有如下 `json5` 文件：
+假设我们有下面这个 `json5` 文件
 
-**file.json5**
-
-```json5
-// file.json5
+```js
+// appData.json5
 {
   env: 'production',
   passwordStrength: 'strong',
@@ -50,7 +50,7 @@ $ npm install json5-loader --save-dev
 ```js
 // webpack.config.js
 module.exports = {
-  entry: './index.js',
+  entry: "./index.js",
   output: {
     /* ... */
   },
@@ -59,25 +59,26 @@ module.exports = {
       {
         // 使所有以 .json5 结尾的文件使用 `json5-loader`
         test: /\.json5$/,
-        loader: 'json5-loader',
-      },
-    ],
-  },
+        loader: "json5-loader"
+      }
+    ]
+  }
 };
 ```
 
 ```js
 // index.js
-var appConfig = require('./appData.json5');
+var appConfig = require("./appData.json5");
 // 或者 ES6 语法
 // import appConfig from './appData.json5'
 
 console.log(appConfig.env); // 'production'
 ```
 
-### require 语句使用 loader 前缀的用法
+#### require 语句使用 loader 前缀的用法
+
 ```js
-var appConfig = require('json5-loader!./appData.json5');
+var appConfig = require("json5-loader!./appData.json5");
 // 返回的是 json 解析过的对象
 
 console.log(appConfig.env); // 'production'
