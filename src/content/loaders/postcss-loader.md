@@ -6,7 +6,7 @@ repo: https://github.com/postcss/postcss-loader
 ---
 
   
-  <p>Loader for <a href="http://webpack.js.org/">webpack</a> to process CSS with <a href="http://postcss.org/">PostCSS</a></p>
+  <p>用于使用 <a href="http://postcss.org/">PostCSS</a> 处理CSS的 <a href="http://webpack.js.org/">webpack</a> Loader</p>
 </div>
 
 ## Install
@@ -19,24 +19,23 @@ npm i -D postcss-loader
 
 ##
 
-**postcss.config.js**
+**`postcss.config.js`**
 ```js
 module.exports = {
   parser: 'sugarss',
   plugins: {
     'postcss-import': {},
-    'postcss-cssnext': {},
+    'postcss-preset-env': {},
     'cssnano': {}
   }
 }
 ```
 
-You can read more about common PostCSS Config [here](https://github.com/michael-ciniawsky/postcss-load-config).
+您可以在[此处]((https://github.com/michael-ciniawsky/postcss-load-config))阅读有关常见 PostCSS 配置的详细信息。
 
 ### `Config Cascade`
 
-You can use different `postcss.config.js` files in different directories.
-Config lookup starts from `path.dirname(file)` and walks the file tree upwards until a config file is found.
+您可以在不同的目录中使用不同的 `postcss.config.js` 文件。webpack 会从 `path.dirname(file)` 开始，并向上遍历文件树，直至找到配置文件。
 
 ```
 |– components
@@ -56,9 +55,9 @@ Config lookup starts from `path.dirname(file)` and walks the file tree upwards u
 |– package.json
 ```
 
-After setting up your `postcss.config.js`, add `postcss-loader` to your `webpack.config.js`. You can use it standalone or in conjunction with `css-loader` (recommended). Use it **after** `css-loader` and `style-loader`, but **before** other preprocessor loaders like e.g `sass|less|stylus-loader`, if you use any.
+在配置 `postcss.config.js` 后，需要将 `postcss-loader` 添加到 `webpack.config.js` 中。 您可以单独使用它，也可以与 `css-loader` 一起使用（推荐）。在 `css-loader` 和 `style-loader` **之后**使用它，但如果使用其它预处理器 loader，例如 `sass|less|stylus-loader`，需要将 `postcss-loader` 放在其**之前**。
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 module.exports = {
   module: {
@@ -72,9 +71,9 @@ module.exports = {
 }
 ```
 
-> ⚠️  When `postcss-loader` is used standalone (without `css-loader`) don't use `@import` in your CSS, since this can lead to quite bloated bundles
+> ⚠️ 当单独使用 `postcss-loader` （没有使用 `css-loader` ）时，不要在你的CSS中使用 `@import`，因为这会导致 bundle 文件非常臃肿
 
-**webpack.config.js (recommended)**
+**`webpack.config.js` (recommended)**
 ```js
 module.exports = {
   module: {
@@ -94,20 +93,21 @@ module.exports = {
 
 ## Options
 
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|[`exec`](#exec)|`{Boolean}`|`undefined`|Enable PostCSS Parser support in `CSS-in-JS`|
-|[`parser`](#syntaxes)|`{String\|Object}`|`undefined`|Set PostCSS Parser|
-|[`syntax`](#syntaxes)|`{String\|Object}`|`undefined`|Set PostCSS Syntax|
-|[`stringifier`](#syntaxes)|`{String\|Object}`|`undefined`|Set PostCSS Stringifier|
-|[`config`](#config)|`{Object}`|`undefined`|Set `postcss.config.js` config path && `ctx`|
-|[`plugins`](#plugins)|`{Array\|Function}`|`[]`|Set PostCSS Plugins|
-|[`sourceMap`](#sourceMap)|`{String\|Boolean}`|`false`|Enable Source Maps|
+| 名称                       | 类型                | 默认值      | 描述                                     |
+| :------------------------: | :-----------------: | :---------: | :--------------------------------------- |
+| [`exec`](#exec)            | `{Boolean}`         | `undefined` | 在 `CSS-in-JS` 中启用 PostCSS 解析器支持 |
+| [`parser`](#syntaxes)      | `{String\|Object}`  | `undefined` | 配置 PostCSS 解析器                      |
+| [`syntax`](#syntaxes)      | `{String\|Object}`  | `undefined` | 配置 PostCSS 语法                        |
+| [`stringifier`](#syntaxes) | `{String\|Object}`  | `undefined` | 配置 PostCSS Stringifier                 |
+| [`config`](#config)        | `{Object}`          | `undefined` | 配置 `postcss.config.js` 路径 && `ctx`   |
+| [`plugins`](#plugins)      | `{Array\|Function}` | `[]`        | 配置 PostCSS 插件                        |
+| [`sourceMap`](#sourceMap)  | `{String\|Boolean}` | `false`     | 启用 Source Maps                         |
 
 ### `Exec`
 
-If you use JS styles without the [`postcss-js`][postcss-js] parser, add the `exec` option.
+如果你没有使用 [`postcss-js`][postcss-js] 解析器解析JS样式，需添加 `exec` 选项。
 
+**`webpack.config.js`**
 ```js
 {
   test: /\.style.js$/,
@@ -121,62 +121,65 @@ If you use JS styles without the [`postcss-js`][postcss-js] parser, add the `exe
 
 ### `Config`
 
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|[`path`](#path)|`{String}`|`undefined`|PostCSS Config Path|
-|[`context`](#context)|`{Object}`|`undefined`|PostCSS Config Context|
+| 名称                  | 类型       | 默认值      | 描述                       |
+| :-------------------: | :--------: | :---------: | :------------------------- |
+| [`path`](#path)       | `{String}` | `undefined` | `postcss.config.js` 路径   |
+| [`context`](#context) | `{Object}` | `undefined` | `postcss.config.js` 上下文 |
 
 #### `Path`
 
-You can manually specify the path to search for your config (`postcss.config.js`) with the `config.path` option. This is needed if you store your config  in a separate e.g `./config || ./.config` folder.
+您可以使用 `config.path` 选项手动指定配置文件（`postcss.config.js`）的路径。如果将配置存放在单独的 `./config || ./.config` 文件夹中，您需要配置此选项。
 
-> ⚠️  Otherwise it is **unnecessary** to set this option and is **not** recommended
+> ⚠️ 否则，**不需要**也**不**推荐配置此选项
 
-**webpack.config.js**
+> ⚠️  Note that you **can't** use a **filename** other than the [supported config formats] (e.g `.postcssrc.js`, `postcss.config.js`), this option only allows you to manually specify the **directory** where config lookup should **start** from
+
+**`webpack.config.js`**
 ```js
 {
   loader: 'postcss-loader',
   options: {
     config: {
-      path: 'path/to/postcss.config.js'
+      path: 'path/to/.config/' ✅
+      path: 'path/to/.config/css.config.js' ❌
     }
   }
 }
 ```
 
+[supported config formats]: https://github.com/michael-ciniawsky/postcss-load-config#usage
+
 #### `Context (ctx)`
 
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|`env`|`{String}`|`'development'`|`process.env.NODE_ENV`|
-|`file`|`{Object}`|`loader.resourcePath`|`extname`, `dirname`, `basename`|
-|`options`|`{Object}`|`{}`|Options|
+| 名称      | 类型       | 默认值                | 描述                             |
+| :-------: | :--------: | :-------------------: | :------------------------------- |
+| `env`     | `{String}` | `'development'`       | `process.env.NODE_ENV`           |
+| `file`    | `{Object}` | `loader.resourcePath` | `extname`, `dirname`, `basename` |
+| `options` | `{Object}` | `{}`                  | 选项                             |
 
-`postcss-loader` exposes context `ctx` to the config file, making your `postcss.config.js` dynamic, so can use it to do some real magic ✨
+`postcss-loader` 将上下文 `ctx` 暴露给配置文件，使你的 `postcss.config.js` 动态化，所以可以使用这一选项来实现一些神奇的功能 ✨
 
-**postcss.config.js**
+**`postcss.config.js`**
 ```js
 module.exports = ({ file, options, env }) => ({
   parser: file.extname === '.sss' ? 'sugarss' : false,
   plugins: {
     'postcss-import': { root: file.dirname },
-    'postcss-cssnext': options.cssnext ? options.cssnext : false,
-    'autoprefixer': env == 'production' ? options.autoprefixer : false,
+    'postcss-preset-env': options['postcss-preset-env'] ? options['postcss-preset-env'] : false,
     'cssnano': env === 'production' ? options.cssnano : false
   }
 })
 ```
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   loader: 'postcss-loader',
   options: {
     config: {
       ctx: {
-        cssnext: {...options},
+        'postcss-preset-env': {...options},
         cssnano: {...options},
-        autoprefixer: {...options}
       }
     }
   }
@@ -185,7 +188,7 @@ module.exports = ({ file, options, env }) => ({
 
 ### `Plugins`
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   loader: 'postcss-loader',
@@ -193,27 +196,26 @@ module.exports = ({ file, options, env }) => ({
     ident: 'postcss',
     plugins: (loader) => [
       require('postcss-import')({ root: loader.resourcePath }),
-      require('postcss-cssnext')(),
-      require('autoprefixer')(),
+      require('postcss-preset-env')(),
       require('cssnano')()
     ]
   }
 }
 ```
 
-> ⚠️  webpack requires an identifier (`ident`) in `options` when `{Function}/require` is used (Complex Options). The `ident` can be freely named as long as it is unique. It's recommended to name it (`ident: 'postcss'`)
+> ⚠️ 当使用 `{Function}/require` 时，需要在 `options` 中配置一个标识符（`ident`）（复杂选项）。`ident` 可以自由命名，只要它是唯一的。建议命名为（`ident：'postcss'`）
 
 ### `Syntaxes`
 
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|[`parser`](#parser)|`{String\|Function}`|`undefined`|Custom PostCSS Parser|
-|[`syntax`](#syntax)|`{String\|Function}`|`undefined`|Custom PostCSS Syntax|
-|[`stringifier`](#stringifier)|`{String\|Function}`|`undefined`|Custom PostCSS Stringifier|
+| 名称                          | 类型                 | 默认值      | 描述                       |
+| :---------------------------: | :------------------: | :---------: | :------------------------- |
+| [`parser`](#parser)           | `{String\|Function}` | `undefined` | 自定义 PostCSS 解析器      |
+| [`syntax`](#syntax)           | `{String\|Function}` | `undefined` | 自定义 PostCSS 语法        |
+| [`stringifier`](#stringifier) | `{String\|Function}` | `undefined` | 自定义 PostCSS Stringifier |
 
 #### `Parser`
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   test: /\.sss$/,
@@ -226,7 +228,7 @@ module.exports = ({ file, options, env }) => ({
 
 #### `Syntax`
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   test: /\.css$/,
@@ -239,7 +241,7 @@ module.exports = ({ file, options, env }) => ({
 
 #### `Stringifier`
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   test: /\.css$/,
@@ -252,9 +254,9 @@ module.exports = ({ file, options, env }) => ({
 
 ### `SourceMap`
 
-Enables source map support, `postcss-loader` will use the previous source map given by other loaders and update it accordingly, if no previous loader is applied before `postcss-loader`, the loader will generate a source map for you.
+启用 source map 支持，`postcss-loader` 将使用之前其他 loader 生成的 source map 并相应地更新，如果在 `postcss-loader` 之前没有应用 loader，则 `postcss-loader` 将为您生成 source map。
 
-> :warning: If a previous loader like e.g `sass-loader` is applied and it's `sourceMap` option is set, but the `sourceMap` option in `postcss-loader` is omitted, previous source maps will be discarded by `postcss-loader` **entirely**.
+> :警告：如果之前使用了像 `sass-loader` 之类的 loader 并且设置了 `sourceMap` 选项，但是 `postcss-loader` 中的 `sourceMap` 选项被省略，之前的 source map 将被 `postcss-loader` **完全**丢弃。
 
 **webpack.config.js**
 ```js
@@ -271,10 +273,9 @@ Enables source map support, `postcss-loader` will use the previous source map gi
 
 #### `'inline'`
 
-You can set the `sourceMap: 'inline'` option to inline the source map
-within the CSS directly as an annotation comment.
+您可以设置 `sourceMap：'inline'` 选项，将改动用注释标注，并内嵌到 CSS 文件中。
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   loader: 'postcss-loader',
@@ -294,7 +295,7 @@ within the CSS directly as an annotation comment.
 
 ### `Stylelint`
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   test: /\.css$/,
@@ -316,13 +317,36 @@ within the CSS directly as an annotation comment.
 }
 ```
 
+### `Autoprefixing`
+
+**`webpack.config.js`**
+```js
+{
+  test: /\.css$/,
+  use: [
+    'style-loader',
+    'css-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss',
+        plugins: [
+          require('autoprefixer')({...options}),
+          ...,
+        ]
+      }
+    }
+  ]
+}
+```
+
+> :warning: [`postcss-preset-env`](https://github.com/csstools/postcss-preset-env) includes [`autoprefixer`](https://github.com/postcss/autoprefixer), so adding it separately is not necessary if you already use the preset.
+
 ### `CSS Modules`
 
-This loader [cannot be used] with [CSS Modules] out of the box due
-to the way `css-loader` processes file imports. To make them work properly,
-either add the css-loader’s [`importLoaders`] option.
+由于 `css-loader` 处理文件导入的方式，`postcss-loader` [不能直接使用][CSS 模块]。若要使用，需要配置 css-loader 的[`importLoaders`]选项。
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
 {
   test: /\.css$/,
@@ -334,19 +358,20 @@ either add the css-loader’s [`importLoaders`] option.
 }
 ```
 
-or use [postcss-modules] instead of `css-loader`.
+或使用[postcss-modules]代替 `css-loader`。
 
 [`importLoaders`]: https://github.com/webpack-contrib/css-loader#importloaders
 [cannot be used]: https://github.com/webpack/css-loader/issues/137
 [CSS Modules]: https://github.com/webpack/css-loader#css-modules
-[postcss-modules]: https://github.com/outpunk/postcss-modules
+[postcss-modules]: https://github.com/css-modules/postcss-modules
 
 ### `CSS-in-JS`
 
-If you want to process styles written in JavaScript, use the [postcss-js] parser.
+如果要处理用 JavaScript 编写的样式，请使用[postcss-js]解析器。
 
 [postcss-js]: https://github.com/postcss/postcss-js
 
+**`webpack.config.js`**
 ```js
 {
   test: /\.style.js$/,
@@ -359,7 +384,7 @@ If you want to process styles written in JavaScript, use the [postcss-js] parser
 }
 ```
 
-As result you will be able to write styles in the following way
+因此，您将能够以下列方式编写样式
 
 ```js
 import colors from './styles/colors'
@@ -375,43 +400,45 @@ export default {
 }
 ```
 
-> :warning: If you are using Babel you need to do the following in order for the setup to work
+> :警告：如果您使用 Babel，则需要执行以下操作才能使设置生效
 
-> 1. Add [babel-plugin-add-module-exports] to your configuration
-> 2. You need to have only one **default** export per style module
+> 1. 在配置中添加 [babel-plugin-add-module-exports]
+> 2. 每个样式模块只能有一个**default**导出
 
 [babel-plugin-add-module-exports]: https://github.com/59naga/babel-plugin-add-module-exports
 
 ### [Extract CSS][ExtractPlugin]
 
-[ExtractPlugin]: https://github.com/webpack-contrib/extract-text-webpack-plugin
+[ExtractPlugin]: https://github.com/webpack-contrib/mini-css-extract-plugin
 
-**webpack.config.js**
+**`webpack.config.js`**
 ```js
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const devMode = process.env.NODE_ENV !== 'production'
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            { loader: 'css-loader', options: { importLoaders: 1 } },
-            'postcss-loader'
-          ]
-        })
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader'
+        ]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('[name].css')
+    new MiniCssExtractPlugin({
+      filename: devMode ? '[name].css' : '[name].[hash].css'
+    })
   ]
 }
 ```
 
-## Maintainers
+## 维护人员
 
 <table>
   <tbody>
@@ -444,7 +471,7 @@ module.exports = {
 [deps]: https://david-dm.org/postcss/postcss-loader.svg
 [deps-url]: https://david-dm.org/postcss/postcss-loader
 
-[tests]: http://img.shields.io/travis/postcss/postcss-loader.svg
+[tests]: https://img.shields.io/travis/postcss/postcss-loader.svg
 [tests-url]: https://travis-ci.org/postcss/postcss-loader
 
 [cover]: https://coveralls.io/repos/github/postcss/postcss-loader/badge.svg

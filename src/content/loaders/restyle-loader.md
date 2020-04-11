@@ -10,6 +10,8 @@ repo: https://github.com/webpack-contrib/restyle-loader
 
 Updates style `<link>` href value with a hash to trigger a style reload
 
+Loader new home: [restyle-loader](https://github.com/danielverejan/restyle-loader)
+
 </div>
 
 ## 安装
@@ -20,7 +22,7 @@ npm install --save-dev restyle-loader
 
 ## 用法
 
-[文档：使用 loader](https://webpack.js.org/loaders/)
+[文档：使用 loader](https://webpack.docschina.org/loaders/)
 
 ## 示例
 

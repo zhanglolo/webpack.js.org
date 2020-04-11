@@ -4,72 +4,53 @@ source: https://raw.githubusercontent.com/webpack-contrib/null-loader/master/REA
 edit: https://github.com/webpack-contrib/null-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/null-loader
 ---
-A loader that returns an empty module.
 
-## 安装
+返回空模块
 
-```bash
-npm i null-loader --save
-```
+[![npm][npm]][npm-url]
+[![node][node]][node-url]
+[![deps][deps]][deps-url]
+[![tests][tests]][tests-url]
+[![chat][chat]][chat-url]
 
-## 示例
 
-One use for this loader is to silence modules imported by a dependency. Say, for example, your project relies on an ES6 library that imports a polyfill you don't need, so removing it will cause no loss in functionality. Test for the path to the polyfill and it won't be included in your bundle:
+
+返回一个空模块的 webpack loader。
+
+此 loader 的一个用途是，使依赖项导入的模块静音。
+例如，项目依赖于一个 ES6 库，会导入不需要的 polyfill，
+因此删除它将不会导致功能损失。
+
+## 要求
+
+null-loader 的一个用途是使依赖项导入的模块静音。例如，当项目依赖于 ES6 库而并不需要 polyfill，因此删除它将不会影响任何功能。测试 polyfill 的路径，它不会包含在依赖包中：
 
 ```js
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   module: {
     rules: [
       {
-        test: path.resolve(__dirname, 'node_modules/library/polyfill.js'),
-        use: 'null-loader'
+        test: path.resolve(__dirname, "node_modules/library/polyfill.js"),
+        use: "null-loader"
       }
     ]
   }
-}
+};
 ```
 
-## 维护人员
+然后，通过你偏爱的方式去运行 `webpack`。
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/166921?v=3&s=150">
-        </br>
-        <a href="https://github.com/bebraw">Juho Vepsäläinen</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars2.githubusercontent.com/u/8420490?v=3&s=150">
-        </br>
-        <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/533616?v=3&s=150">
-        </br>
-        <a href="https://github.com/SpaceK33z">Kees Kluskens</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/3408176?v=3&s=150">
-        </br>
-        <a href="https://github.com/TheLarkInn">Sean Larkin</a>
-      </td>
-    </tr>
-  <tbody>
-</table>
+## 贡献人员
 
+如果你从未阅读过我们的贡献指南，请在上面花点时间。
+
+#### [贡献指南](https://raw.githubusercontent.com/webpack-contrib/null-loader/master/.github/CONTRIBUTING)
 
 [npm]: https://img.shields.io/npm/v/null-loader.svg
 [npm-url]: https://npmjs.com/package/null-loader
-
 [deps]: https://david-dm.org/webpack-contrib/null-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/null-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack

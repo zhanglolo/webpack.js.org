@@ -8,34 +8,32 @@ repo: https://github.com/webpack-contrib/polymer-webpack-loader
 [![npm version](https://badge.fury.io/js/polymer-webpack-loader.svg)](https://badge.fury.io/js/polymer-webpack-loader)
 [![build status](https://travis-ci.org/webpack-contrib/polymer-webpack-loader.svg?branch=master)](https://travis-ci.org/webpack-contrib/polymer-webpack-loader)
 
-> [Polymer](https://www.polymer-project.org/) component loader for [webpack](https://webpack.js.org/).
+> [Polymer](https://www.polymer-project.org/) component loader for [webpack](https://webpack.docschina.org/).
 
-The loader allows you to write mixed HTML, CSS and JavaScript Polymer elements and
-still use the full webpack ecosystem including module bundling and code splitting.
-
+polymer-webpack-loader 允许编写混合的 HTML, CSS 和 JavaScript Polymer 元素，并仍然使用完整的 webpack 生态系统，包括模块捆绑和代码拆分。
 
 <img width="1024" alt="" src="https://user-images.githubusercontent.com/1066253/28131928-3b257288-66f0-11e7-8295-cb968cefb040.png">
 
-The loader transforms your components:
+可以转换组件:
 
- * `<link rel="import" href="./my-other-element.html">` -> `import './my-other-element.html';`
- * `<dom-module>` becomes a string which is registered at runtime
- * `<script src="./other-script.js"></script>` -> `import './other-script.js';`
- * `<script>/* contents */</script>` -> `/* contents */`
+- `<link rel="import" href="./my-other-element.html">` -> `import './my-other-element.html';`
+- `<dom-module>` 成为在运行时注册的字符串
+- `<script src="./other-script.js"></script>` -> `import './other-script.js';`
+- `<script>/* contents */</script>` -> `/* contents */`
 
- What does that mean?
+这意味着什么呢?
 
- Any ```<link>``` "href" or ```<script>``` "src" that is **not an external link** and does not start with ```~```, ```/```, ```./``` or a series of ```../``` will have ```./``` appended to the beginning of the value. To prevent this change use options ignoreLinks below.
+任何不是**外部链接**且不以 `~`, `/`, `./` 或一系列 `../` 开头的 `<link>` "href" or `<script>` "src", 都会在其开头添加一个 `./`。为了防止这种变化，使用下面的忽略链接选项。
 
 ## Path Translations
 
-| `tag`                            | `import`                        |
-| ----------------------------------- | ------------------------------------- |
-| `<link rel="import" href="path/to/some-element.html">`     | `import "./path/to/some-element.html"`  |
-| `<link rel="import" href="/path/to/some-element.html">`    | `import "/path/to/some-element.html"`   |
-| `<link rel="import" href="../path/to/some-element.html">`  | `import "../path/to/some-element.html"` |
-| `<link rel="import" href="./path/to/some-element.html">`   | `import "./path/to/some-element.html"`  |
-| `<link rel="import" href="~path/to/some-element.html">`    | `import "~path/to/some-element.html"`   |
+| `tag`                                                     | `import`                                |
+| --------------------------------------------------------- | --------------------------------------- |
+| `<link rel="import" href="path/to/some-element.html">`    | `import "./path/to/some-element.html"`  |
+| `<link rel="import" href="/path/to/some-element.html">`   | `import "/path/to/some-element.html"`   |
+| `<link rel="import" href="../path/to/some-element.html">` | `import "../path/to/some-element.html"` |
+| `<link rel="import" href="./path/to/some-element.html">`  | `import "./path/to/some-element.html"`  |
+| `<link rel="import" href="~path/to/some-element.html">`   | `import "~path/to/some-element.html"`   |
 
 ## Configuring the Loader
 
@@ -56,70 +54,63 @@ The loader transforms your components:
 
 ### include: Condition(s)
 
-See [Rule.include] and [Condition] in the webpack documentation. Paths
-matching this option will be processed by polymer-webpack-loader.  WARNING: If
-this property exists the loader will only process files matching the given
-conditions. If your component has a `<link>` pointing to a component e.g. in
-another directory, the `include` condition(s) MUST also match that directory.
+请参阅 webpack 文档中的 [Rule.include]和 [Condition]。与 include 匹配的路径将由 polymer-webpack-loader 处理。警告：如果此属性存在，polymer-webpack-loader 将只处理符合给定条件的文件。如果你的组件有一个 `<link>` 指向另一个组件（例如在另一个目录中），那么这个 include 条件也**必须**匹配该目录。
 
-[Rule.include]: https://webpack.js.org/configuration/module/#rule-include
-[Condition]: https://webpack.js.org/configuration/module/#condition
+[rule.include]: https://webpack.docschina.org/configuration/module/#rule-include
+[condition]: https://webpack.docschina.org/configuration/module/#condition
 
 ### exclude: Condition(s)
 
-See [Rule.exclude] and [Condition] in the webpack documentation. Paths
-matching this option will be excluded from processing by
-polymer-webpack-loader. NOTE: Files imported through a `<link>` will not be
-excluded by this property. See `Options.ignoreLinks`.
+请参阅 webpack 文档中的 [Rule.exclude] 和 [Condition]。与 exclude 匹配的路径将被 polymer-webpack-loader 忽略。注：通过 `<link>` 导入的文件将不会被排除。请查看 `Options.ignoreLinks`。
 
-[Rule.exclude]: https://webpack.js.org/configuration/module/#rule-exclude
+[rule.exclude]: https://webpack.docschina.org/configuration/module/#rule-exclude
 
-### Options
+### 选项
 
 #### ignoreLinks: Condition(s)
 
-`<link>`s pointing to paths matching these conditions (see [Condition] in the
-webpack documentation) will not be transformed into `import`s.
+如果 `<link>` 的指向符合 webpack 的 [Condition]，将不会转换为 `import`。
 
 #### ignorePathReWrite: Condition(s)
 
-`<link>` paths matching these conditions (see [Condition] in the webpack
-documentation) will not be changed when transformed into `import`s. This can
-be useful for respecting aliases, loader syntax (e.g.
-`markup-inline-loader!./my-element.html`), or module paths.
+如果 `<link>` 的路径匹配 webpack 中的 [Condition]，那么在转换为 `import` 时不会发生改变。这对于遵守别名规则，loader 句法（例如 `markup-inline-loader!./my-element.html`）或模块路径都有用处。
 
 #### processStyleLinks Boolean
 
-If set to true the loader will rewrite `<link import="css" href="...">` or `<link rel="stylesheet" href="...">` that are inside the dom-module with `<style>require('...')</style>`. This will allow for the file to be processed by loaders that are set up in the webpack config to handle their file type.
+设置为 true 时，位于 dom 模块内部的 `<link import="css" href="...">` 或者 `<link rel="stylesheet" href="...">` 将被重写为 `<style>require('...')</style>`。这将允许文件由 webpack 配置中设置的 loader 来处理它们的文件类型。
 
-1. Any `<link>` that is inside the `<dom-module>` but not in the `<template>` will be added to the `<template>` in the order the tags appear in the file.
+1. 任何在 `<dom-module>` 中但没有包含在 `<template>` 中的 `<link>` 都会被添加到 `<template>` 标签中。
+2. 只有当 `<link>` 的 href 是相对路径时，loader 才会执行替换。任何以 `http`, `https` 或 `//` 开头的链接都不会被替换。
 
 ```html
-  <dom-module>
-    <link rel="stylesheet" href="file1.css">
-    <template>
-      <link rel="stylesheet" href="file2.css">
-    </template>
-  </dom-module>
+<dom-module>
+  <link rel="stylesheet" href="file1.css" />
+  <template>
+    <link rel="stylesheet" href="file2.css" />
+  </template>
+</dom-module>
 
-  would produce
+会生成如下代码
 
-  <dom-module>
-    <template>
-      <style>require('file1.css')</style>
-      <style>require('file2.css')</style>
-    </template>
-  </dom-module>
+<dom-module>
+  <template>
+    <style>
+      require('file1.css')
+    </style>
+    <style>
+      require('file2.css')
+    </style>
+  </template>
+</dom-module>
 ```
-
-2. The loader will only replace a `<link>` if the href is a relative path. Any link attempting to access an external link i.e. `http`, `https` or `//` will not be replaced.
 
 #### htmlLoader: Object
 
-Options to pass to the html-loader. See [html-loader](/loaders/html-loader/).
+传递给 html-loader 的选项，请参阅 [html-loader](/loaders/html-loader/)。
 
 ### Use with Babel (or other JS transpilers)
-If you'd like to transpile the contents of your element's `<script>` block you can [chain an additional loader](https://webpack.js.org/configuration/module/#rule-use).
+
+如需转译 `<script>` 块的内容，可以参考 [chain an additional loader](https://webpack.docschina.org/configuration/module/#rule-use)。
 
 ```js
 module: {
@@ -128,11 +119,11 @@ module: {
       test: /\.html$/,
       use: [
         // Chained loaders are applied last to first
-        { loader: 'babel-loader' },
-        { loader: 'polymer-webpack-loader' }
+        { loader: "babel-loader" },
+        { loader: "polymer-webpack-loader" }
       ]
     }
-  ]
+  ];
 }
 
 // alternative syntax
@@ -142,16 +133,15 @@ module: {
     {
       test: /\.html$/,
       // Chained loaders are applied right to left
-      loader: 'babel-loader!polymer-webpack-loader'
+      loader: "babel-loader!polymer-webpack-loader"
     }
-  ]
+  ];
 }
 ```
 
 ### Use of HtmlWebpackPlugin
-Depending on how you configure the HtmlWebpackPlugin you may encounter conflicts with the polymer-webpack-loader.
 
-Example:
+出现 polymer-webpack-loader 冲突时，该如何配置 HtmlWebpackPlugin，请看示例：
 
 ```javascript
 {
@@ -166,31 +156,36 @@ Example:
   loader: 'polymer-webpack-loader'
 }
 ```
-This would expose your index.html file to the polymer-webpack-loader based on the process used by the html-loader. In this case you would need to exclude your html file from the polymer-webpack-loader or look for other ways to avoid this conflict. See: [html-webpack-plugin template options](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)
 
-## Shimming
-Not all Polymer Elements have been written to execute as a module and will
-require changes to work with webpack. The most common issue encountered is because modules do not execute
-in the global scope. Variables, functions and classes will no longer be global unless
-they are declared as properties on the global object (window).
+根据 html-loader 使用的进程，将 index.html 文件暴露给 polymer-webpack-loader。这种情况需要从 polymer-webpack-loader 中排除 html 文件，或者寻找其他方法来避免冲突。请参阅：[html-webpack-plugin 模板选项](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)
+
+## Shimming（匀场模块）
+
+并非所有聚合物元素都要被编写为模块才能执行，也并非所有聚合物元素需要更改才能使用 webpack。最常见的问题是模块不在全局范围内执行。变量，函数和类将不再是全局的，除非它们被声明为全局对象 (window) 上的属性。
 
 ```js
 class MyElement {} // I'm not global anymore
 window.myElement = MyElement; // Now I'm global again
 ```
 
-For external library code, webpack provides [shimming options](https://webpack.js.org/guides/shimming/).
-
- * Use the [exports-loader](https://webpack.js.org/guides/shimming/#exports-loader) to
-   add a module export to components which expect a symbol to be global.
- * Use the [imports-loader](https://webpack.js.org/guides/shimming/#imports-loader) when a script
-   expects the `this` keyword to reference `window`.
- * Use the [ProvidePlugin](https://webpack.js.org/guides/shimming/#provideplugin) to add a module
-   import statement when a script expects a variable to be globally defined (but is now a module export).
- * Use the [NormalModuleReplacementPlugin](https://webpack.js.org/plugins/normal-module-replacement-plugin/)
-   to have webpack swap a module-compliant version for a script.
+- Use the [exports-loader](https://webpack.docschina.org/guides/shimming/#exports-loader) to
+  add a module export to components which expect a symbol to be global.
+- Use the [imports-loader](https://webpack.docschina.org/guides/shimming/#imports-loader) when a script
+  expects the `this` keyword to reference `window`.
+- Use the [ProvidePlugin](https://webpack.docschina.org/guides/shimming/#provideplugin) to add a module
+  import statement when a script expects a variable to be globally defined (but is now a module export).
+- Use the [NormalModuleReplacementPlugin](https://webpack.docschina.org/plugins/normal-module-replacement-plugin/)
+  to have webpack swap a module-compliant version for a script.
 
 You may need to apply multiple shimming techniques to the same component.
+
+对于外部库代码，webpack 提供 [匀场选项 shimming options](https://webpack.docschina.org/guides/shimming/)。
+
+使用 exports-loader 将模块导出添加到期望符号为全局的组件。
+脚本需要 this 引用关键字时使用 imports-loader window。
+当脚本需要全局定义变量（但现在是模块导出）时，使用 ProvidePlugin 添加模块导入语句。
+使用 NormalModuleReplacementPlugin 让 webpack 交换脚本的模块兼容版本。
+您可能需要将多种匀场技术应用于相同的组件。
 
 ## Boostrapping Your Application
 
