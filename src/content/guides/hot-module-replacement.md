@@ -14,13 +14,14 @@ contributors:
   - bdwain
   - caryli
   - xgirma
+  - rushan
   - EugeneHlushko
   - AnayaDesign
   - aviyacohen
   - dhruvdutt
   - wizardofhogwarts
   - aholzner
-
+  
 related:
   - title: 概念 - 模块热替换(hot module replacement)
     url: /concepts/hot-module-replacement
@@ -63,8 +64,9 @@ __webpack.config.js__
       // 对于 CleanWebpackPlugin 的 v2 versions 以下版本，使用 new CleanWebpackPlugin(['dist/*'])
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        title: '模块热替换'
-      })
+        title: 'Hot Module Replacement'
+      }),
++     new webpack.HotModuleReplacementPlugin()
     ],
     output: {
       filename: '[name].bundle.js',
@@ -73,9 +75,9 @@ __webpack.config.js__
   };
 ```
 
-T> 可以通过命令来修改 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 的配置：`webpack-dev-server --hotOnly`。
+T> 你可以通过命令来修改 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) 的配置：`webpack-dev-server --hotOnly`。
 
-现在，修改 `index.js` 文件，以便在 `print.js` 内部发生变更时，告诉 webpack 接受 updated module。
+现在，我们来修改 `index.js` 文件，以便当 `print.js` 内部发生变更时可以告诉 webpack 接受更新的模块。
 
 __index.js__
 
@@ -107,7 +109,7 @@ __index.js__
 + }
 ```
 
-修改 `print.js` 中 `console.log` 语句，你将会在浏览器中看到如下的输出（暂时不要担心 `button.onclick = printMe` 输出，我们稍后也会更新这部分）。
+更改 `print.js` 中 `console.log` 的输出内容，你将会在浏览器中看到如下的输出（不要担心现在 `button.onclick = printMe()` 的输出，我们稍后也会更新该部分）。
 
 __print.js__
 
