@@ -128,7 +128,7 @@ environment 安装完成之后，执行插件。
 
 `SyncHook`
 
-一个新的编译(compilation)创建之后，钩入(hook into) compiler。
+一个新的编译(compilation)创建之前，钩入(hook into) compiler。
 
 参数：`compilationParams`
 
