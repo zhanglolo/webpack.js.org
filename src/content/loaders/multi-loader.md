@@ -5,6 +5,8 @@ edit: https://github.com/webpack-contrib/multi-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/multi-loader
 ---
 
+multi-loader 需要多次加载模块，每次加载不同的 loader。就像在多入口点一样，导出最后一项的出口。
+
 
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
@@ -34,22 +36,23 @@ $ npm install multi-loader --save-dev
 
 然后，在 `webpack` 配置中添加 loader。例如：
 
-```js
-// webpack.config.js
-const multi = require('multi-loader');
+```javascript
+var multi = require("multi-loader");
 {
-	module: {
-		loaders: [
-			{
-				test: /\.css$/,
-				// 向 DOM 中添加 CSS，然后返回原始内容
-				loader: multi(
-					'style-loader!css-loader!autoprefixer-loader',
-					'raw-loader'
-				)
-			}
-		]
-	}
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        // Add CSS to the DOM
+        // and
+        // Return the raw content
+        loader: multi(
+          "style-loader!css-loader!autoprefixer-loader",
+          "raw-loader"
+        )
+      }
+    ];
+  }
 }
 ```
 
@@ -57,22 +60,9 @@ const multi = require('multi-loader');
 
 ## License
 
-#### [MIT](https://raw.githubusercontent.com/webpack-contrib/multi-loader/master/LICENSE)
-
 [npm]: https://img.shields.io/npm/v/multi-loader.svg
 [npm-url]: https://npmjs.com/package/multi-loader
-
-[node]: https://img.shields.io/node/v/multi-loader.svg
-[node-url]: https://nodejs.org
-
 [deps]: https://david-dm.org/webpack-contrib/multi-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/multi-loader
-
-[tests]: 	https://img.shields.io/circleci/project/github/webpack-contrib/multi-loader.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/multi-loader
-
-[cover]: https://codecov.io/gh/webpack-contrib/multi-loader/branch/master/graph/badge.svg
-[cover-url]: https://codecov.io/gh/webpack-contrib/multi-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack

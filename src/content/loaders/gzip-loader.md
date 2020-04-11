@@ -4,9 +4,10 @@ source: https://raw.githubusercontent.com/webpack-contrib/gzip-loader/master/REA
 edit: https://github.com/webpack-contrib/gzip-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/gzip-loader
 ---
-gzip loader module for webpack
 
-Enables loading gzipped resources.
+用于 webpack 的 gzip 加载器模块
+
+启用加载 gzip 资源。
 
 ## 安装
 
@@ -24,12 +25,12 @@ module.exports = {
     rules: [
       {
         test: /\.gz$/,
-        enforce: 'pre',
-        use: 'gzip-loader'
+        enforce: "pre",
+        use: "gzip-loader"
       }
     ]
   }
-}
+};
 ```
 
 **bundle.js**
@@ -84,15 +85,11 @@ require("gzip-loader!./file.js.gz");
 
 [npm]: https://img.shields.io/npm/v/gzip-loader.svg
 [npm-url]: https://npmjs.com/package/gzip-loader
-
 [deps]: https://david-dm.org/webpack-contrib/gzip-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/gzip-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
-
 [test]: http://img.shields.io/travis/webpack-contrib/gzip-loader.svg
 [test-url]: https://travis-ci.org/webpack-contrib/gzip-loader
-
 [cover]: https://codecov.io/gh/webpack-contrib/gzip-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/gzip-loader

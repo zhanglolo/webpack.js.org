@@ -114,9 +114,7 @@ delete options.;
 ]
 ```
 
-报告函数执行时，loader context 会作为函数中的 `this`。
-你可以使用 `this.emitWarning(...)` 或 `this.emitError(...)` 来发出消息。
-查看 [webpack 文档中关于 loader context 的部分](https://webpack.js.org/api/loaders/#the-loader-context)。
+报告函数会将 loader 的上下文信息保存在 `this` 后执行。你可以使用 `this.emitWarning(...)` 或者 `this.emitError(...)` 方法，手动触发信息的报告。请参考[关于 loader 上下文的 webpack 文档](https://webpack.docschina.org/api/loaders/#the-loader-context).
 
 _注意：JSHint reporter **并不兼容** JSHint-loader！
 这是因为，事实上 reporter 的输入，

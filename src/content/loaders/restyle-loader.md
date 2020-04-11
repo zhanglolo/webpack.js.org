@@ -22,7 +22,7 @@ npm install --save-dev restyle-loader
 
 ## 用法
 
-[文档：使用 loader](https://webpack.js.org/loaders/)
+[文档：使用 loader](https://webpack.docschina.org/loaders/)
 
 ## 示例
 

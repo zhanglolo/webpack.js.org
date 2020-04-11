@@ -12,8 +12,6 @@ repo: https://github.com/webpack-contrib/transform-loader
 [![tests][tests]][tests-url]
 [![chat][chat]][chat-url]
 
-
-
 A browserify transformation loader for webpack.
 
 This loader allows use of

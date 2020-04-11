@@ -97,15 +97,7 @@ const bar = require('bar');
 Aggressive Bundle Mode utilizes a custom runtime in which modules within a chunk file are all included in the same scope.
 This avoids [the cost of small modules](https://nolanlawson.com/2016/08/15/the-cost-of-small-modules/).
 
-In Aggressive Bundle Mode, a file can only appear in a single output chunk. Use the [Split Chunks Plugin](https://webpack.js.org/plugins/split-chunks-plugin/)
-to split duplicated files into a single output chunk. If a module is utilized by more than one chunk, the
-plugin will move it up to the first common parent to prevent code duplication.
-
-The [concatenatedModules optimization](https://webpack.js.org/configuration/optimization/#optimization-concatenatemodules)
-is not compatible with this mode since Closure-Compiler performs an equivalent optimization).
-The plugin will emit a warning if this optimization is not disabled.
-
-## Multiple Output Languages
+In Aggressive Bundle Mode, a file can only appear in a single output chunk. Use the [Commons Chunk Plugin](https://webpack.docschina.org/plugins/commons-chunk-plugin/) to split duplicated files into a single output chunk.
 
 You can add the plugin multiple times. This easily allows you to target multiple output languages.
 Use `ECMASCRIPT_2015` for modern browsers and `ECMASCRIPT5` for older browsers.

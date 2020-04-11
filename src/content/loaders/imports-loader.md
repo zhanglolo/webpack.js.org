@@ -4,9 +4,10 @@ source: https://raw.githubusercontent.com/webpack-contrib/imports-loader/master/
 edit: https://github.com/webpack-contrib/imports-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/imports-loader
 ---
-The imports loader allows you to use modules that depend on specific global variables.
 
-This is useful for third-party modules that rely on global variables like `$` or `this` being the `window` object. The imports loader can add the necessary `require('whatever')` calls, so those modules work with webpack.
+imports loader 允许使用依赖于特定全局变量的模块。
+
+这对于依赖全局变量 `$` 或 `this` 作为 `window` 对象的第三方模块非常有用。imports loader 可以添加必要的 `require('whatever')` 调用，因此这些模块可以与 webpack 一起使用。
 
 ## 安装
 
@@ -14,7 +15,7 @@ This is useful for third-party modules that rely on global variables like `$` or
 npm install imports-loader
 ```
 
-## <a href="https://webpack.js.org/concepts/loaders">用法</a>
+## <a href="https://webpack.docschina.org/concepts/loaders">用法</a>
 
 假设你有 `example.js` 这个文件
 
@@ -24,7 +25,7 @@ $("img").doSomeAwesomeJqueryPluginStuff();
 
 然后你可以像下面这样通过配置 imports-loader 插入 `$` 变量到模块中：
 
-``` javascript
+```javascript
 require("imports-loader?$=jquery!./example.js");
 ```
 
@@ -32,13 +33,13 @@ require("imports-loader?$=jquery!./example.js");
 
 ##
 
-loader 查询值 | 含义
-------------|-------
-`angular` | `var angular = require("angular");`
-`$=jquery` | `var $ = require("jquery");`
-`define=>false` | `var define = false;`
-`config=>{size:50}` | `var config = {size:50};`
-`this=>window` | `(function () { ... }).call(window);`
+| loader 查询值       | 含义                                  |
+| ------------------- | ------------------------------------- |
+| `angular`           |  `var angular = require("angular");`  |
+| `$=jquery`          | `var $ = require("jquery");`          |
+| `define=>false`     | `var define = false;`                 |
+| `config=>{size:50}` | `var config = {size:50};`             |
+| `this=>window`      | `(function () { ... }).call(window);` |
 
 ### 多个值
 
@@ -123,15 +124,11 @@ imports-loader?define=>false
   <tbody>
 </table>
 
-
 [npm]: https://img.shields.io/npm/v/imports-loader.svg
 [npm-url]: https://npmjs.com/package/imports-loader
-
 [deps]: https://david-dm.org/webpack-contrib/imports-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/imports-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
-
 [test]: http://img.shields.io/travis/webpack-contrib/imports-loader.svg
 [test-url]: https://travis-ci.org/webpack-contrib/imports-loader

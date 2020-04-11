@@ -17,7 +17,7 @@ webpack logo 和 icon 遵循不同的许可，
 
 ## webpack 文档
 
-[https://webpack.js.org/](https://webpack.js.org/) 内容遵循 [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可，如果你在其他地方使用我们的内容，则需要放置许可证，并声明文档归属。
+[https://webpack.docschina.org/](https://webpack.docschina.org/) 内容遵循 [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可，如果你在其他地方使用我们的内容，则需要放置许可证，并声明文档归属。
 
 ## webpack 代码示例
 

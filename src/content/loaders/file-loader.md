@@ -5,6 +5,8 @@ edit: https://github.com/webpack-contrib/file-loader/edit/master/README.md
 repo: https://github.com/webpack-contrib/file-loader
 ---
 
+指示 webpack 将所需的对象作为文件发送并返回其公用 URL
+
 
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
@@ -31,7 +33,7 @@ $ npm install file-loader --save-dev
 **file.js**
 
 ```js
-import img from './file.png';
+import img from "./file.png";
 ```
 
 然后，在 `webpack` 配置中添加 loader。例如：
@@ -46,13 +48,13 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
-            options: {},
-          },
-        ],
-      },
-    ],
-  },
+            loader: "file-loader",
+            options: {}
+          }
+        ]
+      }
+    ]
+  }
 };
 ```
 
@@ -64,14 +66,19 @@ module.exports = {
 
 ## 选项
 
-### `name`
+|         名称          |         类型         |                                                       默认值                                                        | 描述                                                                                                                      |
+| :-------------------: | :------------------: | :-----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------ |
+|      **`name`**       | `{String\|Function}` |                                                   `[hash].[ext]`                                                    | 为你的文件配置自定义文件名模板                                                                                            |
+|     **`context`**     |      `{String}`      |                                               `this.options.context`                                                | 配置自定义文件 context，默认为 `webpack.config.js` [context](https://webpack.docschina.org/configuration/entry-context/#context) |
+|   **`publicPath`**    | `{String\|Function}` | [`__webpack_public_path__`](https://webpack.docschina.org/api/module-variables/#__webpack_public_path__-webpack-specific-) | 为你的文件配置自定义 `public` 发布目录                                                                                    |
+|   **`outputPath`**    | `{String\|Function}` |                                                    `'undefined'`                                                    | 为你的文件配置自定义 `output` 输出目录                                                                                    |
+| **`useRelativePath`** |     `{Boolean}`      |                                                       `false`                                                       | 如果你希望为每个文件生成一个相对 url 的 `context` 时，应该将其设置为 `true`                                               |
+|    **`emitFile`**     |     `{Boolean}`      |                                                       `true`                                                        | 默认情况下会生成文件，可以通过将此项设置为 false 来禁止（例如，使用了服务端的 packages）                                  |
 
 类型：`String|Function`
 默认：`'[hash].[ext]'`
 
-Specifies a custom filename template for the target file(s) using the query
-parameter `name`. For example, to emit a file from your `context` directory into
-the output directory retaining the full directory structure, you might use:
+您可以使用查询参数为您的文件配置自定义文件名模板 `name`。例如，要将文件从 `context` 目录复制到保留完整目录结构的输出目录中，可以使用
 
 #### `String`
 
@@ -129,14 +136,24 @@ module.exports = {
 
 > ℹ️ 默认情况下，文件会按照你指定的路径和名称输出同一目录中，且会使用相同的 URI 路径来访问文件。
 
-### `outputPath`
+|     名称     |    类型    |                             默认值                             | 描述                                         |
+| :----------: | :--------: | :------------------------------------------------------------: | :------------------------------------------- |
+| **`[ext]`**  | `{String}` |                         `file.extname`                         | 资源扩展名                                   |
+| **`[name]`** | `{String}` |                        `file.basename`                         | 资源的基本名称                               |
+| **`[path]`** | `{String}` |                         `file.dirname`                         | 资源相对于 `context`的路径                   |
+| **`[hash]`** | `{String}` |                             `md5`                              | 内容的哈希值，下面的 hashes 配置中有更多信息 |
+|  **`[N]`**   | `{Number}` | ``|当前文件名按照查询参数 `regExp` 匹配后获得到第 N 个匹配结果 |
 
 类型：`String|Function`
 默认：`undefined`
 
 Specify a filesystem path where the target file(s) will be placed.
 
-#### `String`
+|       名称       |    类型    |  默认值  | 描述                                                                                  |
+| :--------------: | :--------: | :------: | :------------------------------------------------------------------------------------ |
+|  **`hashType`**  | `{String}` |  `md5`   | `sha1`, `md5`, `sha256`, `sha512`                                                     |
+| **`digestType`** | `{String}` | `base64` | `hex`, `base26`, `base32`, `base36`, `base49`, `base52`, `base58`, `base62`, `base64` |
+|   **`length`**   | `{Number}` |  `9999`  | 字符的长度                                                                            |
 
 **webpack.config.js**
 
@@ -310,8 +327,7 @@ module.exports = {
 **file.js**
 
 ```js
-// bundle file
-import img from './file.png';
+import img from "./file.png";
 ```
 
 **webpack.config.js**
@@ -336,10 +352,7 @@ module.exports = {
 };
 ```
 
-### `regExp`
-
-类型：`RegExp`
-默认：`undefined`
+> ⚠️ 返回 public URL 但**不会**生成文件
 
 Specifies a Regular Expression to one or many parts of the target file path.
 The capture groups can be reused in the `name` property using `[N]`
@@ -468,12 +481,8 @@ The n-th match obtained from matching the current file name against the `regExp`
 
 ## 示例
 
-The following examples show how one might use `file-loader` and what the result would be.
-
-**file.js**
-
 ```js
-import png from './image.png';
+import png from "image.png";
 ```
 
 **webpack.config.js**
@@ -505,9 +514,7 @@ module.exports = {
 dirname/0dcbbaa701328ae351f.png
 ```
 
----
-
-**file.js**
+**webpack.config.js**
 
 ```js
 import png from './image.png';
@@ -547,7 +554,7 @@ gdyb21L.png
 **file.js**
 
 ```js
-import png from './path/to/file.png';
+import png from "path/to/file.png";
 ```
 
 **webpack.config.js**
@@ -585,21 +592,17 @@ path/to/file.png?e43b20c069c4a01867c31e98cbce33c9
 
 [贡献指南](https://raw.githubusercontent.com/webpack-contrib/file-loader/master/.github/CONTRIBUTING.md)
 
-## License
-
-[MIT](https://raw.githubusercontent.com/webpack-contrib/file-loader/master/LICENSE)
-
 [npm]: https://img.shields.io/npm/v/file-loader.svg
 [npm-url]: https://npmjs.com/package/file-loader
 [node]: https://img.shields.io/node/v/file-loader.svg
 [node-url]: https://nodejs.org
 [deps]: https://david-dm.org/webpack-contrib/file-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/file-loader
-[tests]: https://img.shields.io/circleci/project/github/webpack-contrib/file-loader.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/file-loader
-[cover]: https://codecov.io/gh/webpack-contrib/file-loader/branch/master/graph/badge.svg
+[tests]: http://img.shields.io/travis/webpack-contrib/file-loader.svg
+[tests-url]: https://travis-ci.org/webpack-contrib/file-loader
+[cover]: https://img.shields.io/codecov/c/github/webpack-contrib/file-loader.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/file-loader
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack
 [size]: https://packagephobia.now.sh/badge?p=file-loader
 [size-url]: https://packagephobia.now.sh/result?p=file-loader
