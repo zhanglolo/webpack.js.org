@@ -15,25 +15,23 @@ contributors:
 
 一个插件由以下构成
 
-- 一个具名 JavaScript 函数。
-- 在它的原型上定义 `apply` 方法。
-- 指定一个触及到 webpack 本身的 [事件钩子](/api/compiler-hooks/)。
-- 操作 webpack 内部的实例特定数据。
-- 在实现功能后调用 webpack 提供的 callback。
+- 一个 JavaScript 命名函数。
+- 在插件函数的 prototype 上定义一个 `apply` 方法。
+- 指定一个绑定到 webpack 自身的[事件钩子](/api/compiler-hooks/)。
+- 使用webpack提供的API进行构建
 
 ```javascript
-// 一个 JavaScript class
 class MyExampleWebpackPlugin {
-  // 将 `apply` 定义为其原型方法，此方法以 compiler 作为参数
+  // 定义`apply`
   apply(compiler) {
-    // 指定要附加到的事件钩子函数
-    compiler.hooks.emit.tapAsync(
-      'MyExampleWebpackPlugin',
+    // 指定事件钩子
+    compiler.hooks.compile.tapAsync(
+      'afterCompile',
       (compilation, callback) => {
         console.log('This is an example plugin!');
         console.log('Here’s the `compilation` object which represents a single build of assets:', compilation);
 
-        // 使用 webpack 提供的 plugin API 操作构建结果
+        // 使用webpack提供的API进行构建
         compilation.addModule(/* ... */);
 
         callback();
@@ -49,11 +47,14 @@ class MyExampleWebpackPlugin {
 
 ```javascript
 class HelloWorldPlugin {
+  constructor(options) {
+    this.options = options;
+  }
+
   apply(compiler) {
-    compiler.hooks.done.tap('Hello World Plugin', (
-      stats /* 在 hook 被触及时，会将 stats 作为参数传入。 */
-    ) => {
+    compiler.hooks.done.tap('HelloWorldPlugin', () => {
       console.log('Hello World!');
+      console.log(this.options);
     });
   }
 }
@@ -72,19 +73,32 @@ module.exports = {
   plugins: [new HelloWorldPlugin({ options: true })]
 };
 ```
+## Compiler 和 Compilation
 
-## compiler 和 compilation
+在插件开发中最重要的两个资源就是 `compiler` 和 `compilation` 对象。理解它们的角色是扩展 webpack 引擎重要的第一步。
 
-在插件开发中最重要的两个资源就是 [`compiler`](/api/node/#compiler-instance) 和 [`compilation`](/api/compilation-hooks/) 对象。理解它们的角色是扩展 webpack 引擎重要的第一步。
+- `compiler` 对象代表了完整的 webpack 环境配置。这个对象在启动 webpack 时被一次性建立，并配置好所有可操作的设置，包括 options，loader 和 plugin。当在 webpack 环境中应用一个插件时，插件将收到此 compiler 对象的引用。可以使用它来访问 webpack 的主环境。
+
+- `compilation` 对象代表了一次资源版本构建。当运行 webpack 开发环境中间件时，每当检测到一个文件变化，就会创建一个新的 compilation，从而生成一组新的编译资源。一个 compilation 对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息。compilation 对象也提供了很多关键时机的回调，以供插件做自定义处理时选择使用。
+
+这两个组件是任何 webpack 插件不可或缺的部分（特别是 `compilation`），因此，开发者在阅读源码，并熟悉它们之后，会感到获益匪浅：
+
+- [Compiler Source](https://github.com/webpack/webpack/blob/master/lib/Compiler.js)
+- [Compilation Source](https://github.com/webpack/webpack/blob/master/lib/Compilation.js)
+
+
+## 访问 compilation 对象
+
+使用 compiler 对象时，你可以绑定提供了编译 compilation 引用的回调函数，然后拿到每次新的 compilation 对象。这些 compilation 对象提供了一些钩子函数，来钩入到构建流程的很多步骤中。
 
 ```javascript
 class HelloCompilationPlugin {
   apply(compiler) {
-    // tap(触及) 到 compilation hook，而在 callback 回调时，会将 compilation 对象作为参数，
-    compiler.hooks.compilation.tap('HelloCompilationPlugin', compilation => {
-      // 现在，通过 compilation 对象，我们可以 tap(触及) 到各种可用的 hooks 了
+    // 设置回调函数访问comilation对象:
+    compiler.hooks.compilation.tap('HelloCompilationPlugin', (compilation) => {
+      // 现在，设置回调访问compilation中的步骤：
       compilation.hooks.optimize.tap('HelloCompilationPlugin', () => {
-        console.log('正在优化资源。');
+        console.log('Hello compilation!');
       });
     });
   }
@@ -99,41 +113,33 @@ module.exports = HelloCompilationPlugin;
 
 有些插件 hooks 是异步的。想要 tap(触及) 某些 hooks，我们可以使用同步方式运行的 `tap` 方法，或者使用异步方式运行的 `tapAsync` 方法或 `tapPromise` 方法。
 
-### tapAsync
+## 异步事件钩子
 
 在我们使用 `tapAsync` 方法 tap 插件时，我们需要调用 callback，此 callback 将作为最后一个参数传入函数。
 
 ```javascript
 class HelloAsyncPlugin {
   apply(compiler) {
-    compiler.hooks.emit.tapAsync('HelloAsyncPlugin', (compilation, callback) => {
-      // 做一些异步的事情……
+    // tapAsync() is callback-based
+    compiler.hooks.emit.tapAsync('HelloAsyncPlugin', function(compilation, callback) {
       setTimeout(function() {
         console.log('Done with async work...');
         callback();
       }, 1000);
     });
-  }
-}
 
-module.exports = HelloAsyncPlugin;
-```
+    // tapPromise() is promise-based
+    compiler.hooks.emit.tapPromise('HelloAsyncPlugin', (compilation) => {
+      return doSomethingAsync()
+        .then(() => {
+          console.log('Done with async work...');
+        });
+    });
 
-#### tapPromise
-
-在我们使用 `tapPromise` 方法 tap 插件时，我们需要返回一个 promise，此 promise 将在我们的异步任务完成时 resolve。
-
-```javascript
-class HelloAsyncPlugin {
-  apply(compiler) {
-    compiler.hooks.emit.tapPromise('HelloAsyncPlugin', compilation => {
-      // 返回一个 Promise，在我们的异步任务完成时 resolve……
-      return new Promise((resolve, reject) => {
-        setTimeout(function() {
-          console.log('异步工作完成……');
-          resolve();
-        }, 1000);
-      });
+    // Plain old tap() is still here:
+    compiler.hooks.emit.tap('HelloAsyncPlugin', () => {
+      // 这里没有异步事件
+      console.log('Done with sync work...');
     });
   }
 }
@@ -150,23 +156,22 @@ module.exports = HelloAsyncPlugin;
 ```javascript
 class FileListPlugin {
   apply(compiler) {
-    // emit 是异步 hook，使用 tapAsync 触及它，还可以使用 tapPromise/tap(同步)
     compiler.hooks.emit.tapAsync('FileListPlugin', (compilation, callback) => {
-      // 在生成文件中，创建一个头部字符串：
+      // Create a header string for the generated file:
       var filelist = 'In this build:\n\n';
 
-      // 遍历所有编译过的资源文件，
-      // 对于每个文件名称，都添加一行内容。
+      // Loop through all compiled assets,
+      // adding a new line item for each filename.
       for (var filename in compilation.assets) {
-        filelist += '- ' + filename + '\n';
+        filelist += ('- '+ filename +'\n');
       }
 
-      // 将这个列表作为一个新的文件资源，插入到 webpack 构建中：
+      // Insert this list into the webpack build as a new file asset:
       compilation.assets['filelist.md'] = {
-        source: function() {
+        source() {
           return filelist;
         },
-        size: function() {
+        size() {
           return filelist.length;
         }
       };
@@ -251,3 +256,6 @@ this.hooks = {
     - 通过 `AsyncParallelHook[params]` 定义。
     - 使用 `tap`/`tapAsync`/`tapPromise` 方法触及。
     - 使用 `callAsync(...params)` 方法调用。
+
+### 配置默认值
+webpack 会在插件配置应用之后再应用自身的默认配置。这允许插件可以指定他们自己的默认配置并且提供一个方式去创建配置预设插件。
