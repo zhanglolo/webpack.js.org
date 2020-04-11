@@ -334,7 +334,7 @@ module.exports = {
   </details>
   // 通过在浏览器调试工具(browser devtools)中添加元信息(meta info)增强调试
   // 牺牲了构建速度的 `source-map' 是最详细的。
-  [context](/configuration/entry-context#context): __dirname, // string（绝对路径！）
+  [context](/configuration/entry-context#context): process.cwd(), // string（绝对路径！）
   // webpack 的主目录
   // [entry](/configuration/entry-context) 和 [module.rules.loader](/configuration/module#rule-loader) 选项
   // 相对于此目录解析
