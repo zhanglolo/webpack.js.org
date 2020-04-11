@@ -110,69 +110,13 @@ module.exports = {
 
 |名称|类型|默认值|描述|
 |:--:|:--:|:-----:|:----------|
-|**[`url`](#url)**|`{Boolean\|Function}`|`true`|启用/禁用 `url()` 处理|
-|**[`import`](#import)** |`{Boolean\/Function}`|`true`|启用/禁用 @import 处理|
-|**[`modules`](#modules)**|`{Boolean\/Function}`|`false`|启用/禁用 CSS 模块和设置模式|
-|**[`localIdentName`](#localidentname)**|`{String}`|`[hash:base64]`|配置生成资源的标识符名称|
-|**[`context`](#context)**|`{String}`|   `undefined`|Allow to redefine basic loader context for local ident name|
-|**[`hashPrefix`](#hashprefix)**|`{String}`|`undefined`|Allow to add custom hash to generate more unique classes|
-|**[`getLocalIdent`](#getlocalident)**|`{Function}`|`undefined`|Configure the function to generate classname based on a different schema|
-|**[`sourceMap`](#sourcemap)**|`{Boolean}`|`false`|启用/禁用 sourcemap|
-|**[`camelCase`](#camelcase)**|`{Boolean\|String}`|`false`|以驼峰式命名导出类名|
+|**[`url`](#url)**|`{Boolean}`|`true`| 启用/禁用 `url()` 处理|
+|**[`import`](#import)** |`{Boolean}`|`true`| 启用/禁用 @import 处理|
+|**[`modules`](#modules)**|`{Boolean}`|`false`|启用/禁用 CSS 模块|
+|**[`localIdentName`](#localidentname)**|`{String}`|`[hash:base64]`|配置生成的标识符(ident)|
+|**[`sourceMap`](#sourcemap)**|`{Boolean}`|`false`|启用/禁用 Sourcemap|
+|**[`camelCase`](#camelcase)**|`{Boolean\|String}`|`false`|以驼峰化式命名导出类名|
 |**[`importLoaders`](#importloaders)**|`{Number}`|`0`|在 css-loader 前应用的 loader 的数量|
-|**[`exportOnlyLocals`](#exportonlylocals)**|`{Boolean}`|`false`|Export only locals|
-
-### `url`
-
-类型：`Boolean|Function`
-默认：`true`
-
-Control `url()` resolving. Absolute URLs and root-relative URLs are not resolving.
-
-Examples resolutions:
-
-```
-url(image.png) => require('./image.png')
-url('image.png') => require('./image.png')
-url(./image.png) => require('./image.png')
-url('./image.png') => require('./image.png')
-url('http://dontwritehorriblecode.com/2112.png') => require('http://dontwritehorriblecode.com/2112.png')
-image-set(url('image2x.png') 1x, url('image1x.png') 2x) => require('./image1x.png') and require('./image2x.png')
-```
-
-To import assets from a `node_modules` path (include `resolve.modules`) and for `alias`, prefix it with a `~`:
-
-```
-url(~module/image.png) => require('module/image.png')
-url('~module/image.png') => require('module/image.png')
-url(~aliasDirectory/image.png) => require('otherDirectory/image.png')
-```
-
-#### `Boolean`
-
-Enable/disable `url()` resolving.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          url: true,
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `Function`
-
-Allow to filter `url()`. All filtered `url()` will not be resolved (left in the code as they were written).
 
 **webpack.config.js**
 
@@ -216,39 +160,7 @@ Examples resolutions:
 @import url('http://dontwritehorriblecode.com/style.css') => @import url('http://dontwritehorriblecode.com/style.css') in runtime
 ```
 
-To import styles from a `node_modules` path (include `resolve.modules`) and for `alias`, prefix it with a `~`:
-
-```
-@import url(~module/style.css) => require('module/style.css')
-@import url('~module/style.css') => require('module/style.css')
-@import url(~aliasDirectory/style.css) => require('otherDirectory/style.css')
-```
-
-#### `Boolean`
-
-Enable/disable `@import` resolving.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          import: true,
-        },
-      },
-    ],
-  },
-};
-```
-
-#### `Function`
-
-Allow to filter `@import`. All filtered `@import` will not be resolved (left in the code as they were written).
+### `import`
 
 **webpack.config.js**
 
@@ -358,7 +270,7 @@ loader 会用唯一的标识符(identifier)来替换局部选择器。所选择�
 }
 ```
 
-> ℹ️ 主要信息: 标识符被导出
+> ℹ️ 标识符被导出
 
 ```js
 exports.locals = {
@@ -371,7 +283,7 @@ exports.locals = {
 
 你可以使用 `:local(#someId)`，但不推荐这种用法。推荐使用 class 代替 id。
 
-##### `Composing`
+#### `Composing`
 
 当声明一个局部类名时，你可以与另一个局部类名组合为一个局部类。
 
@@ -438,112 +350,42 @@ exports.locals = {
 
 ### `localIdentName`
 
-类型：`String`
-默认：`[hash:base64]`
+ 你可以使用 localIdentName 查询参数来配置生成的 ident。 可以在 [loader-utils 文档](https://github.com/webpack/loader-utils#interpolatename) 查看更多信息。
 
-You can configure the generated ident with the `localIdentName` query parameter.
-See [loader-utils's documentation](https://github.com/webpack/loader-utils#interpolatename) for more information on options.
+ **webpack.config.js**
+```js
+{
+  test: /\.css$/,
+  use: [
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        localIdentName: '[path][name]__[local]--[hash:base64:5]'
+      }
+    }
+  ]
+}
+```
+
+你还可以通过自定义 getLocalIdent 函数来指定绝对路径，以根据不同的模式(schema)生成类名。这需要 webpack >= 2.2.1（options 对象支持传入函数）。
 
 **webpack.config.js**
 
 ```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          localIdentName: '[path][name]__[local]--[hash:base64:5]',
-        },
-      },
-    ],
-  },
-};
+{
+  loader: 'css-loader',
+  options: {
+    modules: true,
+    localIdentName: '[path][name]__[local]--[hash:base64:5]',
+    getLocalIdent: (context, localIdentName, localName, options) => {
+      return 'whatever_random_class_name'
+    }
+  }
+}
 ```
 
-### `context`
-
-类型：`String`
-默认：`undefined`
-
-Allow to redefine basic loader context for local ident name.
-By default we use `rootContext` of loader.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          context: path.resolve(__dirname, 'context'),
-        },
-      },
-    ],
-  },
-};
-```
-
-### `hashPrefix`
-
-类型：`String`
-默认：`undefined`
-
-Allow to add custom hash to generate more unique classes.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          hashPrefix: 'hash',
-        },
-      },
-    ],
-  },
-};
-```
-
-### `getLocalIdent`
-
-类型：`Function`
-默认：`undefined`
-
-You can also specify the absolute path to your custom `getLocalIdent` function to generate classname based on a different schema.
-By default we use built-in function to generate a classname.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          getLocalIdent: (context, localIdentName, localName, options) => {
-            return 'whatever_random_class_name';
-          },
-        },
-      },
-    ],
-  },
-};
-```
+> ℹ️ 对于使用 extract-text-webpack-plugin 预渲染，你应该在预渲染 bundle 中 使用 css-loader/locals 而不是 style-loader!css-loader 。它不会嵌入 CSS，但只导出标识符映射(identifier map)。
 
 ### `sourceMap`
 
@@ -683,31 +525,8 @@ module.exports = {
 
 ## 示例
 
-### 资源
-
-以下 `webpack.config.js` 可以加载 CSS 文件，将小体积 PNG/JPG/GIF/SVG 图像转为像字体那样的 [Data URL](https://tools.ietf.org/html/rfc2397) 嵌入，并复制较大的文件到输出目录。
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-        },
-      },
-    ],
-  },
-};
-```
+对于生产环境构建，建议从 bundle 中提取 CSS，以便之后可以并行加载 CSS/JS 资源。
+可以通过使用 [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin) 来实现，在生产环境模式运行中提取 CSS。
 
 ### 提取
 
