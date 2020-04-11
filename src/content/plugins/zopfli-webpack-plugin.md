@@ -4,7 +4,8 @@ source: https://raw.githubusercontent.com/webpack-contrib/zopfli-webpack-plugin/
 edit: https://github.com/webpack-contrib/zopfli-webpack-plugin/edit/master/README.md
 repo: https://github.com/webpack-contrib/zopfli-webpack-plugin
 ---
-Node-Zopfli plugin for Webpack.
+
+Webpack 的 Node-Zopfli 插件.
 
 ## 安装
 
@@ -12,7 +13,7 @@ Node-Zopfli plugin for Webpack.
 npm i -D zopfli-webpack-plugin
 ```
 
-## Usage
+## 用法
 
 ``` javascript
 var ZopfliPlugin = require("zopfli-webpack-plugin");
@@ -29,26 +30,26 @@ module.exports = {
 }
 ```
 
-## Arguments
+## 参数
 
-* `asset`: The target asset name. `[file]` is replaced with the original asset. `[path]` is replaced with the path of the original asset and `[query]` with the query. Defaults to `"[path].gz[query]"`.
-* `filename`: A `function(asset)` which receives the asset name (after processing `asset` option) and returns the new asset name. Defaults to `false`.
-* `algorithm`: Can be a `function(buf, callback)` or a string. For a string the algorithm is taken from `zopfli`.
-* `test`: All assets matching this RegExp are processed. Defaults to every asset.
-* `threshold`: Only assets bigger than this size are processed. In bytes. Defaults to `0`.
-* `minRatio`: Only assets that compress better that this ratio are processed. Defaults to `0.8`.
-* `deleteOriginalAssets`: Whether to delete the original assets or not. Defaults to `false`.
+* `asset`: 目标资源名。 `[file]` 被替换成原资源. `[path]` 被替换成原资源路径 `[query]` 替换成原查询字符串. 默认为 `"[path].gz[query]"`.
+* `filename`: `function(asset)` 接受资源名 (被处理完之后的)，然后返回新的资源名。默认为 `false`.
+* `algorithm`: 可以为 `function(buf, callback)` 也可以是字符串. 字符串来自 `zopfli`.
+* `test`: 所有匹配正则表达式的资源会得到处理。默认为全部资源。
+* `threshold`: 只有大于指定文件大小（size）的资源会得到处理。 单位为字节（bytes）。 默认为 `0`.
+* `minRatio`: 只有资源压缩率（compress ratio）大于指定值的资源会得到处理。默认为 `0.8`.
+* `deleteOriginalAssets`: 是否删除原资源。默认为 `false`.
 
-## Option Arguments
+## 可选参数
 
-* verbose: Default: false,
-* verbose_more: Default: false,
-* numiterations: Default: 15,
-* blocksplitting: Default: true,
-* blocksplittinglast: Default: false,
-* blocksplittingmax: Default: 15
+* `verbose`: 默认值: `false`,
+* `verbose_more`: 默认值: `false`,
+* `numiterations`: 默认值: `15`,
+* `blocksplitting`: 默认值: `true`,
+* `blocksplittinglast`: 默认值: `false`,
+* `blocksplittingmax`: 默认值: `15`
 
-## Maintainers
+## 维护人员
 
 <table>
   <tbody>
