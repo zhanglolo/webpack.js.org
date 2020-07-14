@@ -9,17 +9,17 @@ Generate Chrome profile file which includes timings of plugins execution. Output
 
 > Note : ProfilingPlugin accepts only absolute paths.
 
-## Options
+## Options {#options}
 
 - `outputPath`: An absolute path to a custom output file (json)
 
-## Usage: default
+## Usage: default {#usagedefault}
 
 ``` js
 new webpack.debug.ProfilingPlugin();
 ```
 
-## Usage: custom `outputPath`
+## Usage: custom `outputPath` {#usagecustomoutput-path}
 
 ``` js
 new webpack.debug.ProfilingPlugin({

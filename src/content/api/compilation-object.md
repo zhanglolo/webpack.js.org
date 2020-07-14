@@ -10,15 +10,19 @@ contributors:
 
 Compilation 对象有很多可用的方法和钩子。在此页面，我们将会列举出这些可用的方法和属性。
 
+<<<<<<< HEAD
 ## compilation 对象方法
+=======
+## compilation object methods {#compilationobjectmethods}
+>>>>>>> en-master
 
-### getStats
+### getStats {#get-stats}
 
 `function`
 
 返回当前编译的状态对象。
 
-### addModule
+### addModule {#add-module}
 
 `function (module, cacheGroup)`
 
@@ -29,7 +33,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 要添加的模块
 - `cacheGroup` - 模块的 `cacheGroup`
 
-### getModule
+### getModule {#get-module}
 
 `function (module)`
 
@@ -39,7 +43,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `module` - 要获取的模块。标识符是通过编译使用 `module.identifier()` 方法从模块中提取的。
 
-### findModule
+### findModule {#find-module}
 
 `function (module)`
 
@@ -49,7 +53,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `module` - 要搜索的模块。标识符是通过编译使用 `module.identifier()` 方法从模块中提取的。
 
-### waitForBuildingFinished
+### waitForBuildingFinished {#wait-for-building-finished}
 
 `function (module, callback)`
 
@@ -60,7 +64,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 有问题的模块。
 - `callback` - 要调用的函数。
 
-### buildModule
+### buildModule {#build-module}
 
 `function (module, optional, origin, dependencies)`
 
@@ -73,7 +77,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `origin` - 请求此模块构建的原始模块。
 - `dependencies` - 要构建模块的可选依赖。
 
-### processModuleDependencies
+### processModuleDependencies {#process-module-dependencies}
 
 `function (module, callback)`
 
@@ -84,7 +88,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 要被处理依赖的模块。
 - `callback` - 模块依赖处理完成时回调的函数。
 
-### addModuleDependencies
+### addModuleDependencies {#add-module-dependencies}
 
 `function (module, dependencies, bail, cacheGroup, recursive, callback)`
 
@@ -100,7 +104,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `callback` - 添加模块依赖之后回调的函数。
 
 
-### addEntry
+### addEntry {#add-entry}
 
 `function (context, entry, name, callback)`
 
@@ -113,7 +117,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `name` - 入口名称。
 - `callback` - 添加入口完成之后回调的函数。
 
-### prefetch
+### prefetch {#prefetch}
 
 `function (context, dependency, callback)`
 
@@ -125,7 +129,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `dependency` - 被用来创建模块的依赖。
 - `callback` - 向上一级发送模块的模块回调。
 
-### rebuildModule
+### rebuildModule {#rebuild-module}
 
 `function (module, thisCallback)`
 
@@ -136,7 +140,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 要被重建的模块。
 - `thisCallback` - 模块重建完成之后调用的函数。
 
-### finish
+### finish {#finish}
 
 `function (callback)`
 
@@ -146,7 +150,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `callback` - 编译完成之后调用的函数。
 
-### seal
+### seal {#seal}
 
 `function (callback)`
 
@@ -156,7 +160,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `callback` - 封闭编译时回调的函数。
 
-### unseal
+### unseal {#unseal}
 
 `function`
 
@@ -166,7 +170,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `callback` - 解除封闭编译时回调的函数。
 
-### reportDependencyErrorsAndWarnings
+### reportDependencyErrorsAndWarnings {#report-dependency-errors-and-warnings}
 
 `function (module, blocks)`
 
@@ -177,7 +181,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 要被报告错误与警告的模块。
 - `blocks` - 一组要报告的依赖块。
 
-### addChunkInGroup
+### addChunkInGroup {#add-chunk-in-group}
 
 `function (groupOptions, module, loc, request)`
 
@@ -190,7 +194,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `loc` - 引用 chunk 组的位置（模块内部）。
 - `request` - 引用 chunk 组的请求。
 
-### addChunk
+### addChunk {#add-chunk}
 
 `function (name)`
 
@@ -200,7 +204,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `name` - chunk 的名称。
 
-### assignDepth
+### assignDepth {#assign-depth}
 
 `function (module)`
 
@@ -210,7 +214,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `module` - 要被分配 depth 的模块。
 
-### getDependencyReference
+### getDependencyReference {#get-dependency-reference}
 
 `function (module, dependency)`
 
@@ -221,7 +225,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 有问题的模块。
 - `dependency` - 要引用的依赖。
 
-### processDependenciesBlocksForChunkGroups
+### processDependenciesBlocksForChunkGroups {#process-dependencies-blocks-for-chunk-groups}
 
 `function (inputChunkGroups)`
 
@@ -231,7 +235,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 
 - `inputChunkGroups` - 被处理的 chunk 组。
 
-### removeReasonsOfDependencyBlock
+### removeReasonsOfDependencyBlock {#remove-reasons-of-dependency-block}
 
 `function (module, block)`
 
@@ -242,7 +246,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 要移除的模块关系。
 - `block` - 依赖块。
 
-### patchChunksAfterReasonRemoval
+### patchChunksAfterReasonRemoval {#patch-chunks-after-reason-removal}
 
 `function (module, chunk)`
 
@@ -253,7 +257,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `module` - 要修复关系的模块。
 - `chunk` - 要修复关系的 chunk。
 
-### removeChunkFromDependencies
+### removeChunkFromDependencies {#remove-chunk-from-dependencies}
 
 `function (block, chunk)`
 
@@ -264,35 +268,35 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `block` - `Chunk` 的块连接。
 - `chunk` - 从依赖中删除的块。
 
-### sortItemsWithModuleIds
+### sortItemsWithModuleIds {#sort-items-with-module-ids}
 
 `function`
 
-### sortItemsWithChunkIds
+### sortItemsWithChunkIds {#sort-items-with-chunk-ids}
 
 `function`
 
-### summarizeDependencies
+### summarizeDependencies {#summarize-dependencies}
 
 `function`
 
-### createHash
+### createHash {#create-hash}
 
 `function`
 
-### modifyHash
+### modifyHash {#modify-hash}
 
 `function (update)`
 
-### createModuleAssets
+### createModuleAssets {#create-module-assets}
 
 `function`
 
-### createChunkAssets
+### createChunkAssets {#create-chunk-assets}
 
 `function`
 
-### getPath
+### getPath {#get-path}
 
 `function (filename, data)`
 
@@ -303,7 +307,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `filename` - 用于通过哈希获取资源路径。
 - `data` - 数据对象。
 
-### getPathWithInfo
+### getPathWithInfo {#get-path-with-info}
 
 `function (filename, data)`
 
@@ -314,7 +318,7 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `filename` - 用于通过哈希获取资源路径。
 - `data` - 数据对象。
 
-### createChildCompiler
+### createChildCompiler {#create-child-compiler}
 
 `function (name, outputOptions, plugins)`
 
@@ -326,11 +330,11 @@ Compilation 对象有很多可用的方法和钩子。在此页面，我们将�
 - `outputOptions` - 输出选项。
 - `plugins` - 将被提供的 webpack 插件。
 
-### checkConstraints
+### checkConstraints {#check-constraints}
 
 `function`
 
-### emitAsset
+### emitAsset {#emit-asset}
 
 `function (file, source, assetInfo = {})`
 
@@ -342,7 +346,7 @@ W> webpack 4.40.0 后可用。
 - `source` - 资源来源。
 - `assetInfo` - 附加资源信息。
 
-### updateAsset
+### updateAsset {#update-asset}
 
 `function (file, newSourceOrFunction, assetInfoUpdateOrFunction)`
 
@@ -354,7 +358,7 @@ W> webpack 4.40.0 后可用。
 - `newSourceOrFunction` - 新资源来源或将旧资源转换为新资源的函数。
 - `assetInfoUpdateOrFunction` - 新资源信息或将旧资源转换为新资源的函数。
 
-### getAssets
+### getAssets {#get-assets}
 
 `function`
 
@@ -362,7 +366,7 @@ W> webpack 4.40.0 后可用。
 
 返回当前编译下所有资源的数组。
 
-### getAsset
+### getAsset {#get-asset}
 
 `function (name)`
 
