@@ -10,15 +10,15 @@ contributors:
 
 The Compilation object has many methods and hooks available. On this page, we will list the available methods and properties.
 
-## compilation object methods
+## compilation object methods {#compilationobjectmethods}
 
-### getStats
+### getStats {#get-stats}
 
 `function`
 
 Returns Stats object for the current compilation.
 
-### addModule
+### addModule {#add-module}
 
 `function (module, cacheGroup)`
 
@@ -29,7 +29,7 @@ Parameters:
 - `module` - module to be added
 - `cacheGroup` - `cacheGroup` of the module
 
-### getModule
+### getModule {#get-module}
 
 `function (module)`
 
@@ -39,7 +39,7 @@ Parameters:
 
 - `module` - module to be fetched. The identifier is extracted from the module by the compilation using `module.identifier()` method.
 
-### findModule
+### findModule {#find-module}
 
 `function (module)`
 
@@ -49,7 +49,7 @@ Parameters:
 
 - `module` - module to be searched for. The identifier is extracted from the module by the compilation using `module.identifier()` method.
 
-### waitForBuildingFinished
+### waitForBuildingFinished {#wait-for-building-finished}
 
 `function (module, callback)`
 
@@ -60,7 +60,7 @@ Parameters:
 - `module` - the module at question.
 - `callback` - the function to be invoked.
 
-### buildModule
+### buildModule {#build-module}
 
 `function (module, optional, origin, dependencies)`
 
@@ -73,7 +73,7 @@ Parameters:
 - `origin` - origin module from which this module build was requested.
 - `dependencies` - optional dependencies of the module to be built.
 
-### processModuleDependencies
+### processModuleDependencies {#process-module-dependencies}
 
 `function (module, callback)`
 
@@ -84,7 +84,7 @@ Parameters:
 - `module` - module to be processed for the dependencies.
 - `callback` - function to be invoked when dependencies of the module had been processed.
 
-### addModuleDependencies
+### addModuleDependencies {#add-module-dependencies}
 
 `function (module, dependencies, bail, cacheGroup, recursive, callback)`
 
@@ -100,7 +100,7 @@ Parameters:
 - `callback` - function to invoke after adding the module dependencies.
 
 
-### addEntry
+### addEntry {#add-entry}
 
 `function (context, entry, name, callback)`
 
@@ -113,7 +113,7 @@ Parameters:
 - `name` - the name of entry.
 - `callback` - function to be invoked when addEntry finishes.
 
-### prefetch
+### prefetch {#prefetch}
 
 `function (context, dependency, callback)`
 
@@ -125,7 +125,7 @@ Parameters:
 - `dependency` - the dependency that was used to create the module.
 - `callback` - module callback that sends a module up one level.
 
-### rebuildModule
+### rebuildModule {#rebuild-module}
 
 `function (module, thisCallback)`
 
@@ -136,7 +136,7 @@ Parameters:
 - `module` - module to be rebuilt.
 - `thisCallback` - function to be invoked when the module finishes rebuilding.
 
-### finish
+### finish {#finish}
 
 `function (callback)`
 
@@ -146,7 +146,7 @@ Parameters:
 
 - `callback` - function to be invoked when the compilation has been finished.
 
-### seal
+### seal {#seal}
 
 `function (callback)`
 
@@ -156,7 +156,7 @@ Parameters:
 
 - `callback` - function to be invoked when the compilation has been sealed.
 
-### unseal
+### unseal {#unseal}
 
 `function`
 
@@ -166,7 +166,7 @@ Parameters:
 
 - `callback` - function to be invoked when the compilation has been unsealed.
 
-### reportDependencyErrorsAndWarnings
+### reportDependencyErrorsAndWarnings {#report-dependency-errors-and-warnings}
 
 `function (module, blocks)`
 
@@ -177,7 +177,7 @@ Parameters:
 - `module` - the module whose errors and warnings are to be reported.
 - `blocks` - a set of dependency blocks to report from.
 
-### addChunkInGroup
+### addChunkInGroup {#add-chunk-in-group}
 
 `function (groupOptions, module, loc, request)`
 
@@ -190,7 +190,7 @@ Parameters:
 - `loc` - the location from which the chunk group is referenced (inside of the module).
 - `request` - the request from which the chunk group is referenced.
 
-### addChunk
+### addChunk {#add-chunk}
 
 `function (name)`
 
@@ -200,7 +200,7 @@ Parameters:
 
 - `name` - the name of the chunk.
 
-### assignDepth
+### assignDepth {#assign-depth}
 
 `function (module)`
 
@@ -210,7 +210,7 @@ Parameters:
 
 - `module` - the module to assign depth to.
 
-### getDependencyReference
+### getDependencyReference {#get-dependency-reference}
 
 `function (module, dependency)`
 
@@ -221,7 +221,7 @@ Parameters:
 - `module` - the module at question.
 - `dependency` - the dependency to get reference to.
 
-### processDependenciesBlocksForChunkGroups
+### processDependenciesBlocksForChunkGroups {#process-dependencies-blocks-for-chunk-groups}
 
 `function (inputChunkGroups)`
 
@@ -231,7 +231,7 @@ Parameters:
 
 - `inputChunkGroups` - chunk groups that are processed.
 
-### removeReasonsOfDependencyBlock
+### removeReasonsOfDependencyBlock {#remove-reasons-of-dependency-block}
 
 `function (module, block)`
 
@@ -242,7 +242,7 @@ Parameters:
 - `module` - a module relationship to be removed.
 - `block` - dependency block.
 
-### patchChunksAfterReasonRemoval
+### patchChunksAfterReasonRemoval {#patch-chunks-after-reason-removal}
 
 `function (module, chunk)`
 
@@ -253,7 +253,7 @@ Parameters:
 - `module` - a module to patch tie.
 - `chunk` - a chunk to patch tie.
 
-### removeChunkFromDependencies
+### removeChunkFromDependencies {#remove-chunk-from-dependencies}
 
 `function (block, chunk)`
 
@@ -264,35 +264,35 @@ Parameters:
 - `block` - block tie for `Chunk`.
 - `chunk` - a chunk to remove from dependencies.
 
-### sortItemsWithModuleIds
+### sortItemsWithModuleIds {#sort-items-with-module-ids}
 
 `function`
 
-### sortItemsWithChunkIds
+### sortItemsWithChunkIds {#sort-items-with-chunk-ids}
 
 `function`
 
-### summarizeDependencies
+### summarizeDependencies {#summarize-dependencies}
 
 `function`
 
-### createHash
+### createHash {#create-hash}
 
 `function`
 
-### modifyHash
+### modifyHash {#modify-hash}
 
 `function (update)`
 
-### createModuleAssets
+### createModuleAssets {#create-module-assets}
 
 `function`
 
-### createChunkAssets
+### createChunkAssets {#create-chunk-assets}
 
 `function`
 
-### getPath
+### getPath {#get-path}
 
 `function (filename, data)`
 
@@ -303,7 +303,7 @@ Parameters:
 - `filename` - used to get asset path with hash.
 - `data` - data object.
 
-### getPathWithInfo
+### getPathWithInfo {#get-path-with-info}
 
 `function (filename, data)`
 
@@ -314,7 +314,7 @@ Parameters:
 - `filename` - used to get asset path with hash.
 - `data` - data object.
 
-### createChildCompiler
+### createChildCompiler {#create-child-compiler}
 
 `function (name, outputOptions, plugins)`
 
@@ -326,11 +326,11 @@ Parameters:
 - `outputOptions` - output options object.
 - `plugins` - webpack plugins that will be applied.
 
-### checkConstraints
+### checkConstraints {#check-constraints}
 
 `function`
 
-### emitAsset
+### emitAsset {#emit-asset}
 
 `function (file, source, assetInfo = {})`
 
@@ -342,7 +342,7 @@ Parameters:
 - `source` - the source of the asset
 - `assetInfo` - additional asset information
 
-### updateAsset
+### updateAsset {#update-asset}
 
 `function (file, newSourceOrFunction, assetInfoUpdateOrFunction)`
 
@@ -354,7 +354,7 @@ Parameters:
 - `newSourceOrFunction` - new asset source or function converting old to new
 - `assetInfoUpdateOrFunction` - new asset info or function converting old to new
 
-### getAssets
+### getAssets {#get-assets}
 
 `function`
 
@@ -362,7 +362,7 @@ W> Available since webpack 4.40.0
 
 Returns array of all assets under the current compilation.
 
-### getAsset
+### getAsset {#get-asset}
 
 `function (name)`
 

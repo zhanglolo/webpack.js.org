@@ -20,7 +20,7 @@ related:
 Since version 4 webpack runs optimizations for you depending on the chosen  [`mode`](/configuration/mode/), still all optimizations are available for manual configuration and overrides.
 
 
-## `optimization.minimize`
+## `optimization.minimize` {#optimizationminimize}
 
 `boolean`
 
@@ -42,7 +42,7 @@ module.exports = {
 
 T> Learn how [mode](/configuration/mode/) works.
 
-## `optimization.minimizer`
+## `optimization.minimizer` {#optimizationminimizer}
 
 `[TerserPlugin]` and or `[function (compiler)]`
 
@@ -84,13 +84,13 @@ module.exports = {
 };
 ```
 
-## `optimization.splitChunks`
+## `optimization.splitChunks` {#optimizationsplit-chunks}
 
 `object`
 
 By default webpack v4+ provides new common chunks strategies out of the box for dynamically imported modules. See available options for configuring this behavior in the [SplitChunksPlugin](/plugins/split-chunks-plugin/) page.
 
-## `optimization.runtimeChunk`
+## `optimization.runtimeChunk` {#optimizationruntime-chunk}
 
 `object` `string` `boolean`
 
@@ -144,7 +144,7 @@ module.exports = {
 };
 ```
 
-## `optimization.noEmitOnErrors`
+## `optimization.noEmitOnErrors` {#optimizationno-emit-on-errors}
 
 `boolean`
 
@@ -163,7 +163,7 @@ module.exports = {
 
 W> If you are using webpack [CLI](/api/cli/), the webpack process will not exit with an error code while this plugin is enabled. If you want webpack to "fail" when using the CLI, please check out the [`bail` option](/api/cli/#advanced-options).
 
-## `optimization.namedModules`
+## `optimization.namedModules` {#optimizationnamed-modules}
 
 `boolean = false`
 
@@ -180,7 +180,7 @@ module.exports = {
 };
 ```
 
-## `optimization.namedChunks`
+## `optimization.namedChunks` {#optimizationnamed-chunks}
 
 `boolean = false`
 
@@ -197,7 +197,7 @@ module.exports = {
 };
 ```
 
-## `optimization.moduleIds`
+## `optimization.moduleIds` {#optimizationmodule-ids}
 
 `boolean = false` `string: 'natural' | 'named' | 'deterministic' | 'size'`
 
@@ -245,7 +245,7 @@ W> `moduleIds: 'deterministic'` was added in webpack 5 and `moduleIds: 'hashed'`
 
 W> `moduleIds: total-size` has been removed in webpack 5.
 
-## `optimization.chunkIds`
+## `optimization.chunkIds` {#optimizationchunk-ids}
 
 `boolean = false` `string: 'natural' | 'named' | 'size' | 'total-size' | 'deterministic' `
 
@@ -296,7 +296,7 @@ module.exports = {
 };
 ```
 
-## `optimization.nodeEnv`
+## `optimization.nodeEnv` {#optimizationnode-env}
 
 `boolean = false` `string`
 
@@ -318,7 +318,7 @@ module.exports = {
 };
 ```
 
-## `optimization.mangleWasmImports`
+## `optimization.mangleWasmImports` {#optimizationmangle-wasm-imports}
 
 `boolean = false`
 
@@ -335,7 +335,7 @@ module.exports = {
 };
 ```
 
-## `optimization.removeAvailableModules`
+## `optimization.removeAvailableModules` {#optimizationremove-available-modules}
 
 `boolean = false`
 
@@ -354,7 +354,7 @@ module.exports = {
 
 W> `optimization.removeAvailableModules` reduces the performance of webpack, and will be disabled in `production` mode by default in next major release. Disable it in `production` mode if you want extra build performance.
 
-## `optimization.removeEmptyChunks`
+## `optimization.removeEmptyChunks` {#optimizationremove-empty-chunks}
 
 `boolean = true`
 
@@ -371,7 +371,7 @@ module.exports = {
 };
 ```
 
-## `optimization.mergeDuplicateChunks`
+## `optimization.mergeDuplicateChunks` {#optimizationmerge-duplicate-chunks}
 
 `boolean = true`
 
@@ -388,7 +388,7 @@ module.exports = {
 };
 ```
 
-## `optimization.flagIncludedChunks`
+## `optimization.flagIncludedChunks` {#optimizationflag-included-chunks}
 
 `boolean`
 
@@ -405,7 +405,7 @@ module.exports = {
 };
 ```
 
-## `optimization.occurrenceOrder`
+## `optimization.occurrenceOrder` {#optimizationoccurrence-order}
 
 `boolean`
 
@@ -422,7 +422,7 @@ module.exports = {
 };
 ```
 
-## `optimization.providedExports`
+## `optimization.providedExports` {#optimizationprovided-exports}
 
 `boolean`
 
@@ -439,7 +439,7 @@ module.exports = {
 };
 ```
 
-## `optimization.usedExports`
+## `optimization.usedExports` {#optimizationused-exports}
 
 `boolean = true`
 
@@ -457,7 +457,7 @@ module.exports = {
 };
 ```
 
-## `optimization.concatenateModules`
+## `optimization.concatenateModules` {#optimizationconcatenate-modules}
 
 `boolean`
 
@@ -475,7 +475,7 @@ module.exports = {
 };
 ```
 
-## `optimization.sideEffects`
+## `optimization.sideEffects` {#optimizationside-effects}
 
 `boolean = true`
 
@@ -506,7 +506,7 @@ module.exports = {
 };
 ```
 
-## `optimization.portableRecords`
+## `optimization.portableRecords` {#optimizationportable-records}
 
 `boolean`
 
@@ -525,7 +525,7 @@ module.exports = {
 };
 ```
 
-## `optimization.mangleExports`
+## `optimization.mangleExports` {#optimizationmangle-exports}
 
 `boolean`
 
@@ -544,7 +544,7 @@ module.exports = {
 };
 ```
 
-## `optimization.innerGraph`
+## `optimization.innerGraph` {#optimizationinner-graph}
 
 `boolean = true`
 

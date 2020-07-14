@@ -29,7 +29,7 @@ This page describes the options that affect the behavior of webpack-dev-server (
 T> Options that are compatible with [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) have 🔑 next to them.
 
 
-## `devServer`
+## `devServer` {#dev-server}
 
 `object`
 
@@ -72,7 +72,7 @@ T> If you want to manually recompile the bundle, navigating to the `/invalidate`
 
 T> HTML template is required to serve the bundle, usually it is an `index.html` file. Make sure that script references are added into HTML, webpack-dev-server doesn't inject them automatically.
 
-## `devServer.after`
+## `devServer.after` {#dev-serverafter}
 
 `function (app, server, compiler)`
 
@@ -92,7 +92,7 @@ module.exports = {
 };
 ```
 
-## `devServer.allowedHosts`
+## `devServer.allowedHosts` {#dev-serverallowed-hosts}
 
 `[string]`
 
@@ -139,7 +139,7 @@ To use this option with the CLI pass the `--allowed-hosts` option a comma-delimi
 webpack-dev-server --entry /entry/file --output-path /output/path --allowed-hosts .host.com,host2.com
 ```
 
-## `devServer.before`
+## `devServer.before` {#dev-serverbefore}
 
 `function (app, server, compiler)`
 
@@ -162,7 +162,7 @@ module.exports = {
 };
 ```
 
-## `devServer.bonjour`
+## `devServer.bonjour` {#dev-serverbonjour}
 
 `boolean = false`
 
@@ -186,7 +186,7 @@ webpack-dev-server --bonjour
 ```
 
 
-## `devServer.clientLogLevel`
+## `devServer.clientLogLevel` {#dev-serverclient-log-level}
 
 `string = 'info': 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'none' | 'warning'`
 
@@ -213,7 +213,7 @@ Usage via the CLI
 webpack-dev-server --client-log-level silent
 ```
 
-## `devServer.color` - CLI only
+## `devServer.color` - CLI only {#dev-servercolor-c-l-ionly}
 
 `boolean`
 
@@ -224,7 +224,7 @@ webpack-dev-server --color
 ```
 
 
-## `devServer.compress`
+## `devServer.compress` {#dev-servercompress}
 
 `boolean`
 
@@ -248,7 +248,7 @@ webpack-dev-server --compress
 ```
 
 
-## `devServer.contentBase`
+## `devServer.contentBase` {#dev-servercontent-base}
 
 `boolean: false` `string` `[string]` `number`
 
@@ -293,7 +293,7 @@ webpack-dev-server --content-base /path/to/content/dir
 ```
 
 
-## `devServer.contentBasePublicPath`
+## `devServer.contentBasePublicPath` {#dev-servercontent-base-public-path}
 
 `string = '/'` `[string]`
 
@@ -330,7 +330,7 @@ module.exports = {
 };
 ```
 
-## `devServer.disableHostCheck`
+## `devServer.disableHostCheck` {#dev-serverdisable-host-check}
 
 `boolean`
 
@@ -354,7 +354,7 @@ webpack-dev-server --disable-host-check
 ```
 
 
-## `devServer.filename` 🔑
+## `devServer.filename` 🔑 {#dev-serverfilename}
 
 `string`
 
@@ -383,7 +383,7 @@ It will now only compile the bundle when `/bundle.js` is requested.
 T> `filename` has no effect when used without [lazy mode](#devserverlazy-).
 
 
-## `devServer.headers` 🔑
+## `devServer.headers` 🔑 {#dev-serverheaders}
 
 `object`
 
@@ -403,7 +403,7 @@ module.exports = {
 ```
 
 
-## `devServer.historyApiFallback`
+## `devServer.historyApiFallback` {#dev-serverhistory-api-fallback}
 
 `boolean = false` `object`
 
@@ -463,7 +463,7 @@ webpack-dev-server --history-api-fallback
 For more options and information, see the [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback) documentation.
 
 
-## `devServer.host`
+## `devServer.host` {#dev-serverhost}
 
 `string = 'localhost'`
 
@@ -487,7 +487,7 @@ webpack-dev-server --host 0.0.0.0
 ```
 
 
-## `devServer.hot`
+## `devServer.hot` {#dev-serverhot}
 
 `boolean`
 
@@ -507,7 +507,7 @@ module.exports = {
 T> Note that [`webpack.HotModuleReplacementPlugin`](/plugins/hot-module-replacement-plugin/) is required to fully enable HMR. If `webpack` or `webpack-dev-server` are launched with the `--hot` option, this plugin will be added automatically, so you may not need to add this to your `webpack.config.js`. See the [HMR concepts page](/concepts/hot-module-replacement/) for more information.
 
 
-## `devServer.hotOnly`
+## `devServer.hotOnly` {#dev-serverhot-only}
 
 `boolean`
 
@@ -531,7 +531,7 @@ webpack-dev-server --hot-only
 ```
 
 
-## `devServer.http2`
+## `devServer.http2` {#dev-serverhttp2}
 
 `boolean = false`
 
@@ -583,7 +583,7 @@ webpack-dev-server --http2 --key /path/to/server.key --cert /path/to/server.crt 
 ```
 
 
-## `devServer.https`
+## `devServer.https` {#dev-serverhttps}
 
 `boolean` `object`
 
@@ -630,7 +630,7 @@ To pass your own certificate via the CLI use the following options
 webpack-dev-server --https --key /path/to/server.key --cert /path/to/server.crt --cacert /path/to/ca.pem
 ```
 
-## `devServer.index`
+## `devServer.index` {#dev-serverindex}
 
 `string`
 
@@ -648,7 +648,7 @@ module.exports = {
 ```
 
 
-## `devServer.info` - CLI only
+## `devServer.info` - CLI only {#dev-serverinfo-c-l-ionly}
 
 `boolean`
 
@@ -659,7 +659,7 @@ webpack-dev-server --info=false
 ```
 
 
-## `devServer.injectClient`
+## `devServer.injectClient` {#dev-serverinject-client}
 
 `boolean = false` `function (compilerConfig) => boolean`
 
@@ -676,7 +676,7 @@ module.exports = {
 ```
 
 
-## `devServer.injectHot`
+## `devServer.injectHot` {#dev-serverinject-hot}
 
 `boolean = false` `function (compilerConfig) => boolean`
 
@@ -696,7 +696,7 @@ module.exports = {
 W> Make sure that [`devServer.hot`](#devserverhot) is set to `true` because `devServer.injectHot` only works with HMR.
 
 
-## `devServer.inline`
+## `devServer.inline` {#dev-serverinline}
 
 `boolean`
 
@@ -724,7 +724,7 @@ webpack-dev-server --inline=false
 T> Inline mode is recommended for [Hot Module Replacement](/plugins/hot-module-replacement-plugin/) as it includes an HMR trigger from the websocket. Polling mode can be used as an alternative, but requires an additional entry point, `'webpack/hot/poll?1000'`.
 
 
-## `devServer.lazy` 🔑
+## `devServer.lazy` 🔑 {#dev-serverlazy}
 
 `boolean`
 
@@ -751,7 +751,7 @@ T> [`watchOptions`](#devserverwatchoptions-) will have no effect when used with 
 
 T> If you use the CLI, make sure __inline mode__ is disabled.
 
-## `devServer.liveReload`
+## `devServer.liveReload` {#dev-serverlive-reload}
 
 `boolean = true`
 
@@ -776,7 +776,7 @@ webpack-dev-server --no-live-reload
 ```
 
 
-## `devServer.mimeTypes` 🔑
+## `devServer.mimeTypes` 🔑 {#dev-servermime-types}
 
 `object`
 
@@ -796,7 +796,7 @@ module.exports = {
 ```
 
 
-## `devServer.noInfo` 🔑
+## `devServer.noInfo` 🔑 {#dev-serverno-info}
 
 `boolean = false`
 
@@ -813,7 +813,7 @@ module.exports = {
 };
 ```
 
-## `devServer.onListening`
+## `devServer.onListening` {#dev-serveron-listening}
 
 `function (server)`
 
@@ -833,7 +833,7 @@ module.exports = {
 };
 ```
 
-## `devServer.open`
+## `devServer.open` {#dev-serveropen}
 
 `boolean = false` `string` `object`
 
@@ -887,7 +887,7 @@ webpack-dev-server --open 'Google Chrome'
 T> The browser application name is platform dependent. Don't hard code it in reusable modules. For example, `'Chrome'` is `'Google Chrome'` on macOS, `'google-chrome'` on Linux and `'chrome'` on Windows.
 
 
-## `devServer.openPage`
+## `devServer.openPage` {#dev-serveropen-page}
 
 `string` `[string]`
 
@@ -930,7 +930,7 @@ webpack-dev-server --open-page "/different/page1,/different/page2"
 ```
 
 
-## `devServer.overlay`
+## `devServer.overlay` {#dev-serveroverlay}
 
 `boolean = false` `object: { errors boolean = false, warnings boolean = false }`
 
@@ -964,7 +964,7 @@ module.exports = {
 ```
 
 
-## `devServer.pfx`
+## `devServer.pfx` {#dev-serverpfx}
 
 `string`
 
@@ -988,7 +988,7 @@ webpack-dev-server --pfx /path/to/file.pfx
 ```
 
 
-## `devServer.pfxPassphrase`
+## `devServer.pfxPassphrase` {#dev-serverpfx-passphrase}
 
 `string`
 
@@ -1012,7 +1012,7 @@ webpack-dev-server --pfx-passphrase passphrase
 ```
 
 
-## `devServer.port`
+## `devServer.port` {#dev-serverport}
 
 `number`
 
@@ -1036,7 +1036,7 @@ webpack-dev-server --port 8080
 ```
 
 
-## `devServer.proxy`
+## `devServer.proxy` {#dev-serverproxy}
 
 `object` `[object, function]`
 
@@ -1181,7 +1181,7 @@ module.exports = {
 };
 ```
 
-## `devServer.progress` - CLI only
+## `devServer.progress` - CLI only {#dev-serverprogress-c-l-ionly}
 
 `boolean`
 
@@ -1192,7 +1192,7 @@ webpack-dev-server --progress
 ```
 
 
-## `devServer.public`
+## `devServer.public` {#dev-serverpublic}
 
 `string`
 
@@ -1218,7 +1218,7 @@ webpack-dev-server --public myapp.test:80
 ```
 
 
-## `devServer.publicPath` 🔑
+## `devServer.publicPath` 🔑 {#dev-serverpublic-path}
 
 `string = '/'`
 
@@ -1261,7 +1261,7 @@ The bundle will also be available as `http://localhost:8080/assets/bundle.js`.
 T> It is recommended that `devServer.publicPath` is the same as [`output.publicPath`](/configuration/output/#outputpublicpath).
 
 
-## `devServer.quiet` 🔑
+## `devServer.quiet` 🔑 {#dev-serverquiet}
 
 `boolean`
 
@@ -1284,7 +1284,7 @@ Usage via the CLI
 webpack-dev-server --quiet
 ```
 
-## `devServer.serveIndex`
+## `devServer.serveIndex` {#dev-serverserve-index}
 
 `boolean = true`
 
@@ -1301,7 +1301,7 @@ module.exports = {
 };
 ```
 
-## `devServer.setup`
+## `devServer.setup` {#dev-serversetup}
 
 `function (app, server)`
 
@@ -1326,7 +1326,7 @@ module.exports = {
 ```
 
 
-## `devServer.socket`
+## `devServer.socket` {#dev-serversocket}
 
 `string`
 
@@ -1350,7 +1350,7 @@ webpack-dev-server --socket socket
 ```
 
 
-## `devServer.sockHost`
+## `devServer.sockHost` {#dev-serversock-host}
 
 `string`
 
@@ -1368,7 +1368,7 @@ module.exports = {
 ```
 
 
-## `devServer.sockPath`
+## `devServer.sockPath` {#dev-serversock-path}
 
 `string = '/sockjs-node'`
 
@@ -1391,7 +1391,7 @@ Usage via the CLI
 webpack-dev-server --sockPath /socket
 ```
 
-## `devServer.sockPort`
+## `devServer.sockPort` {#dev-serversock-port}
 
 `number` `string`
 
@@ -1408,7 +1408,7 @@ module.exports = {
 };
 ```
 
-## `devServer.staticOptions`
+## `devServer.staticOptions` {#dev-serverstatic-options}
 
 `object`
 
@@ -1430,7 +1430,7 @@ module.exports = {
 T> This only works when using [`devServer.contentBase`](#devservercontentbase) as a `string`.
 
 
-## `devServer.stats` 🔑
+## `devServer.stats` 🔑 {#dev-serverstats}
 
 `string: 'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'` `object`
 
@@ -1454,7 +1454,7 @@ For more information, see the [__stats documentation__](/configuration/stats/).
 T> This option has no effect when used with `quiet` or `noInfo`.
 
 
-## `devServer.stdin` - CLI only
+## `devServer.stdin` - CLI only {#dev-serverstdin-c-l-ionly}
 
 `boolean`
 
@@ -1465,7 +1465,7 @@ webpack-dev-server --stdin
 ```
 
 
-## `devServer.transportMode`
+## `devServer.transportMode` {#dev-servertransport-mode}
 
 `string = 'sockjs': 'sockjs' | 'ws'` `object`
 
@@ -1492,7 +1492,7 @@ module.exports = {
 
 T> When providing a custom client and server implementation make sure that they are compatible with one another to communicate successfully.
 
-### `devServer.transportMode.client`
+### `devServer.transportMode.client` {#dev-servertransport-modeclient}
 
 `string` `path`
 
@@ -1512,7 +1512,7 @@ module.exports = {
 };
 ```
 
-### `devServer.transportMode.server`
+### `devServer.transportMode.server` {#dev-servertransport-modeserver}
 
 `string` `path` `function`
 
@@ -1561,7 +1561,7 @@ module.exports = {
 ```
 
 
-## `devServer.useLocalIp`
+## `devServer.useLocalIp` {#dev-serveruse-local-ip}
 
 `boolean`
 
@@ -1585,7 +1585,7 @@ webpack-dev-server --useLocalIp
 ```
 
 
-## `devServer.watchContentBase`
+## `devServer.watchContentBase` {#dev-serverwatch-content-base}
 
 `boolean`
 
@@ -1609,7 +1609,7 @@ webpack-dev-server --watch-content-base
 ```
 
 
-## `devServer.watchOptions` 🔑
+## `devServer.watchOptions` 🔑 {#dev-serverwatch-options}
 
 `object`
 
@@ -1635,7 +1635,7 @@ If this is too heavy on the file system, you can change this to an integer to se
 See [WatchOptions](/configuration/watch/) for more options.
 
 
-## `devServer.writeToDisk` 🔑
+## `devServer.writeToDisk` 🔑 {#dev-serverwrite-to-disk}
 
 `boolean = false` `function (filePath) => boolean`
 
