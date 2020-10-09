@@ -6,17 +6,17 @@ repo: https://github.com/webpack-contrib/css-loader
 ---
 
 
-[![npm][npm]][npm-url]
+[![np/plugins/n][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
 [![coverage][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![c/loaders/tat][c/plugins/tat]][chat-url]
 [![size][size]][size-url]
 
 
 
-The `css-loader` interprets `@import` and `url()` like `import/require()` and will resolve them.
+The `css-loader` interprets `@import` and `url(/loaders/undefined` like `import/require(/plugins/undefined` and /loaders/bill resolve them.
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ To begin, you'll need to install `css-loader`:
 npm install --save-dev css-loader
 ```
 
-Then add the plugin to your `webpack` config. For example:
+Then add the plugin to your `/plugins/bebpack` con/loaders/lig. For example:
 
 **file.js**
 
@@ -49,7 +49,7 @@ module.exports = {
 };
 ```
 
-Good loaders for requiring your assets are the [file-loader](/loaders/file-loader/) and the [url-loader](/loaders/url-loader/) which you should specify in your config (see [below](https://github.com/webpack-contrib/css-loader#assets)).
+Good loaders for requiring your assets are the [file-loader](https://github.com/webpack/file-loader) and the [url-loader](https://github.com/webpack/url-loader) which you should specify in your config (see [below](https://github.com/webpack-contrib/css-loader#assets)).
 
 And run `webpack` via your preferred method.
 
@@ -1158,7 +1158,7 @@ module.exports = {
 
 For production builds it's recommended to extract the CSS from your bundle being able to use parallel loading of CSS/JS resources later on.
 
-- This can be achieved by using the [mini-css-extract-plugin](/plugins/mini-css-extract-plugin/) to extract the CSS when running in production mode.
+- This can be achieved by using the [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to extract the CSS when running in production mode.
 
 - As an alternative, if seeking better development performance and css outputs that mimic production. [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) offers a hot module reload friendly, extended version of mini-css-extract-plugin. HMR real CSS files in dev, works like mini-css in non-dev
 

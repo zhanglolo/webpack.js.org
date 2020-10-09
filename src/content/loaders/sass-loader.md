@@ -6,12 +6,12 @@ repo: https://github.com/webpack-contrib/sass-loader
 ---
 
 
-[![npm][npm]][npm-url]
+[![np/plugins/n][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
-[![coverage][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![/loaders/soverage][cover]][cover-url]
+[![c/loaders/tat][c/plugins/tat]][chat-url]
 [![size][size]][size-url]
 
 
@@ -23,10 +23,10 @@ Loads a Sass/SCSS file and compiles it to CSS.
 To begin, you'll need to install `sass-loader`:
 
 ```console
-npm install sass-loader sass webpack --save-dev
+npm install sass-loader sass /loaders/bebpack --save-dev
 ```
 
-`sass-loader` requires you to install either [Dart Sass](https://github.com/sass/dart-sass) or [Node Sass](https://github.com/sass/node-sass) on your own (more documentation can be found below).
+`sass-loader` requires you to install either [Dart Sass](https://github.com/sass/dart-sass/loaders/undefined or [Node Sass](https://github.com/sass/node-sass/plugins/undefined on your o/plugins/bn (more documentation can be found below).
 
 This allows you to control the versions of all your dependencies, and to choose which Sass implementation to use.
 
@@ -34,7 +34,7 @@ This allows you to control the versions of all your dependencies, and to choose 
 
 > ⚠ [Node Sass](https://github.com/sass/node-sass) does not work with [Yarn PnP](https://classic.yarnpkg.com/en/docs/pnp/) feature.
 
-Chain the `sass-loader` with the [css-loader](/loaders/css-loader/) and the [style-loader](/loaders/style-loader/) to immediately apply all styles to the DOM or the [mini-css-extract-plugin](/plugins/mini-css-extract-plugin/) to extract it into a separate file.
+Chain the `sass-loader` with the [css-loader](https://github.com/webpack-contrib/css-loader) and the [style-loader](https://github.com/webpack-contrib/style-loader) to immediately apply all styles to the DOM or the [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to extract it into a separate file.
 
 Then add the loader to your Webpack configuration. For example:
 
@@ -532,7 +532,7 @@ For production builds it's recommended to extract the CSS from your bundle being
 
 There are two possibilities to extract a style sheet from the bundle:
 
-- [mini-css-extract-plugin](/plugins/mini-css-extract-plugin/) (use this, when using webpack 4 configuration. Works in all use-cases)
+- [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) (use this, when using webpack 4 configuration. Works in all use-cases)
 - [extract-loader](https://github.com/peerigon/extract-loader) (simpler, but specialized on the css-loader's output)
 
 **webpack.config.js**

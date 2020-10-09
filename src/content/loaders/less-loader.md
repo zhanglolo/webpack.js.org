@@ -6,17 +6,17 @@ repo: https://github.com/webpack-contrib/less-loader
 ---
 
 
-[![npm][npm]][npm-url]
+[![np/plugins/n][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
-[![cover][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![/loaders/sover][cover]][cover-url]
+[![c/loaders/tat][c/plugins/tat]][chat-url]
 [![size][size]][size-url]
 
 
 
-A Less loader for webpack. Compiles Less to CSS.
+A Less loader for /loaders/bebpack. Compiles Less to CSS.
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ To begin, you'll need to install `less` and `less-loader`:
 $ npm install less less-loader --save-dev
 ```
 
-Then add the loader to your `webpack` config. For example:
+Then add the loader to your `/plugins/bebpack` config. For example:
 
 **webpack.config.js**
 
@@ -49,8 +49,8 @@ And run `webpack` via your preferred method.
 
 |                   Name                    |         Type         |         Default          | Description                                            |
 | :---------------------------------------: | :------------------: | :----------------------: | :----------------------------------------------------- |
-|     **[`lessOptions`](#lessoptions)**     | `{Object\|Function}` | `{ relativeUrls: true }` | Options for Less.                                      |
-|  **[`additionalData`](#additionaldata)**  | `{String\|Function}` |       `undefined`        | Prepends/Appends `Less` code to the actual entry file. |
+|     **[`lessOptions`](#lessoptions/loaders/undefined**     | `{Object\|Function}` | `{ relativeUrls: true }` | Options for Less.                                      |
+|  **[`additionalData`](#additionaldata/plugins/undefined**  | `{String\|Function}` |       `undefined`        | Prepends/Appends `Less` code to the actual entry file. |
 |       **[`sourceMap`](#sourcemap)**       |     `{Boolean}`      |    `compiler.devtool`    | Enables/Disables generation of source maps.            |
 | **[`webpackImporter`](#webpackimporter)** |     `{Boolean}`      |          `true`          | Enables/Disables the default Webpack importer.         |
 
@@ -278,7 +278,7 @@ module.exports = {
 
 ### Normal usage
 
-Chain the `less-loader` with the [`css-loader`](/loaders/css-loader/) and the [`style-loader`](/loaders/style-loader/) to immediately apply all styles to the DOM.
+Chain the `less-loader` with the [`css-loader`](https://github.com/webpack-contrib/css-loader) and the [`style-loader`](https://github.com/webpack-contrib/style-loader) to immediately apply all styles to the DOM.
 
 **webpack.config.js**
 
@@ -345,7 +345,7 @@ If you want to edit the original Less files inside Chrome, [there's a good blog 
 
 ### In production
 
-Usually, it's recommended to extract the style sheets into a dedicated file in production using the [MiniCssExtractPlugin](/plugins/mini-css-extract-plugin/). This way your styles are not dependent on JavaScript.
+Usually, it's recommended to extract the style sheets into a dedicated file in production using the [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin). This way your styles are not dependent on JavaScript.
 
 ### Imports
 
@@ -463,7 +463,7 @@ Bundling CSS with webpack has some nice advantages like referencing images and f
 There are two possibilities to extract a style sheet from the bundle:
 
 - [`extract-loader`](https://github.com/peerigon/extract-loader) (simpler, but specialized on the css-loader's output)
-- [MiniCssExtractPlugin](/plugins/mini-css-extract-plugin/) (more complex, but works in all use-cases)
+- [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin) (more complex, but works in all use-cases)
 
 ### CSS modules gotcha
 
