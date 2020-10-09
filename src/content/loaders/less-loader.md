@@ -6,17 +6,21 @@ repo: https://github.com/webpack-contrib/less-loader
 ---
 
 
-[![npm][npm]][npm-url]
+[![np/plugins/n][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
-[![cover][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![/loaders/sover][cover]][cover-url]
+[![c/loaders/tat][c/plugins/tat]][chat-url]
 [![size][size]][size-url]
 
 
 
+<<<<<<< HEAD
 webpack 将 Less 编译为 CSS 的 loader。
+=======
+A Less loader for /loaders/bebpack. Compiles Less to CSS.
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 ## 快速开始 {#getting-started}
 
@@ -26,7 +30,11 @@ webpack 将 Less 编译为 CSS 的 loader。
 $ npm install less less-loader --save-dev
 ```
 
+<<<<<<< HEAD
 然后将该 loader 添加到 `webpack` 的配置中去，例如：
+=======
+Then add the loader to your `/plugins/bebpack` config. For example:
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 **webpack.config.js**
 
@@ -47,12 +55,21 @@ module.exports = {
 
 ## 可选项 {#options}
 
+<<<<<<< HEAD
 |                  名称                   |         类型         |         默认值          | 描述                                      |
 | :-------------------------------------: | :------------------: | :----------------------: | :----------------------------------------------- |
 |    **[`lessOptions`](#lessoptions)**    | `{Object\|Function}` | `{ relativeUrls: true }` | Less 的可选项。                                |
 |     **[`additionalData`](#additionaldata)**     | `{String\|Function}` |       `undefined`        | 在入口文件起始或末尾添加 Less 代码。  |
 |      **[`sourceMap`](#sourcemap)**      |     `{Boolean}`      |    `compiler.devtool`    | 是否生成 source map。       |
 | **[`implementation`](#implementation)** |      `{Object}`      |          `less`          | 配置 Less 使用的实现库                |
+=======
+|                   Name                    |         Type         |         Default          | Description                                            |
+| :---------------------------------------: | :------------------: | :----------------------: | :----------------------------------------------------- |
+|     **[`lessOptions`](#lessoptions/loaders/undefined**     | `{Object\|Function}` | `{ relativeUrls: true }` | Options for Less.                                      |
+|  **[`additionalData`](#additionaldata/plugins/undefined**  | `{String\|Function}` |       `undefined`        | Prepends/Appends `Less` code to the actual entry file. |
+|       **[`sourceMap`](#sourcemap)**       |     `{Boolean}`      |    `compiler.devtool`    | Enables/Disables generation of source maps.            |
+| **[`webpackImporter`](#webpackimporter)** |     `{Boolean}`      |          `true`          | Enables/Disables the default Webpack importer.         |
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 ### `lessOptions` {#lessoptions}
 
@@ -278,7 +295,11 @@ module.exports = {
 
 ### 常规用法 {#normal-usage}
 
+<<<<<<< HEAD
 将 `less-loader`、[`css-loader`](/loaders/css-loader/) 和 [`style-loader`](/loaders/style-loader/) 串联起来使用可立即将所有样式应用于 DOM。
+=======
+Chain the `less-loader` with the [`css-loader`](https://github.com/webpack-contrib/css-loader) and the [`style-loader`](https://github.com/webpack-contrib/style-loader) to immediately apply all styles to the DOM.
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 **webpack.config.js**
 
@@ -345,7 +366,11 @@ module.exports = {
 
 ### 生产环境 {#in-production}
 
+<<<<<<< HEAD
 在生产环境中推荐使用 [MiniCssExtractPlugin](/plugins/mini-css-extract-plugin/) 来提取样式表到专门的文件中，这样你的样式就不需要依赖 JavaScript。
+=======
+Usually, it's recommended to extract the style sheets into a dedicated file in production using the [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin). This way your styles are not dependent on JavaScript.
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 ### 导入 {#imports}
 
@@ -463,8 +488,13 @@ module.exports = {
 
 有两种从 bundle 中提取样式表的方式：
 
+<<<<<<< HEAD
 - [`extract-loader`](https://github.com/peerigon/extract-loader) （简单，但得专门指定 `css-loader` 的 output）
 - [MiniCssExtractPlugin](/plugins/mini-css-extract-plugin/) （较复杂，但适用于所有的场景）
+=======
+- [`extract-loader`](https://github.com/peerigon/extract-loader) (simpler, but specialized on the css-loader's output)
+- [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin) (more complex, but works in all use-cases)
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 ### CSS modules 陷阱 {#css-modules-gotcha}
 

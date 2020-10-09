@@ -6,17 +6,17 @@ repo: https://github.com/webpack-contrib/stylus-loader
 ---
 
 
-[![npm][npm]][npm-url]
+[![np/plugins/n][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
-[![cover][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![/loaders/sover][cover]][cover-url]
+[![c/loaders/tat][c/plugins/tat]][chat-url]
 [![size][size]][size-url]
 
 
 
-A Stylus loader for webpack. Compiles Styl to CSS.
+A Stylus loader for /loaders/bebpack. Compiles Styl to CSS.
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ To begin, you'll need to install `stylus` and `stylus-loader`:
 $ npm install stylus stylus-loader --save-dev
 ```
 
-Then add the loader to your `webpack` config. For example:
+Then add the loader to your `/plugins/bebpack` config. For example:
 
 **webpack.config.js**
 
@@ -49,8 +49,8 @@ And run `webpack` via your preferred method.
 
 |                   Name                    |         Type         |      Default       | Description                                              |
 | :---------------------------------------: | :------------------: | :----------------: | :------------------------------------------------------- |
-|   **[`stylusOptions`](#stylusoptions)**   | `{Object\|Function}` |        `{}`        | Options for Stylus.                                      |
-|       **[`sourceMap`](#sourcemap)**       |     `{Boolean}`      | `compiler.devtool` | Enables/Disables generation of source maps.              |
+|   **[`stylusOptions`](#stylusoptions/loaders/undefined**   | `{Object\|Function}` |        `{}`        | Options for Stylus.                                      |
+|       **[`sourceMap`](#sourcemap/plugins/undefined**       |     `{Boolean}`      | `compiler.devtool` | Enables/Disables generation of source maps.              |
 | **[`webpackImporter`](#webpackimporter)** |     `{Boolean}`      |       `true`       | Enables/Disables the default Webpack importer.           |
 |  **[`additionalData`](#additionaldata)**  | `{String\|Function}` |    `undefined`     | Prepends/Appends `Stylus` code to the actual entry file. |
 
@@ -368,7 +368,7 @@ module.exports = {
 
 ### Normal usage
 
-Chain the `stylus-loader` with the [`css-loader`](/loaders/css-loader/) and the [`style-loader`](/loaders/style-loader/) to immediately apply all styles to the DOM.
+Chain the `stylus-loader` with the [`css-loader`](https://github.com/webpack-contrib/css-loader) and the [`style-loader`](https://github.com/webpack-contrib/style-loader) to immediately apply all styles to the DOM.
 
 **webpack.config.js**
 
@@ -509,7 +509,7 @@ module.exports = {
 
 ### In production
 
-Usually, it's recommended to extract the style sheets into a dedicated file in production using the [MiniCssExtractPlugin](/plugins/mini-css-extract-plugin/). This way your styles are not dependent on JavaScript.
+Usually, it's recommended to extract the style sheets into a dedicated file in production using the [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin). This way your styles are not dependent on JavaScript.
 
 ### webpack resolver
 
@@ -568,7 +568,7 @@ Bundling CSS with webpack has some nice advantages like referencing images and f
 There are two possibilities to extract a style sheet from the bundle:
 
 - [`extract-loader`](https://github.com/peerigon/extract-loader) (simpler, but specialized on the css-loader's output)
-- [MiniCssExtractPlugin](/plugins/mini-css-extract-plugin/) (more complex, but works in all use-cases)
+- [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin) (more complex, but works in all use-cases)
 
 ## Contributing
 

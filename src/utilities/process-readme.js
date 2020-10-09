@@ -68,12 +68,17 @@ function linkFixerFactory(sourceUrl) {
 }
 
 function getMatches(string, regex) {
+<<<<<<< HEAD
   const matches = [];
   let match;
   // eslint-disable-next-line
   while (match = regex.exec(string)) {
     matches.push(match);
   }
+=======
+  // eslint-disable-next-line
+  const matches = regex.exec(string);
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
   return matches;
 }
 

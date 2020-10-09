@@ -6,17 +6,21 @@ repo: https://github.com/webpack-contrib/css-loader
 ---
 
 
-[![npm][npm]][npm-url]
+[![np/plugins/n][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
 [![coverage][cover]][cover-url]
-[![chat][chat]][chat-url]
+[![c/loaders/tat][c/plugins/tat]][chat-url]
 [![size][size]][size-url]
 
 
 
+<<<<<<< HEAD
 `css-loader` 会对 `@import` 和 `url()` 进行处理，就像 js 解析 `import/require()` 一样。
+=======
+The `css-loader` interprets `@import` and `url(/loaders/undefined` like `import/require(/plugins/undefined` and /loaders/bill resolve them.
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 ## 快速开始 {#getting-started}
 
@@ -26,7 +30,11 @@ repo: https://github.com/webpack-contrib/css-loader
 npm install --save-dev css-loader
 ```
 
+<<<<<<< HEAD
 然后把 loader 引用到你 `webpack` 的配置中。如下所示：
+=======
+Then add the plugin to your `/plugins/bebpack` con/loaders/lig. For example:
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 **file.js**
 
@@ -49,7 +57,11 @@ module.exports = {
 };
 ```
 
+<<<<<<< HEAD
 [file-loader](/loaders/file-loader/) 和 [url-loader](/loaders/file-loader/) 能够非常好的处理资源文件，需在配置文件中进行配置，相关配置请[参阅](https://github.com/webpack-contrib/css-loader#assets)。
+=======
+Good loaders for requiring your assets are the [file-loader](https://github.com/webpack/file-loader) and the [url-loader](https://github.com/webpack/url-loader) which you should specify in your config (see [below](https://github.com/webpack-contrib/css-loader#assets)).
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 然后运行 `webpack`。
 
@@ -1158,7 +1170,11 @@ module.exports = {
 
 对于生产版本，建议以后从 bundle 中提取 CSS，以便以后可以使用 CSS/JS 资源的并行加载。
 
+<<<<<<< HEAD
 - [mini-css-extract-plugin](/plugins/mini-css-extract-plugin/) 可以在生产模式下运行时使用来提取CSS。
+=======
+- This can be achieved by using the [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to extract the CSS when running in production mode.
+>>>>>>> 21cb958980ccd1ede4a3f237fb3b97e86351cea3
 
 - 或者，如果寻求更好的开发性能和可模仿生产的CSS输出。 [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) 提供了支持热重载的 mini-css-extract-plugin 扩展版本。开发人员中的 HMR 模式下的真实 CSS 文件，与非开发人员中的 mini-css 是一样的效果。
 
