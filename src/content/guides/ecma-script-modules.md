@@ -56,7 +56,7 @@ module.fun();
 // 导入包含所有导出内容的“命名空间对象”
 
 import theDefaultValue from './module.js';
-// 导入模块“默认”的导出的方式
+// 导入 `default` 导出的快捷方式
 ```
 
 ## 将模块标记为ESM #{flagging-modules-as-esm}
@@ -73,7 +73,7 @@ Node.js 通过设置 `package.json` 中的属性来显式设置文件模块类�
 }
 ```
 
-除此之外，文件还可以通过使用 `.mjs` 或 `.cjs` 扩展名来设置模块类型。 `.mjs` 将使用 ESM，`.cjs` 将使用 CommonJs。
+除此之外，文件还可以通过使用 `.mjs` 或 `.cjs` 扩展名来设置模块类型。 `.mjs` 将它们强制置为 ESM，`.cjs` 将它们强制置为 CommonJs。
 
 在使用 `text/javascript` 或 `application/javascript` mime type 的 DataURI 中，也将使用 ESM。
 
@@ -83,7 +83,7 @@ Node.js 通过设置 `package.json` 中的属性来显式设置文件模块类�
 
 T> 依旧支持导入包，例如 `import "lodash"` .
 
-non-ESM 仅能导入“默认”导出的模块，不支持命名导出的模块。
+non-ESM 仅能导入 `default` 导出的模块，不支持命名导出的模块。
 
 CommonJs 语法不可用: `require`, `module`, `exports`, `__filename`, `__dirname`.
 
