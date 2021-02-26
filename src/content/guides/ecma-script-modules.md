@@ -9,13 +9,13 @@ related:
 ---
 
 ECMAScript 模块（ESM）是用于在 Web 中使用模块的[规范](https://tc39.github.io/ecma262/#sec-modules)。
-所有现代浏览器均支持此功能，并且为 Web 编写模块化代码的推荐方式。
+所有现代浏览器均支持此功能，同时也是在 Web 中编写模块化代码的推荐方式。
 
 webpack 支持处理 ECMAScript 模块以优化它们。
 
-## 导出
+## 导出 #{Exporting}
 
-关键字`export`允许将 ESM 中的内容暴露给其他模块:
+关键字 `export` 允许将 ESM 中的内容暴露给其他模块:
 
 ```js
 export const CONSTANT = 42;
@@ -40,14 +40,16 @@ export { a, b, other as c };
 export default 1 + 2 + 3 + more();
 ```
 
-## 导入
+## 导入 #{Importing}
 
-关键字`import`允许从其他模块获取引用到ESM中:
+关键字 `import` 允许从其他模块获取引用到 ESM 中:
 
 ```js
 import { CONSTANT, variable } from './module.js';
-// 导入由其他模块导出的“绑定”，这些绑定是动态的
-// 不是获取到了复制的值，而是访问“变量”时，再从导入的模块中获取当前值
+// 导入由其他模块导出的“绑定”
+// 这些绑定是动态的. 这里并非获取到了值的副本
+// 而是当将要访问“variable”时
+// 再从导入的模块中获取当前值
 
 import * as module from './module.js';
 module.fun();
@@ -57,13 +59,13 @@ import theDefaultValue from './module.js';
 // 导入模块“默认”的导出的方式
 ```
 
-## 将模块标记为ESM
+## 将模块标记为ESM #{flagging-modules-as-esm}
 
 默认情况下，webpack 将自动检测文件是 ESM 还是其他模块系统。
 
-Node.js 通过设置`package.json`中的属性来显式设置文件模块类型。
-在 package.json 中设置`"type": "module"`会强制 package.json 下的所有文件使用 ECMAScript 模块。
-设置`"type": "module"`将会强制使用 CommonJS 模块。
+Node.js 通过设置 `package.json` 中的属性来显式设置文件模块类型。
+在 package.json 中设置 `"type": "module"` 会强制 package.json 下的所有文件使用 ECMAScript 模块。
+设置 `"type": "commonjs"` 将会强制使用 CommonJS 模块。
 
 ```json
 {
@@ -71,9 +73,9 @@ Node.js 通过设置`package.json`中的属性来显式设置文件模块类型�
 }
 ```
 
-除此之外，文件还可以通过使用`.mjs`或`.cjs`扩展名来设置模块类型。 `.mjs`将使用 ESM，`.cjs`将使用 CommonJs。
+除此之外，文件还可以通过使用 `.mjs` 或 `.cjs` 扩展名来设置模块类型。 `.mjs` 将使用 ESM，`.cjs` 将使用 CommonJs。
 
-在使用`text/javascript`或`application/javascript` mime type的DataURI中，也将使用ESM。
+在使用 `text/javascript` 或 `application/javascript` mime type 的 DataURI 中，也将使用 ESM。
 
 除了模块格式外，将模块标记为 ESM 还会影响解析逻辑，操作逻辑和模块中的可用符号。
 
