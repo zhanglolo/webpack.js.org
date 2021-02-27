@@ -676,7 +676,7 @@ npm install toml yamljs json5 --save-dev
  document.body.appendChild(component());
 ```
 
-Re-run the `npm run build` command and open `dist/index.html`. You should be able to see your imported data being logged to the console!
+重新运行 `npm run build` 命令并打开 `dist/index.html` 。你将在控制台看到你所导入的数据都被打印了出来。 
 
 ## 全局资源 {#global-assets}
 
@@ -828,7 +828,7 @@ Re-run the `npm run build` command and open `dist/index.html`. You should be abl
  document.body.appendChild(component());
 ```
 
-And remove those dependencies we added before:
+然后移除之前安装过的依赖
 
 ```bash
 npm uninstall css-loader csv-loader json5 style-loader toml xml-loader yamljs
